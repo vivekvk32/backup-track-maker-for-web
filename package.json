@@ -1,0 +1,21 @@
+{
+  "name": "drum-loop-maker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:open": "vite --open",
+    "start": "npm run gen:samples && vite --open",
+    "build": "vite build",
+    "preview": "vite preview",
+    "gen:samples": "node scripts/gen_samples_manifest.js"
+  },
+  "dependencies": {
+    "lamejs": "^1.2.1",
+    "sf2-synth-audio-worklet": "^0.0.12"
+  },
+  "devDependencies": {
+    "vite": "^5.4.19"
+  }
+}

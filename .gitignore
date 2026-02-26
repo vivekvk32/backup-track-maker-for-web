@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.DS_Store
+sample tracks/
+Real Drums Vol. 1/
+public/samples/
+sf2 files/
+public/instruments/*.sf2

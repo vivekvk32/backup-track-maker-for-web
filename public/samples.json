@@ -1,0 +1,1947 @@
+[
+  {
+    "path": "samples/Drum Samples I/clap-808.wav",
+    "name": "clap-808.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/clap-analog.wav",
+    "name": "clap-analog.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/clap-crushed.wav",
+    "name": "clap-crushed.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/clap-fat.wav",
+    "name": "clap-fat.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/clap-slapper.wav",
+    "name": "clap-slapper.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/clap-tape.wav",
+    "name": "clap-tape.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/cowbell-808.wav",
+    "name": "cowbell-808.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/crash-808.wav",
+    "name": "crash-808.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/crash-acoustic.wav",
+    "name": "crash-acoustic.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/crash-noise.wav",
+    "name": "crash-noise.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/crash-tape.wav",
+    "name": "crash-tape.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/hihat-808.wav",
+    "name": "hihat-808.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/hihat-acoustic01.wav",
+    "name": "hihat-acoustic01.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/hihat-acoustic02.wav",
+    "name": "hihat-acoustic02.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/hihat-analog.wav",
+    "name": "hihat-analog.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/hihat-digital.wav",
+    "name": "hihat-digital.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/hihat-dist01.wav",
+    "name": "hihat-dist01.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/hihat-dist02.wav",
+    "name": "hihat-dist02.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/hihat-electro.wav",
+    "name": "hihat-electro.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/hihat-plain.wav",
+    "name": "hihat-plain.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/hihat-reso.wav",
+    "name": "hihat-reso.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/hihat-ring.wav",
+    "name": "hihat-ring.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-808.wav",
+    "name": "kick-808.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-acoustic01.wav",
+    "name": "kick-acoustic01.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-acoustic02.wav",
+    "name": "kick-acoustic02.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-big.wav",
+    "name": "kick-big.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-classic.wav",
+    "name": "kick-classic.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-cultivator.wav",
+    "name": "kick-cultivator.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-deep.wav",
+    "name": "kick-deep.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-dry.wav",
+    "name": "kick-dry.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-electro01.wav",
+    "name": "kick-electro01.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-electro02.wav",
+    "name": "kick-electro02.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-floppy.wav",
+    "name": "kick-floppy.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-gritty.wav",
+    "name": "kick-gritty.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-heavy.wav",
+    "name": "kick-heavy.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-newwave.wav",
+    "name": "kick-newwave.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-oldschool.wav",
+    "name": "kick-oldschool.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-plain.wav",
+    "name": "kick-plain.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-slapback.wav",
+    "name": "kick-slapback.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-softy.wav",
+    "name": "kick-softy.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-stomp.wav",
+    "name": "kick-stomp.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-tape.wav",
+    "name": "kick-tape.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-thump.wav",
+    "name": "kick-thump.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-tight.wav",
+    "name": "kick-tight.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-tron.wav",
+    "name": "kick-tron.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-vinyl01.wav",
+    "name": "kick-vinyl01.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-vinyl02.wav",
+    "name": "kick-vinyl02.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/kick-zapper.wav",
+    "name": "kick-zapper.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/openhat-808.wav",
+    "name": "openhat-808.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/openhat-acoustic01.wav",
+    "name": "openhat-acoustic01.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/openhat-analog.wav",
+    "name": "openhat-analog.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/openhat-slick.wav",
+    "name": "openhat-slick.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/openhat-tight.wav",
+    "name": "openhat-tight.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/perc-808.wav",
+    "name": "perc-808.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/perc-chirpy.wav",
+    "name": "perc-chirpy.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/perc-hollow.wav",
+    "name": "perc-hollow.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/perc-laser.wav",
+    "name": "perc-laser.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/perc-metal.wav",
+    "name": "perc-metal.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/perc-nasty.wav",
+    "name": "perc-nasty.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/perc-short.wav",
+    "name": "perc-short.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/perc-tambo.wav",
+    "name": "perc-tambo.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/perc-tribal.wav",
+    "name": "perc-tribal.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/perc-weirdo.wav",
+    "name": "perc-weirdo.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/ride-acoustic01.wav",
+    "name": "ride-acoustic01.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/ride-acoustic02.wav",
+    "name": "ride-acoustic02.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/shaker-analog.wav",
+    "name": "shaker-analog.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/shaker-shuffle.wav",
+    "name": "shaker-shuffle.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/shaker-suckup.wav",
+    "name": "shaker-suckup.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/snare-808.wav",
+    "name": "snare-808.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/snare-acoustic01.wav",
+    "name": "snare-acoustic01.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/snare-acoustic02.wav",
+    "name": "snare-acoustic02.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/snare-analog.wav",
+    "name": "snare-analog.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/snare-big.wav",
+    "name": "snare-big.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/snare-block.wav",
+    "name": "snare-block.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/snare-brute.wav",
+    "name": "snare-brute.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/snare-dist01.wav",
+    "name": "snare-dist01.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/snare-dist02.wav",
+    "name": "snare-dist02.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/snare-dist03.wav",
+    "name": "snare-dist03.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/snare-electro.wav",
+    "name": "snare-electro.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/snare-lofi01.wav",
+    "name": "snare-lofi01.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/snare-lofi02.wav",
+    "name": "snare-lofi02.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/snare-modular.wav",
+    "name": "snare-modular.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/snare-noise.wav",
+    "name": "snare-noise.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/snare-pinch.wav",
+    "name": "snare-pinch.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/snare-punch.wav",
+    "name": "snare-punch.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/snare-smasher.wav",
+    "name": "snare-smasher.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/snare-sumo.wav",
+    "name": "snare-sumo.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/snare-tape.wav",
+    "name": "snare-tape.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/snare-vinyl01.wav",
+    "name": "snare-vinyl01.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/snare-vinyl02.wav",
+    "name": "snare-vinyl02.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/tom-808.wav",
+    "name": "tom-808.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/tom-acoustic01.wav",
+    "name": "tom-acoustic01.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/tom-acoustic02.wav",
+    "name": "tom-acoustic02.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/tom-analog.wav",
+    "name": "tom-analog.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/tom-chiptune.wav",
+    "name": "tom-chiptune.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/tom-fm.wav",
+    "name": "tom-fm.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/tom-lofi.wav",
+    "name": "tom-lofi.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/tom-rototom.wav",
+    "name": "tom-rototom.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples I/tom-short.wav",
+    "name": "tom-short.wav",
+    "pack": "Drum Samples I"
+  },
+  {
+    "path": "samples/Drum Samples II/Clap - Crackle 1.wav",
+    "name": "Clap - Crackle 1.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Clap - Crackle 2.wav",
+    "name": "Clap - Crackle 2.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Clap - Crackle 3.wav",
+    "name": "Clap - Crackle 3.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Clap - Crackle 4.wav",
+    "name": "Clap - Crackle 4.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Clap - Flange.wav",
+    "name": "Clap - Flange.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Clap - Giannis.wav",
+    "name": "Clap - Giannis.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Clap - Liquid.wav",
+    "name": "Clap - Liquid.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Clap - Neat.wav",
+    "name": "Clap - Neat.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Clap - Tape.wav",
+    "name": "Clap - Tape.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Clap - Vinyl 1.wav",
+    "name": "Clap - Vinyl 1.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Clap - Vinyl 2.wav",
+    "name": "Clap - Vinyl 2.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Hats - Massamolla.wav",
+    "name": "Hats - Massamolla.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Hats - Metal.wav",
+    "name": "Hats - Metal.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Hats - Micro.wav",
+    "name": "Hats - Micro.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Hats - Noise.wav",
+    "name": "Hats - Noise.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Hats - Pedal.wav",
+    "name": "Hats - Pedal.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Hats - Salty.wav",
+    "name": "Hats - Salty.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Hats - Sizzle.wav",
+    "name": "Hats - Sizzle.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Hats - Springwater.wav",
+    "name": "Hats - Springwater.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Hats - Stutter.wav",
+    "name": "Hats - Stutter.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Hats - Sweet.wav",
+    "name": "Hats - Sweet.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Hats - Vinyl.wav",
+    "name": "Hats - Vinyl.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Hats - Wonky.wav",
+    "name": "Hats - Wonky.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Hats - Zippo.wav",
+    "name": "Hats - Zippo.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - 1985.wav",
+    "name": "Kick - 1985.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - ASAC Schrader.wav",
+    "name": "Kick - ASAC Schrader.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Boiler.wav",
+    "name": "Kick - Boiler.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Borefest 2021.wav",
+    "name": "Kick - Borefest 2021.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Chipsynth.wav",
+    "name": "Kick - Chipsynth.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Coffee Shop.wav",
+    "name": "Kick - Coffee Shop.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Darkroom.wav",
+    "name": "Kick - Darkroom.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Devastate.wav",
+    "name": "Kick - Devastate.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Duster.wav",
+    "name": "Kick - Duster.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Edgy.wav",
+    "name": "Kick - Edgy.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Fistpump.wav",
+    "name": "Kick - Fistpump.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Glitcher.wav",
+    "name": "Kick - Glitcher.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Grandmaster.wav",
+    "name": "Kick - Grandmaster.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Hard.wav",
+    "name": "Kick - Hard.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - It.wav",
+    "name": "Kick - It.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Juicy.wav",
+    "name": "Kick - Juicy.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Juno.wav",
+    "name": "Kick - Juno.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Lorida.wav",
+    "name": "Kick - Lorida.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Low Rez.wav",
+    "name": "Kick - Low Rez.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Mecha.wav",
+    "name": "Kick - Mecha.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Nailgun.wav",
+    "name": "Kick - Nailgun.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Neato.wav",
+    "name": "Kick - Neato.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Ocean Breeze.wav",
+    "name": "Kick - Ocean Breeze.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Pots.wav",
+    "name": "Kick - Pots.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Quake.wav",
+    "name": "Kick - Quake.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Retro.wav",
+    "name": "Kick - Retro.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Roundabout.wav",
+    "name": "Kick - Roundabout.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Rummmmble.wav",
+    "name": "Kick - Rummmmble.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Shower.wav",
+    "name": "Kick - Shower.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Showstopper.wav",
+    "name": "Kick - Showstopper.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Slow & Low.wav",
+    "name": "Kick - Slow & Low.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Sonya.wav",
+    "name": "Kick - Sonya.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Swooshy.wav",
+    "name": "Kick - Swooshy.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Tekk.wav",
+    "name": "Kick - Tekk.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Thumpster.wav",
+    "name": "Kick - Thumpster.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Tight.wav",
+    "name": "Kick - Tight.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Kick - Tron.wav",
+    "name": "Kick - Tron.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Perc - Analog 1.wav",
+    "name": "Perc - Analog 1.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Perc - Analog 2.wav",
+    "name": "Perc - Analog 2.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Perc - Box.wav",
+    "name": "Perc - Box.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Perc - Digital Noise.wav",
+    "name": "Perc - Digital Noise.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Perc - Kung Fu.wav",
+    "name": "Perc - Kung Fu.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Perc - Old Computer.wav",
+    "name": "Perc - Old Computer.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Perc - Retrostick.wav",
+    "name": "Perc - Retrostick.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Perc - Skipper.wav",
+    "name": "Perc - Skipper.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Perc - Springboard.wav",
+    "name": "Perc - Springboard.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Perc - Tambo.wav",
+    "name": "Perc - Tambo.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Perc - Tomtom.wav",
+    "name": "Perc - Tomtom.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Perc - Transit.wav",
+    "name": "Perc - Transit.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Perc - Wobble.wav",
+    "name": "Perc - Wobble.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - 1982 Drive.wav",
+    "name": "Snare - 1982 Drive.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Analog.wav",
+    "name": "Snare - Analog.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Blackout.wav",
+    "name": "Snare - Blackout.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Breathe.wav",
+    "name": "Snare - Breathe.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Cassette.wav",
+    "name": "Snare - Cassette.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Clappers Delight.wav",
+    "name": "Snare - Clappers Delight.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Crushed.wav",
+    "name": "Snare - Crushed.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Datasette.wav",
+    "name": "Snare - Datasette.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Double Barrel.wav",
+    "name": "Snare - Double Barrel.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Duotone.wav",
+    "name": "Snare - Duotone.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Eight Oh Eight!.wav",
+    "name": "Snare - Eight Oh Eight!.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Frogger.wav",
+    "name": "Snare - Frogger.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - GNR.wav",
+    "name": "Snare - GNR.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Hype Machine.wav",
+    "name": "Snare - Hype Machine.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Jet.wav",
+    "name": "Snare - Jet.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Lastbar.wav",
+    "name": "Snare - Lastbar.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - LoFi.wav",
+    "name": "Snare - LoFi.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Nine Oh Nine!.wav",
+    "name": "Snare - Nine Oh Nine!.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Nu Disco.wav",
+    "name": "Snare - Nu Disco.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Offgrid.wav",
+    "name": "Snare - Offgrid.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - OG.wav",
+    "name": "Snare - OG.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Papercut.wav",
+    "name": "Snare - Papercut.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Piccolo.wav",
+    "name": "Snare - Piccolo.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Retro.wav",
+    "name": "Snare - Retro.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Slammer.wav",
+    "name": "Snare - Slammer.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Smoochie.wav",
+    "name": "Snare - Smoochie.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Snapper.wav",
+    "name": "Snare - Snapper.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Suction.wav",
+    "name": "Snare - Suction.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Tapestop.wav",
+    "name": "Snare - Tapestop.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Tight.wav",
+    "name": "Snare - Tight.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Trapped.wav",
+    "name": "Snare - Trapped.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Urban.wav",
+    "name": "Snare - Urban.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - USSR.wav",
+    "name": "Snare - USSR.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Verbotron.wav",
+    "name": "Snare - Verbotron.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - VHS.wav",
+    "name": "Snare - VHS.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Drum Samples II/Snare - Vinyl.wav",
+    "name": "Snare - Vinyl.wav",
+    "pack": "Drum Samples II"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/BONUS - Demo Tracks/3 Big Room House 128BPM/Bass.wav",
+    "name": "Bass.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Demo Track.wav",
+    "name": "Demo Track.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/BONUS - Demo Tracks/1 Future 160BPM by One Minute/Full Mix.wav",
+    "name": "Full Mix.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/BONUS - Demo Tracks/2 140BPM/Full Mix.wav",
+    "name": "Full Mix.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/BONUS - Demo Tracks/4 Drum n Bass 174BPM/Full Mix.wav",
+    "name": "Full Mix.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/BONUS - Demo Tracks/1 Future 160BPM by One Minute/Kick and Snare.wav",
+    "name": "Kick and Snare.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/BONUS - Demo Tracks/2 140BPM/Kick and Snare.wav",
+    "name": "Kick and Snare.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/BONUS - Demo Tracks/3 Big Room House 128BPM/Kick and Snare.wav",
+    "name": "Kick and Snare.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/BONUS - Demo Tracks/4 Drum n Bass 174BPM/Kick and Snare.wav",
+    "name": "Kick and Snare.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/BONUS - Demo Tracks/1 Future 160BPM by One Minute/Perc.wav",
+    "name": "Perc.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/BONUS - Demo Tracks/2 140BPM/Perc.wav",
+    "name": "Perc.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/BONUS - Demo Tracks/3 Big Room House 128BPM/Perc.wav",
+    "name": "Perc.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Claps/RD_C_1.wav",
+    "name": "RD_C_1.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Claps/RD_C_2.wav",
+    "name": "RD_C_2.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Claps/RD_C_3.wav",
+    "name": "RD_C_3.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Claps/RD_C_4.wav",
+    "name": "RD_C_4.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Claps/RD_C_5.wav",
+    "name": "RD_C_5.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Claps/RD_C_6.wav",
+    "name": "RD_C_6.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Claps/RD_C_7.wav",
+    "name": "RD_C_7.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Claps/RD_C_8.wav",
+    "name": "RD_C_8.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Crash/RD_C_C_1.wav",
+    "name": "RD_C_C_1.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Crash/RD_C_C_2.wav",
+    "name": "RD_C_C_2.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Crash/RD_C_C_3.wav",
+    "name": "RD_C_C_3.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Crash/RD_C_C_4.wav",
+    "name": "RD_C_C_4.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Crash/RD_C_C_5.wav",
+    "name": "RD_C_C_5.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Crash/RD_C_C_6.wav",
+    "name": "RD_C_C_6.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Crash/RD_C_C_7.wav",
+    "name": "RD_C_C_7.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Crash/RD_C_C_8.wav",
+    "name": "RD_C_C_8.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Crash/RD_C_C_9.wav",
+    "name": "RD_C_C_9.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Hi Hat/RD_C_HH_1.wav",
+    "name": "RD_C_HH_1.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Hi Hat/RD_C_HH_10.wav",
+    "name": "RD_C_HH_10.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Hi Hat/RD_C_HH_11.wav",
+    "name": "RD_C_HH_11.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Hi Hat/RD_C_HH_12.wav",
+    "name": "RD_C_HH_12.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Hi Hat/RD_C_HH_13.wav",
+    "name": "RD_C_HH_13.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Hi Hat/RD_C_HH_14.wav",
+    "name": "RD_C_HH_14.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Hi Hat/RD_C_HH_15.wav",
+    "name": "RD_C_HH_15.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Hi Hat/RD_C_HH_2.wav",
+    "name": "RD_C_HH_2.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Hi Hat/RD_C_HH_3.wav",
+    "name": "RD_C_HH_3.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Hi Hat/RD_C_HH_4.wav",
+    "name": "RD_C_HH_4.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Hi Hat/RD_C_HH_5.wav",
+    "name": "RD_C_HH_5.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Hi Hat/RD_C_HH_6.wav",
+    "name": "RD_C_HH_6.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Hi Hat/RD_C_HH_7.wav",
+    "name": "RD_C_HH_7.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Hi Hat/RD_C_HH_8.wav",
+    "name": "RD_C_HH_8.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Hi Hat/RD_C_HH_9.wav",
+    "name": "RD_C_HH_9.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Ride/RD_C_R_1.wav",
+    "name": "RD_C_R_1.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Ride/RD_C_R_10.wav",
+    "name": "RD_C_R_10.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Ride/RD_C_R_11.wav",
+    "name": "RD_C_R_11.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Ride/RD_C_R_12.wav",
+    "name": "RD_C_R_12.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Ride/RD_C_R_2.wav",
+    "name": "RD_C_R_2.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Ride/RD_C_R_3.wav",
+    "name": "RD_C_R_3.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Ride/RD_C_R_4.wav",
+    "name": "RD_C_R_4.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Ride/RD_C_R_5.wav",
+    "name": "RD_C_R_5.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Ride/RD_C_R_6.wav",
+    "name": "RD_C_R_6.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Ride/RD_C_R_7.wav",
+    "name": "RD_C_R_7.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Ride/RD_C_R_8.wav",
+    "name": "RD_C_R_8.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Ride/RD_C_R_9.wav",
+    "name": "RD_C_R_9.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Splash/RD_C_S_1.wav",
+    "name": "RD_C_S_1.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Splash/RD_C_S_2.wav",
+    "name": "RD_C_S_2.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Splash/RD_C_S_3.wav",
+    "name": "RD_C_S_3.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Splash/RD_C_S_4.wav",
+    "name": "RD_C_S_4.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Splash/RD_C_S_5.wav",
+    "name": "RD_C_S_5.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Splash/RD_C_S_6.wav",
+    "name": "RD_C_S_6.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Splash/RD_C_S_7.wav",
+    "name": "RD_C_S_7.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Splash/RD_C_S_8.wav",
+    "name": "RD_C_S_8.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Cymbals/Splash/RD_C_S_9.wav",
+    "name": "RD_C_S_9.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Kick/RD_K_1.wav",
+    "name": "RD_K_1.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Kick/RD_K_10.wav",
+    "name": "RD_K_10.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Kick/RD_K_2.wav",
+    "name": "RD_K_2.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Kick/RD_K_3.wav",
+    "name": "RD_K_3.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Kick/RD_K_4.wav",
+    "name": "RD_K_4.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Kick/RD_K_5.wav",
+    "name": "RD_K_5.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Kick/RD_K_6.wav",
+    "name": "RD_K_6.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Kick/RD_K_7.wav",
+    "name": "RD_K_7.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Kick/RD_K_8.wav",
+    "name": "RD_K_8.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Kick/RD_K_9.wav",
+    "name": "RD_K_9.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Blast Block/RD_P_BB_1.wav",
+    "name": "RD_P_BB_1.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Blast Block/RD_P_BB_10.wav",
+    "name": "RD_P_BB_10.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Blast Block/RD_P_BB_2.wav",
+    "name": "RD_P_BB_2.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Blast Block/RD_P_BB_3.wav",
+    "name": "RD_P_BB_3.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Blast Block/RD_P_BB_4.wav",
+    "name": "RD_P_BB_4.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Blast Block/RD_P_BB_5.wav",
+    "name": "RD_P_BB_5.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Blast Block/RD_P_BB_6.wav",
+    "name": "RD_P_BB_6.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Blast Block/RD_P_BB_7.wav",
+    "name": "RD_P_BB_7.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Blast Block/RD_P_BB_8.wav",
+    "name": "RD_P_BB_8.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Blast Block/RD_P_BB_9.wav",
+    "name": "RD_P_BB_9.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Cowbell/RD_P_C_1.wav",
+    "name": "RD_P_C_1.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Cowbell/RD_P_C_2.wav",
+    "name": "RD_P_C_2.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Cowbell/RD_P_C_3.wav",
+    "name": "RD_P_C_3.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Cowbell/RD_P_C_4.wav",
+    "name": "RD_P_C_4.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Cowbell/RD_P_C_5.wav",
+    "name": "RD_P_C_5.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Cowbell/RD_P_C_6.wav",
+    "name": "RD_P_C_6.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Cowbell/RD_P_C_7.wav",
+    "name": "RD_P_C_7.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Cowbell/RD_P_C_8.wav",
+    "name": "RD_P_C_8.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Egg Shaker/RD_P_ES_1.wav",
+    "name": "RD_P_ES_1.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Egg Shaker/RD_P_ES_10.wav",
+    "name": "RD_P_ES_10.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Egg Shaker/RD_P_ES_11.wav",
+    "name": "RD_P_ES_11.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Egg Shaker/RD_P_ES_12_100BPM.wav",
+    "name": "RD_P_ES_12_100BPM.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Egg Shaker/RD_P_ES_13_100BPM.wav",
+    "name": "RD_P_ES_13_100BPM.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Egg Shaker/RD_P_ES_14_128BPM.wav",
+    "name": "RD_P_ES_14_128BPM.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Egg Shaker/RD_P_ES_15_128BPM.wav",
+    "name": "RD_P_ES_15_128BPM.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Egg Shaker/RD_P_ES_16_160BPM.wav",
+    "name": "RD_P_ES_16_160BPM.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Egg Shaker/RD_P_ES_2.wav",
+    "name": "RD_P_ES_2.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Egg Shaker/RD_P_ES_3.wav",
+    "name": "RD_P_ES_3.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Egg Shaker/RD_P_ES_4.wav",
+    "name": "RD_P_ES_4.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Egg Shaker/RD_P_ES_5.wav",
+    "name": "RD_P_ES_5.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Egg Shaker/RD_P_ES_6.wav",
+    "name": "RD_P_ES_6.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Egg Shaker/RD_P_ES_7.wav",
+    "name": "RD_P_ES_7.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Egg Shaker/RD_P_ES_8.wav",
+    "name": "RD_P_ES_8.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Egg Shaker/RD_P_ES_9.wav",
+    "name": "RD_P_ES_9.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Sleigh Bells/RD_P_SB_1.wav",
+    "name": "RD_P_SB_1.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Sleigh Bells/RD_P_SB_2.wav",
+    "name": "RD_P_SB_2.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Sleigh Bells/RD_P_SB_3.wav",
+    "name": "RD_P_SB_3.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Sleigh Bells/RD_P_SB_4.wav",
+    "name": "RD_P_SB_4.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Sleigh Bells/RD_P_SB_5.wav",
+    "name": "RD_P_SB_5.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Stick Hits/RD_P_SH_1.wav",
+    "name": "RD_P_SH_1.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Stick Hits/RD_P_SH_2.wav",
+    "name": "RD_P_SH_2.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Percussion/Stick Hits/RD_P_SH_3.wav",
+    "name": "RD_P_SH_3.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/RD_S_1.wav",
+    "name": "RD_S_1.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/RD_S_10.wav",
+    "name": "RD_S_10.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/RD_S_11.wav",
+    "name": "RD_S_11.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/RD_S_12.wav",
+    "name": "RD_S_12.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/RD_S_13.wav",
+    "name": "RD_S_13.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/RD_S_14.wav",
+    "name": "RD_S_14.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/RD_S_15.wav",
+    "name": "RD_S_15.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/RD_S_16.wav",
+    "name": "RD_S_16.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/RD_S_2.wav",
+    "name": "RD_S_2.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/RD_S_3.wav",
+    "name": "RD_S_3.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/RD_S_4.wav",
+    "name": "RD_S_4.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/RD_S_5.wav",
+    "name": "RD_S_5.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/RD_S_6.wav",
+    "name": "RD_S_6.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/RD_S_7.wav",
+    "name": "RD_S_7.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/RD_S_8.wav",
+    "name": "RD_S_8.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/RD_S_9.wav",
+    "name": "RD_S_9.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/Processed/RD_S_P_1.wav",
+    "name": "RD_S_P_1.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/Processed/RD_S_P_10.wav",
+    "name": "RD_S_P_10.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/Processed/RD_S_P_11.wav",
+    "name": "RD_S_P_11.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/Processed/RD_S_P_12.wav",
+    "name": "RD_S_P_12.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/Processed/RD_S_P_13.wav",
+    "name": "RD_S_P_13.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/Processed/RD_S_P_14.wav",
+    "name": "RD_S_P_14.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/Processed/RD_S_P_2.wav",
+    "name": "RD_S_P_2.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/Processed/RD_S_P_3.wav",
+    "name": "RD_S_P_3.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/Processed/RD_S_P_4.wav",
+    "name": "RD_S_P_4.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/Processed/RD_S_P_5.wav",
+    "name": "RD_S_P_5.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/Processed/RD_S_P_6.wav",
+    "name": "RD_S_P_6.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/Processed/RD_S_P_7.wav",
+    "name": "RD_S_P_7.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/Processed/RD_S_P_8.wav",
+    "name": "RD_S_P_8.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Snare/Processed/RD_S_P_9.wav",
+    "name": "RD_S_P_9.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/Floor Tom/RD_T_FT_1.wav",
+    "name": "RD_T_FT_1.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/Floor Tom/RD_T_FT_2.wav",
+    "name": "RD_T_FT_2.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/Floor Tom/RD_T_FT_3.wav",
+    "name": "RD_T_FT_3.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/Floor Tom/RD_T_FT_4.wav",
+    "name": "RD_T_FT_4.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/Floor Tom/RD_T_FT_5.wav",
+    "name": "RD_T_FT_5.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/Floor Tom/RD_T_FT_6.wav",
+    "name": "RD_T_FT_6.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/Floor Tom/RD_T_FT_7.wav",
+    "name": "RD_T_FT_7.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/Floor Tom/RD_T_FT_8.wav",
+    "name": "RD_T_FT_8.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/High Tom/RD_T_HT_1.wav",
+    "name": "RD_T_HT_1.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/High Tom/RD_T_HT_2.wav",
+    "name": "RD_T_HT_2.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/High Tom/RD_T_HT_3.wav",
+    "name": "RD_T_HT_3.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/High Tom/RD_T_HT_4.wav",
+    "name": "RD_T_HT_4.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/High Tom/RD_T_HT_5.wav",
+    "name": "RD_T_HT_5.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/High Tom/RD_T_HT_6.wav",
+    "name": "RD_T_HT_6.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/High Tom/RD_T_HT_7.wav",
+    "name": "RD_T_HT_7.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/High Tom/RD_T_HT_8.wav",
+    "name": "RD_T_HT_8.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/High Tom/RD_T_HT_9.wav",
+    "name": "RD_T_HT_9.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/Mid Tom/RD_T_MT_1.wav",
+    "name": "RD_T_MT_1.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/Mid Tom/RD_T_MT_10.wav",
+    "name": "RD_T_MT_10.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/Mid Tom/RD_T_MT_2.wav",
+    "name": "RD_T_MT_2.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/Mid Tom/RD_T_MT_3.wav",
+    "name": "RD_T_MT_3.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/Mid Tom/RD_T_MT_4.wav",
+    "name": "RD_T_MT_4.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/Mid Tom/RD_T_MT_5.wav",
+    "name": "RD_T_MT_5.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/Mid Tom/RD_T_MT_6.wav",
+    "name": "RD_T_MT_6.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/Mid Tom/RD_T_MT_7.wav",
+    "name": "RD_T_MT_7.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/Mid Tom/RD_T_MT_8.wav",
+    "name": "RD_T_MT_8.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/Toms/Mid Tom/RD_T_MT_9.wav",
+    "name": "RD_T_MT_9.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/BONUS - Demo Tracks/3 Big Room House 128BPM/Tom Lead.wav",
+    "name": "Tom Lead.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/BONUS - Demo Tracks/1 Future 160BPM by One Minute/Toms.wav",
+    "name": "Toms.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/BONUS - Demo Tracks/1 Future 160BPM by One Minute/Tops.wav",
+    "name": "Tops.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/BONUS - Demo Tracks/2 140BPM/Tops.wav",
+    "name": "Tops.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/BONUS - Demo Tracks/3 Big Room House 128BPM/Tops.wav",
+    "name": "Tops.wav",
+    "pack": "Real Drums Vol. 1"
+  },
+  {
+    "path": "samples/Real Drums Vol. 1/BONUS - Demo Tracks/4 Drum n Bass 174BPM/Tops.wav",
+    "name": "Tops.wav",
+    "pack": "Real Drums Vol. 1"
+  }
+]
