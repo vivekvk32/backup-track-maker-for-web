@@ -5,6 +5,8 @@ import { createSf2Player } from "../bass/sf2Player";
 import { createTrackManager } from "../daw/trackManager";
 import { createTransportStore } from "../daw/transportStore";
 import { initDawView } from "../daw/dawView";
+import { createPadSynth } from "../pad/padSynth";
+import { createPadTrack } from "../pad/padTrack";
 import { createPianoChordTrack } from "../piano/pianoChordTrack";
 import { initDrumsView } from "./drumsView";
 import { readSessionsFromDatabase, writeSessionsToDatabase } from "./sessionDatabase";
@@ -40,6 +42,7 @@ function buildSessionSnapshot(state) {
     arrangement: state.arrangement,
     drumPattern: state.drumPattern,
     drumClips: state.drumClips,
+    trackSettings: state.trackSettings,
     bassSettings: state.bassSettings,
     pianoSettings: state.pianoSettings,
     ui: {
@@ -153,6 +156,15 @@ export async function initAppShell(rootElement) {
     sf2Player: pianoSf2Player,
     store
   });
+  const padSynth = createPadSynth({
+    audioContext,
+    outputNode: mixerNodes.pianoInput,
+    irUrl: "/ir/small-hall.wav"
+  });
+  const padTrack = createPadTrack({
+    padSynth,
+    store
+  });
 
   const trackManager = createTrackManager({
     audioContext,
@@ -160,6 +172,8 @@ export async function initAppShell(rootElement) {
     store,
     bassTrack,
     pianoTrack,
+    padTrack,
+    padSynth,
     bassSf2Player,
     pianoSf2Player
   });
@@ -172,6 +186,7 @@ export async function initAppShell(rootElement) {
   const dawView = initDawView(tabs.dawPanel, {
     store,
     trackManager,
+    padSynth,
     bassSf2Player,
     pianoSf2Player
   });

@@ -62,23 +62,29 @@ function getTrackByType(state, type) {
 function getPianoTrack(state) {
   return (
     state.tracks.find((track) => track.id === TRACK_IDS.PIANO) ||
-    state.tracks.find((track) => track.type === "instrument") ||
+    state.tracks.find((track) => track.engine === "piano_sf2") ||
     null
   );
 }
 
 function getVisibleTracks(state) {
-  return state.tracks.filter(
-    (track) => track.type === "drum" || track.type === "bass" || track.id === TRACK_IDS.PIANO
-  );
+  return state.tracks;
 }
 
 function isBassTrack(track) {
-  return track.type === "bass";
+  return track.id === TRACK_IDS.BASS || track.engine === "bass_sf2" || track.type === "bass";
 }
 
 function isPianoTrack(track) {
-  return track.id === TRACK_IDS.PIANO || track.type === "instrument";
+  return track.id === TRACK_IDS.PIANO || track.engine === "piano_sf2";
+}
+
+function isPadTrack(track) {
+  return track.engine === "pad_synth";
+}
+
+function isDrumTrack(track) {
+  return track.type === "drum" || track.engine === "drum_clip";
 }
 
 function getArrangementCell(state, trackId, barIndex) {
@@ -126,15 +132,17 @@ function renderHeaders(barCount, state) {
   }).join("");
 }
 
-function renderTrackListRows(tracks) {
+function renderTrackListRows(tracks, selectedTrackId) {
   return tracks
     .map((track) => {
-      return `<div class="daw-track-row">
+      const canDelete = isPadTrack(track);
+      return `<div class="daw-track-row ${selectedTrackId === track.id ? "selected" : ""}">
         <div class="daw-track-title">${track.name}</div>
         <div class="daw-track-controls">
           <label>Vol <input data-role="track-volume" data-track-id="${track.id}" type="range" min="0" max="1" step="0.01" value="${track.volume}" /></label>
           <label class="tiny"><input data-role="track-mute" data-track-id="${track.id}" type="checkbox" ${track.mute ? "checked" : ""} />M</label>
           <label class="tiny"><input data-role="track-solo" data-track-id="${track.id}" type="checkbox" ${track.solo ? "checked" : ""} />S</label>
+          ${canDelete ? `<button type="button" data-role="remove-track" data-track-id="${track.id}">Del</button>` : ""}
         </div>
       </div>`;
     })
@@ -142,9 +150,9 @@ function renderTrackListRows(tracks) {
 }
 
 function renderNoteBlock(data, activeHalf) {
-  if (data.type === "split") {
-    const first = normalizeNoteName(data.firstHalf || "C", "C");
-    const second = normalizeNoteName(data.secondHalf || "G", "G");
+  if (data.split) {
+    const first = normalizeNoteName(data.root || "C", "C");
+    const second = normalizeNoteName(data.secondRoot || data.root || "G", "G");
     const c1 = getNoteColor(first);
     const c2 = getNoteColor(second);
     return `<div class="daw-note-split">
@@ -152,7 +160,7 @@ function renderNoteBlock(data, activeHalf) {
       <div class="daw-note-half ${activeHalf === 1 ? "active-half" : ""}" style="--note-bg:${c2.bg};--note-border:${c2.border};--note-text:${c2.text};--note-glow:${c2.glow};">${second}</div>
     </div>`;
   }
-  const note = normalizeNoteName(data.note || "C", "C");
+  const note = normalizeNoteName(data.root || "C", "C");
   const color = getNoteColor(note);
   return `<div class="daw-note-full ${activeHalf !== null ? "active-half" : ""}" style="--note-bg:${color.bg};--note-border:${color.border};--note-text:${color.text};--note-glow:${color.glow};">${note}</div>`;
 }
@@ -193,9 +201,9 @@ function renderGridRows(state, tracks) {
         const isActiveBar = isPlaying && Number(playhead.barIndex) === barIndex;
         const cls = [
           "daw-bar-cell",
-          track.type === "drum"
+          isDrumTrack(track)
             ? "daw-drum-cell"
-            : isBassTrack(track)
+            : isBassTrack(track) || isPianoTrack(track) || isPadTrack(track)
               ? "daw-note-cell"
               : "daw-chord-cell",
           cell ? "has-content" : "",
@@ -205,22 +213,17 @@ function renderGridRows(state, tracks) {
           .filter(Boolean)
           .join(" ");
         let inner = '<span class="daw-empty-label">--</span>';
-        if (track.type === "drum") {
-          if (cell && cell.kind === "drum") {
-            const clipRef = String(cell?.data?.clipRef || SHARED_DRUM_CLIP_REF);
+        if (isDrumTrack(track)) {
+          if (cell && (cell.type === "drum" || cell.kind === "drum")) {
+            const clipRef = String(cell?.clipRef || cell?.data?.clipRef || SHARED_DRUM_CLIP_REF);
             const clipName = getDrumClipName(state, clipRef);
             inner = `<span class="daw-drum-label" title="${escapeHtml(clipName)}">${escapeHtml(clipName)}</span>`;
           } else {
             inner = '<span class="daw-empty-label">+</span>';
           }
-        } else if (isBassTrack(track) && cell && cell.kind === "note") {
-          inner = renderNoteBlock(cell.data || { type: "full", note: "C" }, isActiveBar ? playhead.activeHalf : null);
-        } else if (isPianoTrack(track) && cell && cell.kind === "chord") {
-          inner = renderChordBlock(
-            cell.data || {
-              type: "full",
-              chord: normalizeChordData({ root: "C", quality: "maj" }, "C")
-            },
+        } else if ((isBassTrack(track) || isPianoTrack(track) || isPadTrack(track)) && cell && cell.type === "note") {
+          inner = renderNoteBlock(
+            cell,
             isActiveBar ? playhead.activeHalf : null
           );
         }
@@ -235,7 +238,18 @@ function hasAnyCellsByKind(state, track, kind) {
   if (!track) {
     return false;
   }
-  return Object.values(state.arrangement?.[track.id] || {}).some((cell) => cell && cell.kind === kind);
+  return Object.values(state.arrangement?.[track.id] || {}).some((cell) => {
+    if (!cell) {
+      return false;
+    }
+    if (kind === "drum") {
+      return cell.type === "drum" || cell.kind === "drum";
+    }
+    if (kind === "note") {
+      return cell.type === "note" || cell.kind === "note" || cell.kind === "chord";
+    }
+    return false;
+  });
 }
 
 function statusLabel(status, error) {
@@ -264,7 +278,7 @@ function isRenderableArrangementCell(cell) {
   return Boolean(
     cell &&
       typeof cell === "object" &&
-      (cell.kind === "drum" || cell.kind === "note" || cell.kind === "chord")
+      (cell.type === "drum" || cell.type === "note" || cell.kind === "drum" || cell.kind === "note" || cell.kind === "chord")
   );
 }
 
@@ -306,7 +320,7 @@ function getGeneratedArrangementRange(state) {
   };
 }
 
-export function initDawView(rootElement, { store, trackManager, bassSf2Player, pianoSf2Player }) {
+export function initDawView(rootElement, { store, trackManager, padSynth, bassSf2Player, pianoSf2Player }) {
   if (!rootElement) {
     throw new Error("Missing DAW root element.");
   }
@@ -371,10 +385,24 @@ export function initDawView(rootElement, { store, trackManager, bassSf2Player, p
 
     <section class="panel">
       <h2>Arrangement</h2>
+      <div class="transport-buttons">
+        <select id="daw-add-track-type">
+          <option value="pad_synth">Pad Synth</option>
+          <option value="drum_clip">Drum (disabled if exists)</option>
+          <option value="bass_sf2">Bass (disabled if exists)</option>
+          <option value="piano_sf2">Piano (disabled if exists)</option>
+        </select>
+        <button id="daw-add-track" type="button">Add Track</button>
+      </div>
       <div class="daw-arrangement-shell">
         <div class="daw-track-list-column"><div class="daw-track-header">Track List</div><div id="daw-track-list"></div></div>
         <div class="daw-grid-column"><div class="daw-grid-scroll"><div id="daw-bar-head" class="daw-bar-head-row"></div><div id="daw-grid-rows"></div></div></div>
       </div>
+    </section>
+
+    <section class="panel">
+      <h2>Selected Track Inspector</h2>
+      <div id="daw-track-inspector"></div>
     </section>
 
     <div id="daw-note-editor" class="daw-note-editor hidden" role="dialog" aria-modal="true">
@@ -456,6 +484,9 @@ export function initDawView(rootElement, { store, trackManager, bassSf2Player, p
     exportStatus: rootElement.querySelector("#daw-export-status"),
     exportProgressFill: rootElement.querySelector("#daw-export-progress-fill"),
     exportProgressText: rootElement.querySelector("#daw-export-progress-text"),
+    addTrackType: rootElement.querySelector("#daw-add-track-type"),
+    addTrack: rootElement.querySelector("#daw-add-track"),
+    trackInspector: rootElement.querySelector("#daw-track-inspector"),
     trackList: rootElement.querySelector("#daw-track-list"),
     barHead: rootElement.querySelector("#daw-bar-head"),
     gridRows: rootElement.querySelector("#daw-grid-rows"),
@@ -609,18 +640,20 @@ export function initDawView(rootElement, { store, trackManager, bassSf2Player, p
     closeDrumEditor();
     const state = store.getState();
     const cell = getArrangementCell(state, trackId, barIndex);
-    const data = cell?.kind === "note" ? cell.data : { type: "full", note: "C" };
+    const data = cell?.type === "note"
+      ? cell
+      : { type: "note", root: "C", split: false, secondRoot: null };
     editorState.open = true;
     editorState.trackId = trackId;
     editorState.trackName = trackName;
     editorState.barIndex = barIndex;
-    if (data.type === "split") {
+    if (data.split) {
       editorState.mode = "split";
-      editorState.firstHalf = normalizeNoteName(data.firstHalf || "C", "C");
-      editorState.secondHalf = normalizeNoteName(data.secondHalf || "G", "G");
+      editorState.firstHalf = normalizeNoteName(data.root || "C", "C");
+      editorState.secondHalf = normalizeNoteName(data.secondRoot || "G", "G");
     } else {
       editorState.mode = "full";
-      editorState.fullNote = normalizeNoteName(data.note || "C", "C");
+      editorState.fullNote = normalizeNoteName(data.root || "C", "C");
     }
     controls.editorTitle.textContent = `Edit ${trackName} Bar`;
     controls.editorFullNote.value = editorState.fullNote;
@@ -766,8 +799,8 @@ export function initDawView(rootElement, { store, trackManager, bassSf2Player, p
     const clipEntries = getSortedDrumClipEntries(state);
     const cell = getArrangementCell(state, trackId, barIndex);
     const currentClipRef =
-      cell?.kind === "drum"
-        ? String(cell?.data?.clipRef || SHARED_DRUM_CLIP_REF)
+      (cell?.type === "drum" || cell?.kind === "drum")
+        ? String(cell?.clipRef || cell?.data?.clipRef || SHARED_DRUM_CLIP_REF)
         : SHARED_DRUM_CLIP_REF;
     const selectedClipRef = clipEntries.some(([ref]) => ref === currentClipRef)
       ? currentClipRef
@@ -804,7 +837,7 @@ export function initDawView(rootElement, { store, trackManager, bassSf2Player, p
         setSettings: store.setPianoSettings,
         player: pianoSf2Player,
         trackResolver: (state) => getPianoTrack(state),
-        arrangementKind: "chord",
+        arrangementKind: "note",
         label: "Piano"
       };
     }
@@ -835,6 +868,73 @@ export function initDawView(rootElement, { store, trackManager, bassSf2Player, p
   function setExportProgress(progressPercent, detailText) {
     exportUi.progress = clamp(Number(progressPercent) || 0, 0, 100);
     exportUi.detail = String(detailText || `${Math.round(exportUi.progress)}%`);
+  }
+
+  function renderTrackInspector(state) {
+    const selectedTrackId = state.ui.dawSelection?.trackId || state.tracks[0]?.id || "";
+    const track = state.tracks.find((item) => item.id === selectedTrackId);
+    if (!track) {
+      return '<div class="inline-warning">No track selected.</div>';
+    }
+    const settings = state.trackSettings?.[track.id] || {};
+    if (isDrumTrack(track)) {
+      return `<div class="inline-status">Drum clips are edited per-cell from the arrangement grid.</div>`;
+    }
+
+    const harmonyMode = settings.harmonyMode || "triad";
+    const scale = settings.scale || "major";
+    const octave = clamp(Number(settings.octave) || 4, 2, 5);
+    const attackMs = clamp(Number(settings.attackMs) || 180, 1, 3000);
+    const releaseMs = clamp(Number(settings.releaseMs) || 900, 1, 5000);
+    const cutoff = clamp(Number(settings.filterCutoffHz) || 2200, 80, 20000);
+    const detune = clamp(Number(settings.detuneCents) || 8, 0, 60);
+    const reverbSend = clamp(Number(settings.reverbSend) || 0.18, 0, 1);
+    const vibratoDepth = clamp(Number(settings.vibratoDepth) || 0, 0, 80);
+    const vibratoRate = clamp(Number(settings.vibratoRateHz) || 4, 0.1, 12);
+    const humanizeVelocity = Boolean(settings?.humanize?.velocity);
+    const humanizeTiming = Boolean(settings?.humanize?.timing);
+    const playStyle = settings.playStyle || "block";
+    const rhythmPreset = settings.rhythmPreset || "root8ths";
+
+    return `<div class="control-grid" data-track-id="${track.id}">
+      <label class="control"><span>Harmony Mode</span><select data-role="track-setting" data-setting="harmonyMode" data-track-id="${track.id}">
+        <option value="triad" ${harmonyMode === "triad" ? "selected" : ""}>Triad</option>
+        <option value="power" ${harmonyMode === "power" ? "selected" : ""}>Power</option>
+        <option value="seventh" ${harmonyMode === "seventh" ? "selected" : ""}>7th</option>
+        <option value="sus2" ${harmonyMode === "sus2" ? "selected" : ""}>Sus2</option>
+        <option value="sus4" ${harmonyMode === "sus4" ? "selected" : ""}>Sus4</option>
+        <option value="single" ${harmonyMode === "single" ? "selected" : ""}>Single</option>
+      </select></label>
+      <label class="control"><span>Scale</span><select data-role="track-setting" data-setting="scale" data-track-id="${track.id}">
+        <option value="major" ${scale === "major" ? "selected" : ""}>Major</option>
+        <option value="minor" ${scale === "minor" ? "selected" : ""}>Minor</option>
+        <option value="pentatonic" ${scale === "pentatonic" ? "selected" : ""}>Pentatonic</option>
+        <option value="blues" ${scale === "blues" ? "selected" : ""}>Blues</option>
+      </select></label>
+      <label class="control"><span>Octave</span><input data-role="track-setting" data-setting="octave" data-track-id="${track.id}" type="number" min="2" max="5" step="1" value="${octave}" /></label>
+      ${isBassTrack(track) ? `<label class="control"><span>Bass Rhythm</span><select data-role="track-setting" data-setting="rhythmPreset" data-track-id="${track.id}">
+        <option value="root8ths" ${rhythmPreset === "root8ths" ? "selected" : ""}>Root 8ths</option>
+        <option value="rootFifth" ${rhythmPreset === "rootFifth" ? "selected" : ""}>Root + Fifth</option>
+        <option value="octave" ${rhythmPreset === "octave" ? "selected" : ""}>Octave</option>
+        <option value="walking" ${rhythmPreset === "walking" ? "selected" : ""}>Walking</option>
+      </select></label>` : ""}
+      ${isPianoTrack(track) ? `<label class="control"><span>Piano Style</span><select data-role="track-setting" data-setting="playStyle" data-track-id="${track.id}">
+        <option value="block" ${playStyle === "block" ? "selected" : ""}>Block</option>
+        <option value="stabs8" ${playStyle === "stabs8" ? "selected" : ""}>8th Stabs</option>
+        <option value="arpUp" ${playStyle === "arpUp" ? "selected" : ""}>Arp Up</option>
+        <option value="arpDown" ${playStyle === "arpDown" ? "selected" : ""}>Arp Down</option>
+        <option value="arpUpDown" ${playStyle === "arpUpDown" ? "selected" : ""}>Arp Up/Down</option>
+      </select></label>` : ""}
+      <label class="control"><span>Attack ms</span><input data-role="track-setting" data-setting="attackMs" data-track-id="${track.id}" type="number" min="1" max="3000" step="1" value="${attackMs}" /></label>
+      <label class="control"><span>Release ms</span><input data-role="track-setting" data-setting="releaseMs" data-track-id="${track.id}" type="number" min="1" max="5000" step="1" value="${releaseMs}" /></label>
+      <label class="control"><span>Filter Cutoff Hz</span><input data-role="track-setting" data-setting="filterCutoffHz" data-track-id="${track.id}" type="number" min="80" max="20000" step="10" value="${cutoff}" /></label>
+      <label class="control"><span>Detune Cents</span><input data-role="track-setting" data-setting="detuneCents" data-track-id="${track.id}" type="number" min="0" max="60" step="1" value="${detune}" /></label>
+      <label class="control"><span>Reverb Send</span><input data-role="track-setting" data-setting="reverbSend" data-track-id="${track.id}" type="range" min="0" max="1" step="0.01" value="${reverbSend}" /></label>
+      <label class="control"><span>Vibrato Depth</span><input data-role="track-setting" data-setting="vibratoDepth" data-track-id="${track.id}" type="number" min="0" max="80" step="1" value="${vibratoDepth}" /></label>
+      <label class="control"><span>Vibrato Rate Hz</span><input data-role="track-setting" data-setting="vibratoRateHz" data-track-id="${track.id}" type="number" min="0.1" max="12" step="0.1" value="${vibratoRate}" /></label>
+      <label class="control checkbox"><input data-role="track-setting-checkbox" data-setting="humanize.velocity" data-track-id="${track.id}" type="checkbox" ${humanizeVelocity ? "checked" : ""} /><span>Humanize Velocity</span></label>
+      <label class="control checkbox"><input data-role="track-setting-checkbox" data-setting="humanize.timing" data-track-id="${track.id}" type="checkbox" ${humanizeTiming ? "checked" : ""} /><span>Humanize Timing</span></label>
+    </div>`;
   }
 
   function render() {
@@ -897,9 +997,25 @@ export function initDawView(rootElement, { store, trackManager, bassSf2Player, p
     controls.bassWarning.textContent = buildEngineWarning(state, "bass");
     controls.pianoWarning.textContent = buildEngineWarning(state, "piano");
 
-    controls.trackList.innerHTML = renderTrackListRows(tracks);
+    const hasDrum = state.tracks.some((track) => track.engine === "drum_clip");
+    const hasBass = state.tracks.some((track) => track.engine === "bass_sf2");
+    const hasPiano = state.tracks.some((track) => track.engine === "piano_sf2");
+    for (const option of controls.addTrackType.options) {
+      if (option.value === "drum_clip") {
+        option.disabled = hasDrum;
+      } else if (option.value === "bass_sf2") {
+        option.disabled = hasBass;
+      } else if (option.value === "piano_sf2") {
+        option.disabled = hasPiano;
+      } else {
+        option.disabled = false;
+      }
+    }
+
+    controls.trackList.innerHTML = renderTrackListRows(tracks, state.ui.dawSelection?.trackId || "");
     controls.barHead.innerHTML = renderHeaders(state.transport.arrangementBars, state);
     controls.gridRows.innerHTML = renderGridRows(state, tracks);
+    controls.trackInspector.innerHTML = renderTrackInspector(state);
   }
 
   function getSelectedCellState() {
@@ -936,15 +1052,11 @@ export function initDawView(rootElement, { store, trackManager, bassSf2Player, p
     if (!clipboard) {
       return;
     }
-    if (selected.track.type === "drum" && clipboard.kind === "drum") {
+    if (isDrumTrack(selected.track) && (clipboard.type === "drum" || clipboard.kind === "drum")) {
       store.setArrangementCell(selected.track.id, selected.selection.barIndex, cloneCell(clipboard));
       return;
     }
-    if (isBassTrack(selected.track) && clipboard.kind === "note") {
-      store.setArrangementCell(selected.track.id, selected.selection.barIndex, cloneCell(clipboard));
-      return;
-    }
-    if (isPianoTrack(selected.track) && clipboard.kind === "chord") {
+    if (!isDrumTrack(selected.track) && (clipboard.type === "note" || clipboard.kind === "note" || clipboard.kind === "chord")) {
       store.setArrangementCell(selected.track.id, selected.selection.barIndex, cloneCell(clipboard));
     }
   }
@@ -1221,6 +1333,13 @@ export function initDawView(rootElement, { store, trackManager, bassSf2Player, p
   controls.exportMp3.addEventListener("click", async () => {
     await runArrangementExport("mp3");
   });
+  controls.addTrack.addEventListener("click", () => {
+    const engine = String(controls.addTrackType.value || "pad_synth");
+    const added = store.addTrack({ engine });
+    if (added) {
+      store.setDawSelection({ trackId: added.id, barIndex: 0 });
+    }
+  });
 
   controls.bassRhythm.addEventListener("change", (event) => {
     store.setBassSettings({ rhythmPreset: String(event.target.value || "root8ths") });
@@ -1285,6 +1404,19 @@ export function initDawView(rootElement, { store, trackManager, bassSf2Player, p
         return;
       }
       store.setTrackMix(trackId, { volume: clamp(Number(target.value) || 0, 0, 1) });
+      return;
+    }
+    if (target.dataset.role === "track-setting") {
+      const trackId = String(target.dataset.trackId || "");
+      const setting = String(target.dataset.setting || "");
+      if (!trackId || !setting) {
+        return;
+      }
+      store.setTrackSettings(trackId, {
+        [setting]: Number.isFinite(Number(target.value)) && target.type !== "select-one"
+          ? Number(target.value)
+          : String(target.value || "")
+      });
     }
   });
   rootElement.addEventListener("change", (event) => {
@@ -1304,12 +1436,46 @@ export function initDawView(rootElement, { store, trackManager, bassSf2Player, p
       if (trackId) {
         store.setTrackMix(trackId, { solo: Boolean(target.checked) });
       }
+      return;
+    }
+    if (target.dataset.role === "track-setting") {
+      const trackId = String(target.dataset.trackId || "");
+      const setting = String(target.dataset.setting || "");
+      if (!trackId || !setting) {
+        return;
+      }
+      store.setTrackSettings(trackId, {
+        [setting]: Number.isFinite(Number(target.value)) && target.type !== "select-one"
+          ? Number(target.value)
+          : String(target.value || "")
+      });
+      return;
+    }
+    if (target.dataset.role === "track-setting-checkbox") {
+      const trackId = String(target.dataset.trackId || "");
+      const setting = String(target.dataset.setting || "");
+      if (!trackId || !setting) {
+        return;
+      }
+      if (setting === "humanize.velocity") {
+        store.setTrackSettings(trackId, { humanize: { velocity: Boolean(target.checked) } });
+      } else if (setting === "humanize.timing") {
+        store.setTrackSettings(trackId, { humanize: { timing: Boolean(target.checked) } });
+      }
     }
   });
 
   rootElement.addEventListener("click", (event) => {
     const target = event.target;
     if (!(target instanceof HTMLElement)) {
+      return;
+    }
+    if (target.dataset.role === "remove-track") {
+      const trackId = String(target.dataset.trackId || "");
+      if (!trackId) {
+        return;
+      }
+      store.removeTrack(trackId);
       return;
     }
     const cellButton = target.closest("[data-role='grid-cell']");
@@ -1327,17 +1493,11 @@ export function initDawView(rootElement, { store, trackManager, bassSf2Player, p
       return;
     }
     store.setDawSelection({ trackId, barIndex });
-    if (track.type === "drum") {
+    if (isDrumTrack(track)) {
       openDrumEditor(trackId, track.name, barIndex);
       return;
     }
-    if (isBassTrack(track)) {
-      openNoteEditor(trackId, track.name, barIndex);
-      return;
-    }
-    if (isPianoTrack(track)) {
-      openChordEditor(trackId, track.name, barIndex);
-    }
+    openNoteEditor(trackId, track.name, barIndex);
   });
 
   controls.editorMode.addEventListener("change", (event) => {
@@ -1358,20 +1518,17 @@ export function initDawView(rootElement, { store, trackManager, bassSf2Player, p
     }
     if (editorState.mode === "split") {
       store.setArrangementCell(editorState.trackId, editorState.barIndex, {
-        kind: "note",
-        data: {
-          type: "split",
-          firstHalf: normalizeNoteName(editorState.firstHalf, "C"),
-          secondHalf: normalizeNoteName(editorState.secondHalf, "G")
-        }
+        type: "note",
+        root: normalizeNoteName(editorState.firstHalf, "C"),
+        split: true,
+        secondRoot: normalizeNoteName(editorState.secondHalf, "G")
       });
     } else {
       store.setArrangementCell(editorState.trackId, editorState.barIndex, {
-        kind: "note",
-        data: {
-          type: "full",
-          note: normalizeNoteName(editorState.fullNote, "C")
-        }
+        type: "note",
+        root: normalizeNoteName(editorState.fullNote, "C"),
+        split: false,
+        secondRoot: null
       });
     }
     closeNoteEditor();
@@ -1452,10 +1609,8 @@ export function initDawView(rootElement, { store, trackManager, bassSf2Player, p
       ? drumEditorState.clipRef
       : SHARED_DRUM_CLIP_REF;
     store.setArrangementCell(drumEditorState.trackId, drumEditorState.barIndex, {
-      kind: "drum",
-      data: {
-        clipRef
-      }
+      type: "drum",
+      clipRef
     });
     closeDrumEditor();
   });

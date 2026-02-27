@@ -58,6 +58,13 @@ function getNoteForStep(noteData, stepInBar) {
     return null;
   }
 
+  if (Object.prototype.hasOwnProperty.call(noteData, "root")) {
+    if (noteData.split && stepInBar >= 8) {
+      return normalizeNoteName(noteData.secondRoot || noteData.root || "G", "G");
+    }
+    return normalizeNoteName(noteData.root || "C", "C");
+  }
+
   if (noteData.type === "split") {
     if (stepInBar < 8) {
       return normalizeNoteName(noteData.firstHalf || "C", "C");
@@ -94,19 +101,19 @@ export function createRootNoteTrack({
     }
 
     const cell = state.arrangement?.[track.id]?.[currentBarIndex];
-    if (!cell || cell.kind !== "note") {
+    if (!cell || (cell.type !== "note" && cell.kind !== "note")) {
       return;
     }
 
     const localStepInHalf = stepInBar % 8;
-    const settings = state[settingsKey] || {};
+    const settings = state.trackSettings?.[track.id] || state[settingsKey] || {};
     const pattern = RHYTHM_PATTERNS[settings.rhythmPreset] || RHYTHM_PATTERNS.root8ths;
     const eventIndex = getPatternEventIndex(pattern, localStepInHalf);
     if (eventIndex < 0) {
       return;
     }
 
-    const noteName = getNoteForStep(cell.data, stepInBar);
+    const noteName = getNoteForStep(cell.data || cell, stepInBar);
     if (!noteName) {
       return;
     }

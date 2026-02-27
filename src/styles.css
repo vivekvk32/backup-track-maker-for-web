@@ -432,6 +432,10 @@ button:disabled {
   gap: 8px;
 }
 
+.daw-track-row.selected {
+  background: #eef6ff;
+}
+
 .daw-track-row:last-child {
   border-bottom: 0;
 }
@@ -457,6 +461,15 @@ button:disabled {
 
 .daw-track-controls label.tiny {
   font-size: 11px;
+}
+
+.daw-track-controls button[data-role="remove-track"] {
+  border: 1px solid #c79ba0;
+  background: #ffe8ea;
+  color: #7a1f2a;
+  border-radius: 6px;
+  padding: 4px 6px;
+  cursor: pointer;
 }
 
 .daw-grid-column {
@@ -583,7 +596,7 @@ button:disabled {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   gap: 4px;
 }
 

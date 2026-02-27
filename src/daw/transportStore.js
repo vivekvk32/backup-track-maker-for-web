@@ -4,6 +4,8 @@ import { normalizeChordData } from "../piano/chordUtils";
 
 const STORAGE_TRANSPORT_V2 = "drum-loop-maker.transport.v2";
 const STORAGE_TRANSPORT_V3 = "drum-loop-maker.transport.v3";
+const STORAGE_TRANSPORT_V4 = "drum-loop-maker.transport.v4";
+const STORAGE_ARRANGEMENT_V4 = "drum-loop-maker.arrangement.v4";
 const STORAGE_ARRANGEMENT_V3 = "drum-loop-maker.arrangement.v3";
 const STORAGE_ARRANGEMENT_V2 = "drum-loop-maker.arrangement.v2";
 const STORAGE_UI_V2 = "drum-loop-maker.ui.v2";
@@ -12,6 +14,11 @@ const STORAGE_MIXER = "drum-loop-maker.mixer.v1";
 const LEGACY_TRANSPORT = "drum-loop-maker.transport.v1";
 const LEGACY_BASS = "drum-loop-maker.bass.v1";
 const METRONOME_SUBDIVISION_VALUES = new Set(["half", "quarter", "eighth", "sixteenth"]);
+const TRACK_ENGINES = new Set(["drum_clip", "bass_sf2", "piano_sf2", "pad_synth"]);
+const HARMONY_MODES = new Set(["triad", "power", "seventh", "sus2", "sus4", "single"]);
+const SCALE_MODES = new Set(["major", "minor", "pentatonic", "blues"]);
+const PIANO_PLAY_STYLES = new Set(["block", "stabs8", "arpUp", "arpDown", "arpUpDown"]);
+const BASS_RHYTHM_PRESETS = new Set(["root8ths", "rootFifth", "octave", "walking"]);
 
 const FALLBACK_LANES = ["kick", "snare", "closed_hat"];
 export const SHARED_DRUM_CLIP_REF = "shared-main";
@@ -26,6 +33,7 @@ const DEFAULT_TRACKS = [
   {
     id: TRACK_IDS.DRUMS,
     type: "drum",
+    engine: "drum_clip",
     name: "Drums",
     volume: 0.9,
     mute: false,
@@ -34,6 +42,7 @@ const DEFAULT_TRACKS = [
   {
     id: TRACK_IDS.BASS,
     type: "bass",
+    engine: "bass_sf2",
     name: "Bass",
     volume: 1,
     mute: false,
@@ -42,6 +51,7 @@ const DEFAULT_TRACKS = [
   {
     id: TRACK_IDS.PIANO,
     type: "instrument",
+    engine: "piano_sf2",
     name: "Piano",
     volume: 0.9,
     mute: false,
@@ -162,16 +172,53 @@ function createEmptyArrangement(tracks) {
   return next;
 }
 
+function inferTrackEngine(track, type) {
+  const requested = String(track?.engine || "").trim();
+  if (TRACK_ENGINES.has(requested)) {
+    return requested;
+  }
+
+  const safeId = String(track?.id || "").trim();
+  if (safeId === TRACK_IDS.DRUMS || type === "drum") {
+    return "drum_clip";
+  }
+  if (safeId === TRACK_IDS.BASS || type === "bass") {
+    return "bass_sf2";
+  }
+  if (safeId === TRACK_IDS.PIANO) {
+    return "piano_sf2";
+  }
+
+  return "pad_synth";
+}
+
+function defaultNameForEngine(engine) {
+  if (engine === "drum_clip") {
+    return "Drums";
+  }
+  if (engine === "bass_sf2") {
+    return "Bass";
+  }
+  if (engine === "piano_sf2") {
+    return "Piano";
+  }
+  return "Pad";
+}
+
 function sanitizeTrack(track, index) {
   const type = ["drum", "bass", "instrument"].includes(track?.type)
     ? track.type
     : "instrument";
-
-  const fallback = DEFAULT_TRACKS.find((item) => item.type === type) || DEFAULT_TRACKS[0];
+  const engine = inferTrackEngine(track, type);
+  const fallback =
+    DEFAULT_TRACKS.find((item) => item.id === track?.id) ||
+    DEFAULT_TRACKS.find((item) => item.type === type) ||
+    DEFAULT_TRACKS[0];
   return {
     id: String(track?.id || `${type}-${index + 1}`),
     type,
-    name: String(track?.name || fallback.name),
+    engine,
+    name: String(track?.name || fallback.name || defaultNameForEngine(engine)),
     volume: clamp(Number(track?.volume ?? fallback.volume) || fallback.volume, 0, 1),
     mute: Boolean(track?.mute),
     solo: Boolean(track?.solo)
@@ -181,27 +228,24 @@ function sanitizeTrack(track, index) {
 function ensureCoreTracks(tracks) {
   const next = Array.isArray(tracks) ? tracks.map(sanitizeTrack) : [];
 
-  if (!next.some((track) => track.type === "drum")) {
+  if (!next.some((track) => track.id === TRACK_IDS.DRUMS || track.engine === "drum_clip")) {
     next.unshift({ ...DEFAULT_TRACKS[0] });
   }
-  if (!next.some((track) => track.type === "bass")) {
+  if (!next.some((track) => track.id === TRACK_IDS.BASS || track.engine === "bass_sf2")) {
     next.push({ ...DEFAULT_TRACKS[1] });
   }
 
-  if (!next.some((track) => track.type === "instrument")) {
+  if (!next.some((track) => track.id === TRACK_IDS.PIANO || track.engine === "piano_sf2")) {
     next.push({ ...DEFAULT_TRACKS[2] });
   }
 
-  if (!next.some((track) => track.id === TRACK_IDS.PIANO)) {
-    const instrumentIndex = next.findIndex((track) => track.type === "instrument");
-    if (instrumentIndex >= 0) {
-      next[instrumentIndex] = {
-        ...next[instrumentIndex],
-        id: TRACK_IDS.PIANO,
-        name: "Piano"
-      };
-    } else {
-      next.push({ ...DEFAULT_TRACKS[2] });
+  for (let index = 0; index < next.length; index += 1) {
+    if (next[index].id === TRACK_IDS.DRUMS) {
+      next[index] = { ...next[index], type: "drum", engine: "drum_clip", name: "Drums" };
+    } else if (next[index].id === TRACK_IDS.BASS) {
+      next[index] = { ...next[index], type: "bass", engine: "bass_sf2", name: "Bass" };
+    } else if (next[index].id === TRACK_IDS.PIANO) {
+      next[index] = { ...next[index], type: "instrument", engine: "piano_sf2", name: "Piano" };
     }
   }
 
@@ -211,17 +255,27 @@ function ensureCoreTracks(tracks) {
 function normalizeNoteCell(cellData) {
   const source = cellData && typeof cellData === "object" ? cellData : {};
 
+  if (Object.prototype.hasOwnProperty.call(source, "root")) {
+    const split = Boolean(source.split);
+    return {
+      root: normalizeNoteName(source.root || "C", "C"),
+      split,
+      secondRoot: split ? normalizeNoteName(source.secondRoot || source.root || "G", "G") : null
+    };
+  }
+
   if (source.type === "split") {
     return {
-      type: "split",
-      firstHalf: normalizeNoteName(source.firstHalf || "C", "C"),
-      secondHalf: normalizeNoteName(source.secondHalf || "G", "G")
+      root: normalizeNoteName(source.firstHalf || "C", "C"),
+      split: true,
+      secondRoot: normalizeNoteName(source.secondHalf || "G", "G")
     };
   }
 
   return {
-    type: "full",
-    note: normalizeNoteName(source.note || "C", "C")
+    root: normalizeNoteName(source.note || "C", "C"),
+    split: false,
+    secondRoot: null
   };
 }
 
@@ -279,42 +333,56 @@ function normalizeArrangementCell(trackType, cell) {
     return null;
   }
 
-  if (trackType === "drum") {
-    if (cell.kind !== "drum") {
-      return null;
-    }
-    return {
-      kind: "drum",
-      data: {
-        clipRef: String(cell?.data?.clipRef || SHARED_DRUM_CLIP_REF)
-      }
-    };
-  }
+  const isDrumTrack =
+    trackType === "drum" ||
+    (trackType && typeof trackType === "object" && trackType.engine === "drum_clip");
 
-  if (trackType === "bass") {
-    if (cell.kind !== "note") {
-      return null;
-    }
-    return {
-      kind: "note",
-      data: normalizeNoteCell(cell.data)
-    };
-  }
-
-  if (trackType === "instrument") {
-    if (cell.kind === "chord") {
+  if (isDrumTrack) {
+    if (cell.type === "drum") {
       return {
-        kind: "chord",
-        data: normalizeChordBarCell(cell.data)
+        type: "drum",
+        clipRef: String(cell?.clipRef || SHARED_DRUM_CLIP_REF)
       };
     }
-    if (cell.kind === "note") {
+    if (cell.kind === "drum") {
       return {
-        kind: "chord",
-        data: migrateLegacyNoteBarToChordBar(cell.data)
+        type: "drum",
+        clipRef: String(cell?.data?.clipRef || SHARED_DRUM_CLIP_REF)
       };
     }
     return null;
+  }
+
+  if (cell.type === "note") {
+    return {
+      type: "note",
+      ...normalizeNoteCell(cell)
+    };
+  }
+
+  if (cell.kind === "note") {
+    return {
+      type: "note",
+      ...normalizeNoteCell(cell.data)
+    };
+  }
+
+  if (cell.kind === "chord") {
+    const normalizedChord = normalizeChordBarCell(cell.data);
+    if (normalizedChord.type === "split") {
+      return {
+        type: "note",
+        root: normalizeNoteName(normalizedChord.firstHalf?.root || "C", "C"),
+        split: true,
+        secondRoot: normalizeNoteName(normalizedChord.secondHalf?.root || "G", "G")
+      };
+    }
+    return {
+      type: "note",
+      root: normalizeNoteName(normalizedChord.chord?.root || "C", "C"),
+      split: false,
+      secondRoot: null
+    };
   }
 
   return null;
@@ -335,7 +403,7 @@ function sanitizeArrangementForTracks(arrangement, tracks, arrangementBars) {
       if (!Number.isInteger(barIndex) || barIndex < 0 || barIndex >= arrangementBars) {
         continue;
       }
-      const normalized = normalizeArrangementCell(track.type, cell);
+      const normalized = normalizeArrangementCell(track, cell);
       if (!normalized) {
         continue;
       }
@@ -348,7 +416,7 @@ function sanitizeArrangementForTracks(arrangement, tracks, arrangementBars) {
 
 function normalizeBassSettings(settings, fallback) {
   const source = settings && typeof settings === "object" ? settings : {};
-  const preset = ["root8ths", "rootFifth", "octave", "walking"].includes(source.rhythmPreset)
+  const preset = BASS_RHYTHM_PRESETS.has(source.rhythmPreset)
     ? source.rhythmPreset
     : fallback.rhythmPreset;
   const velocity =
@@ -371,12 +439,10 @@ function normalizeBassSettings(settings, fallback) {
 
 function normalizePianoSettings(settings, fallback) {
   const source = settings && typeof settings === "object" ? settings : {};
-  const fallbackStyle = ["block", "stabs8", "arpUp", "arpDown", "arpUpDown"].includes(
-    fallback?.playStyle
-  )
+  const fallbackStyle = PIANO_PLAY_STYLES.has(fallback?.playStyle)
     ? fallback.playStyle
     : "block";
-  const style = ["block", "stabs8", "arpUp", "arpDown", "arpUpDown"].includes(source.playStyle)
+  const style = PIANO_PLAY_STYLES.has(source.playStyle)
     ? source.playStyle
     : fallbackStyle;
   const velocity =
@@ -395,6 +461,154 @@ function normalizePianoSettings(settings, fallback) {
       timing
     }
   };
+}
+
+function defaultTrackSettingsForTrack(track) {
+  const base = {
+    harmonyMode: "triad",
+    scale: "major",
+    octave: 4,
+    attackMs: 180,
+    releaseMs: 900,
+    filterCutoffHz: 2200,
+    detuneCents: 8,
+    reverbSend: 0.18,
+    vibratoDepth: 5,
+    vibratoRateHz: 4,
+    humanize: {
+      velocity: true,
+      timing: true
+    }
+  };
+
+  if (track?.engine === "bass_sf2" || track?.id === TRACK_IDS.BASS) {
+    return {
+      ...base,
+      octave: 2,
+      attackMs: 120,
+      releaseMs: 420,
+      filterCutoffHz: 1800,
+      detuneCents: 4,
+      reverbSend: 0,
+      vibratoDepth: 0,
+      rhythmPreset: "root8ths"
+    };
+  }
+
+  if (track?.engine === "piano_sf2" || track?.id === TRACK_IDS.PIANO) {
+    return {
+      ...base,
+      attackMs: 30,
+      releaseMs: 220,
+      filterCutoffHz: 5200,
+      detuneCents: 0,
+      reverbSend: 0.1,
+      vibratoDepth: 0,
+      playStyle: "block"
+    };
+  }
+
+  return base;
+}
+
+function normalizeTrackSettingsEntry(settings, fallback, track) {
+  const source = settings && typeof settings === "object" ? settings : {};
+  const defaults = fallback || defaultTrackSettingsForTrack(track);
+
+  const next = {
+    harmonyMode: HARMONY_MODES.has(source.harmonyMode) ? source.harmonyMode : defaults.harmonyMode,
+    scale: SCALE_MODES.has(source.scale) ? source.scale : defaults.scale,
+    octave: clampInt(source.octave ?? defaults.octave, 2, 5),
+    attackMs: clampInt(source.attackMs ?? defaults.attackMs, 1, 3000),
+    releaseMs: clampInt(source.releaseMs ?? defaults.releaseMs, 1, 5000),
+    filterCutoffHz: clampInt(source.filterCutoffHz ?? defaults.filterCutoffHz, 80, 20000),
+    detuneCents: clamp(Number(source.detuneCents ?? defaults.detuneCents) || defaults.detuneCents, 0, 60),
+    reverbSend: clamp(Number(source.reverbSend ?? defaults.reverbSend) || defaults.reverbSend, 0, 1),
+    vibratoDepth: clamp(Number(source.vibratoDepth ?? defaults.vibratoDepth) || defaults.vibratoDepth, 0, 80),
+    vibratoRateHz: clamp(Number(source.vibratoRateHz ?? defaults.vibratoRateHz) || defaults.vibratoRateHz, 0.1, 12),
+    humanize: {
+      velocity:
+        source?.humanize?.velocity !== undefined
+          ? Boolean(source.humanize.velocity)
+          : Boolean(defaults?.humanize?.velocity),
+      timing:
+        source?.humanize?.timing !== undefined
+          ? Boolean(source.humanize.timing)
+          : Boolean(defaults?.humanize?.timing)
+    }
+  };
+
+  if (track?.engine === "bass_sf2" || track?.id === TRACK_IDS.BASS) {
+    next.rhythmPreset = BASS_RHYTHM_PRESETS.has(source.rhythmPreset)
+      ? source.rhythmPreset
+      : defaults.rhythmPreset || "root8ths";
+  }
+
+  if (track?.engine === "piano_sf2" || track?.id === TRACK_IDS.PIANO) {
+    next.playStyle = PIANO_PLAY_STYLES.has(source.playStyle)
+      ? source.playStyle
+      : defaults.playStyle || "block";
+  }
+
+  return next;
+}
+
+function normalizeTrackSettingsMap(trackSettings, tracks, legacyBassSettings, legacyPianoSettings) {
+  const source = trackSettings && typeof trackSettings === "object" ? trackSettings : {};
+  const next = {};
+
+  for (const track of tracks) {
+    const defaults = defaultTrackSettingsForTrack(track);
+    let fallback = defaults;
+    if (track.id === TRACK_IDS.BASS && legacyBassSettings) {
+      const bassLegacy = normalizeBassSettings(legacyBassSettings, {
+        rhythmPreset: defaults.rhythmPreset || "root8ths",
+        humanize: defaults.humanize
+      });
+      fallback = {
+        ...fallback,
+        rhythmPreset: bassLegacy.rhythmPreset,
+        humanize: bassLegacy.humanize
+      };
+    }
+    if (track.id === TRACK_IDS.PIANO && legacyPianoSettings) {
+      const pianoLegacy = normalizePianoSettings(legacyPianoSettings, {
+        playStyle: defaults.playStyle || "block",
+        humanize: defaults.humanize
+      });
+      fallback = {
+        ...fallback,
+        playStyle: pianoLegacy.playStyle,
+        humanize: pianoLegacy.humanize
+      };
+    }
+
+    next[track.id] = normalizeTrackSettingsEntry(source[track.id], fallback, track);
+  }
+
+  return next;
+}
+
+function legacyBassSettingsFromTrackSettings(trackSettings, fallback) {
+  const source = trackSettings || fallback;
+  return normalizeBassSettings(
+    {
+      rhythmPreset: source?.rhythmPreset,
+      humanize: source?.humanize
+    },
+    fallback
+  );
+}
+
+function legacyPianoSettingsFromTrackSettings(trackSettings, fallback) {
+  const source = trackSettings || fallback;
+  return normalizePianoSettings(
+    {
+      playStyle: source?.playStyle,
+      humanize: source?.humanize
+    },
+    fallback
+  );
 }
 
 function normalizeTransport(transport, fallback) {
@@ -501,6 +715,21 @@ function defaultDrumPattern() {
 function defaultState() {
   const tracks = ensureCoreTracks(DEFAULT_TRACKS);
   const drumPattern = defaultDrumPattern();
+  const trackSettings = normalizeTrackSettingsMap({}, tracks, null, null);
+  const bassSettings = legacyBassSettingsFromTrackSettings(trackSettings[TRACK_IDS.BASS], {
+    rhythmPreset: "root8ths",
+    humanize: {
+      velocity: true,
+      timing: true
+    }
+  });
+  const pianoSettings = legacyPianoSettingsFromTrackSettings(trackSettings[TRACK_IDS.PIANO], {
+    playStyle: "block",
+    humanize: {
+      velocity: true,
+      timing: true
+    }
+  });
   return {
     ui: {
       activeTab: "drums",
@@ -554,20 +783,9 @@ function defaultState() {
     tracks,
     arrangement: createEmptyArrangement(tracks),
     drumClips: normalizeDrumClips(null, drumPattern.lanes),
-    bassSettings: {
-      rhythmPreset: "root8ths",
-      humanize: {
-        velocity: true,
-        timing: true
-      }
-    },
-    pianoSettings: {
-      playStyle: "block",
-      humanize: {
-        velocity: true,
-        timing: true
-      }
-    },
+    trackSettings,
+    bassSettings,
+    pianoSettings,
     drumPattern
   };
 }
@@ -578,7 +796,7 @@ function getTrackByType(tracks, type) {
 
 function syncTracksFromMixer(tracks, mixer) {
   return tracks.map((track) => {
-    if (track.type === "drum") {
+    if (track.id === TRACK_IDS.DRUMS) {
       return {
         ...track,
         volume: clamp(Number(mixer.drumGain) || track.volume, 0, 1),
@@ -587,7 +805,7 @@ function syncTracksFromMixer(tracks, mixer) {
       };
     }
 
-    if (track.type === "bass") {
+    if (track.id === TRACK_IDS.BASS) {
       return {
         ...track,
         volume: clamp(Number(mixer.bassGain) || track.volume, 0, 1),
@@ -596,7 +814,7 @@ function syncTracksFromMixer(tracks, mixer) {
       };
     }
 
-    if (track.type === "instrument") {
+    if (track.id === TRACK_IDS.PIANO) {
       return {
         ...track,
         volume: clamp(Number(mixer.pianoGain) || track.volume, 0, 1),
@@ -610,9 +828,9 @@ function syncTracksFromMixer(tracks, mixer) {
 }
 
 function syncMixerFromTracks(mixer, tracks) {
-  const drumTrack = getTrackByType(tracks, "drum");
-  const bassTrack = getTrackByType(tracks, "bass");
-  const instrumentTrack = tracks.find((track) => track.id === TRACK_IDS.PIANO) || getTrackByType(tracks, "instrument");
+  const drumTrack = tracks.find((track) => track.id === TRACK_IDS.DRUMS) || getTrackByType(tracks, "drum");
+  const bassTrack = tracks.find((track) => track.id === TRACK_IDS.BASS) || getTrackByType(tracks, "bass");
+  const instrumentTrack = tracks.find((track) => track.id === TRACK_IDS.PIANO);
 
   return {
     ...mixer,
@@ -634,23 +852,15 @@ function cloneCell(cell) {
   if (!cell || typeof cell !== "object") {
     return null;
   }
-  if (cell.kind === "drum") {
+  if (cell.type === "drum" || cell.kind === "drum") {
     return {
-      kind: "drum",
-      data: {
-        clipRef: String(cell?.data?.clipRef || SHARED_DRUM_CLIP_REF)
-      }
-    };
-  }
-  if (cell.kind === "chord") {
-    return {
-      kind: "chord",
-      data: normalizeChordBarCell(cell.data)
+      type: "drum",
+      clipRef: String(cell?.clipRef || cell?.data?.clipRef || SHARED_DRUM_CLIP_REF)
     };
   }
   return {
-    kind: "note",
-    data: normalizeNoteCell(cell.data)
+    type: "note",
+    ...normalizeNoteCell(cell.data || cell)
   };
 }
 
@@ -722,8 +932,22 @@ function normalizeStoreState(inputState = {}) {
     merged.tracks,
     merged.transport.arrangementBars
   );
-  merged.bassSettings = normalizeBassSettings(merged.bassSettings, defaults.bassSettings);
-  merged.pianoSettings = normalizePianoSettings(merged.pianoSettings, defaults.pianoSettings);
+  const nextBassSettings = normalizeBassSettings(merged.bassSettings, defaults.bassSettings);
+  const nextPianoSettings = normalizePianoSettings(merged.pianoSettings, defaults.pianoSettings);
+  merged.trackSettings = normalizeTrackSettingsMap(
+    merged.trackSettings,
+    merged.tracks,
+    nextBassSettings,
+    nextPianoSettings
+  );
+  merged.bassSettings = legacyBassSettingsFromTrackSettings(
+    merged.trackSettings[TRACK_IDS.BASS],
+    nextBassSettings
+  );
+  merged.pianoSettings = legacyPianoSettingsFromTrackSettings(
+    merged.trackSettings[TRACK_IDS.PIANO],
+    nextPianoSettings
+  );
 
   merged.mixer = syncMixerFromTracks(
     {
@@ -766,6 +990,7 @@ export function createTransportStore(initialState = {}) {
       tracks: state.tracks,
       arrangement: state.arrangement,
       drumClips: state.drumClips,
+      trackSettings: state.trackSettings,
       bassSettings: state.bassSettings,
       pianoSettings: state.pianoSettings
     };
@@ -777,7 +1002,9 @@ export function createTransportStore(initialState = {}) {
 
     writeStorage(STORAGE_TRANSPORT_V2, transportPayload);
     writeStorage(STORAGE_TRANSPORT_V3, transportPayload);
+    writeStorage(STORAGE_TRANSPORT_V4, transportPayload);
     writeStorage(STORAGE_ARRANGEMENT_V3, arrangementPayload);
+    writeStorage(STORAGE_ARRANGEMENT_V4, arrangementPayload);
     writeStorage(STORAGE_MIXER, mixerPayload);
     writeStorage(STORAGE_UI_V2, {
       bassSf2Path: state.ui.bassSf2Path,
@@ -789,6 +1016,7 @@ export function createTransportStore(initialState = {}) {
     const defaultSnapshot = defaultState();
 
     const transportSaved =
+      readStorage(STORAGE_TRANSPORT_V4) ||
       readStorage(STORAGE_TRANSPORT_V3) ||
       readStorage(STORAGE_TRANSPORT_V2) ||
       readStorage(LEGACY_TRANSPORT);
@@ -818,6 +1046,7 @@ export function createTransportStore(initialState = {}) {
     }
 
     const arrangementSaved =
+      readStorage(STORAGE_ARRANGEMENT_V4) ||
       readStorage(STORAGE_ARRANGEMENT_V3) || readStorage(STORAGE_ARRANGEMENT_V2);
     const hasArrangementSaved = arrangementSaved && typeof arrangementSaved === "object";
     if (hasArrangementSaved) {
@@ -828,10 +1057,24 @@ export function createTransportStore(initialState = {}) {
         state.transport.arrangementBars
       );
       state.drumClips = normalizeDrumClips(arrangementSaved.drumClips, state.drumPattern?.lanes);
-      state.bassSettings = normalizeBassSettings(arrangementSaved.bassSettings, state.bassSettings);
-      state.pianoSettings = normalizePianoSettings(
+      const nextBass = normalizeBassSettings(arrangementSaved.bassSettings, state.bassSettings);
+      const nextPiano = normalizePianoSettings(
         arrangementSaved.pianoSettings,
         state.pianoSettings
+      );
+      state.trackSettings = normalizeTrackSettingsMap(
+        arrangementSaved.trackSettings,
+        state.tracks,
+        nextBass,
+        nextPiano
+      );
+      state.bassSettings = legacyBassSettingsFromTrackSettings(
+        state.trackSettings[TRACK_IDS.BASS],
+        nextBass
+      );
+      state.pianoSettings = legacyPianoSettingsFromTrackSettings(
+        state.trackSettings[TRACK_IDS.PIANO],
+        nextPiano
       );
     } else {
       state.tracks = ensureCoreTracks(state.tracks);
@@ -841,10 +1084,24 @@ export function createTransportStore(initialState = {}) {
         state.transport.arrangementBars
       );
       state.drumClips = normalizeDrumClips(state.drumClips, state.drumPattern?.lanes);
-      state.bassSettings = normalizeBassSettings(state.bassSettings, defaultSnapshot.bassSettings);
-      state.pianoSettings = normalizePianoSettings(
+      const nextBass = normalizeBassSettings(state.bassSettings, defaultSnapshot.bassSettings);
+      const nextPiano = normalizePianoSettings(
         state.pianoSettings,
         defaultSnapshot.pianoSettings
+      );
+      state.trackSettings = normalizeTrackSettingsMap(
+        state.trackSettings,
+        state.tracks,
+        nextBass,
+        nextPiano
+      );
+      state.bassSettings = legacyBassSettingsFromTrackSettings(
+        state.trackSettings[TRACK_IDS.BASS],
+        nextBass
+      );
+      state.pianoSettings = legacyPianoSettingsFromTrackSettings(
+        state.trackSettings[TRACK_IDS.PIANO],
+        nextPiano
       );
     }
 
@@ -1025,15 +1282,13 @@ export function createTransportStore(initialState = {}) {
       const updatedTrackCells = {};
       for (const [barKey, cell] of Object.entries(currentTrackCells)) {
         if (
-          track.type === "drum" &&
-          cell?.kind === "drum" &&
-          String(cell?.data?.clipRef || "") === safeRef
+          (track.type === "drum" || track.engine === "drum_clip") &&
+          (cell?.type === "drum" || cell?.kind === "drum") &&
+          String(cell?.clipRef || cell?.data?.clipRef || "") === safeRef
         ) {
           updatedTrackCells[barKey] = {
-            kind: "drum",
-            data: {
-              clipRef: SHARED_DRUM_CLIP_REF
-            }
+            type: "drum",
+            clipRef: SHARED_DRUM_CLIP_REF
           };
         } else {
           updatedTrackCells[barKey] = cloneCell(cell);
@@ -1062,9 +1317,27 @@ export function createTransportStore(initialState = {}) {
       }
     };
 
+    const normalized = normalizeBassSettings(merged, state.bassSettings);
+    const bassTrack = state.tracks.find((track) => track.id === TRACK_IDS.BASS);
+    const nextTrackSettings = {
+      ...state.trackSettings
+    };
+    if (bassTrack) {
+      nextTrackSettings[bassTrack.id] = normalizeTrackSettingsEntry(
+        {
+          ...nextTrackSettings[bassTrack.id],
+          rhythmPreset: normalized.rhythmPreset,
+          humanize: normalized.humanize
+        },
+        nextTrackSettings[bassTrack.id] || defaultTrackSettingsForTrack(bassTrack),
+        bassTrack
+      );
+    }
+
     state = {
       ...state,
-      bassSettings: normalizeBassSettings(merged, state.bassSettings)
+      bassSettings: normalized,
+      trackSettings: nextTrackSettings
     };
     persistSettings();
     emit();
@@ -1080,12 +1353,174 @@ export function createTransportStore(initialState = {}) {
       }
     };
 
+    const normalized = normalizePianoSettings(merged, state.pianoSettings);
+    const pianoTrack = state.tracks.find((track) => track.id === TRACK_IDS.PIANO);
+    const nextTrackSettings = {
+      ...state.trackSettings
+    };
+    if (pianoTrack) {
+      nextTrackSettings[pianoTrack.id] = normalizeTrackSettingsEntry(
+        {
+          ...nextTrackSettings[pianoTrack.id],
+          playStyle: normalized.playStyle,
+          humanize: normalized.humanize
+        },
+        nextTrackSettings[pianoTrack.id] || defaultTrackSettingsForTrack(pianoTrack),
+        pianoTrack
+      );
+    }
+
     state = {
       ...state,
-      pianoSettings: normalizePianoSettings(merged, state.pianoSettings)
+      pianoSettings: normalized,
+      trackSettings: nextTrackSettings
     };
     persistSettings();
     emit();
+  }
+
+  function setTrackSettings(trackId, patch) {
+    const safeTrackId = String(trackId || "");
+    const track = state.tracks.find((item) => item.id === safeTrackId);
+    if (!track) {
+      return;
+    }
+
+    const base = state.trackSettings[safeTrackId] || defaultTrackSettingsForTrack(track);
+    const merged = {
+      ...base,
+      ...(patch || {}),
+      humanize: {
+        ...base.humanize,
+        ...((patch && patch.humanize) || {})
+      }
+    };
+
+    const normalized = normalizeTrackSettingsEntry(merged, base, track);
+    const nextTrackSettings = {
+      ...state.trackSettings,
+      [safeTrackId]: normalized
+    };
+
+    state = {
+      ...state,
+      trackSettings: nextTrackSettings,
+      bassSettings: legacyBassSettingsFromTrackSettings(
+        nextTrackSettings[TRACK_IDS.BASS],
+        state.bassSettings
+      ),
+      pianoSettings: legacyPianoSettingsFromTrackSettings(
+        nextTrackSettings[TRACK_IDS.PIANO],
+        state.pianoSettings
+      )
+    };
+    persistSettings();
+    emit();
+  }
+
+  function addTrack({ engine } = {}) {
+    const safeEngine = TRACK_ENGINES.has(engine) ? engine : "pad_synth";
+
+    if (safeEngine === "drum_clip" && state.tracks.some((track) => track.engine === "drum_clip")) {
+      return null;
+    }
+    if (safeEngine === "bass_sf2" && state.tracks.some((track) => track.engine === "bass_sf2")) {
+      return null;
+    }
+    if (safeEngine === "piano_sf2" && state.tracks.some((track) => track.engine === "piano_sf2")) {
+      return null;
+    }
+
+    let track;
+    if (safeEngine === "drum_clip") {
+      track = { ...DEFAULT_TRACKS[0] };
+    } else if (safeEngine === "bass_sf2") {
+      track = { ...DEFAULT_TRACKS[1] };
+    } else if (safeEngine === "piano_sf2") {
+      track = { ...DEFAULT_TRACKS[2] };
+    } else {
+      const padCount = state.tracks.filter((item) => item.engine === "pad_synth").length + 1;
+      track = {
+        id: `track-pad-${Date.now()}-${padCount}`,
+        type: "instrument",
+        engine: "pad_synth",
+        name: `Pad ${padCount}`,
+        volume: 0.85,
+        mute: false,
+        solo: false
+      };
+    }
+
+    if (state.tracks.some((item) => item.id === track.id)) {
+      return null;
+    }
+
+    const nextTracks = [...state.tracks, track];
+    const nextTrackSettings = {
+      ...state.trackSettings,
+      [track.id]: defaultTrackSettingsForTrack(track)
+    };
+
+    state = {
+      ...state,
+      tracks: nextTracks,
+      arrangement: {
+        ...state.arrangement,
+        [track.id]: {}
+      },
+      trackSettings: nextTrackSettings,
+      mixer: syncMixerFromTracks(state.mixer, nextTracks)
+    };
+    persistSettings();
+    emit();
+    return track;
+  }
+
+  function removeTrack(trackId) {
+    const safeTrackId = String(trackId || "");
+    if (!safeTrackId) {
+      return false;
+    }
+    if (
+      safeTrackId === TRACK_IDS.DRUMS ||
+      safeTrackId === TRACK_IDS.BASS ||
+      safeTrackId === TRACK_IDS.PIANO
+    ) {
+      return false;
+    }
+
+    if (!state.tracks.some((track) => track.id === safeTrackId)) {
+      return false;
+    }
+
+    const nextTracks = state.tracks.filter((track) => track.id !== safeTrackId);
+    const nextArrangement = {
+      ...state.arrangement
+    };
+    delete nextArrangement[safeTrackId];
+
+    const nextTrackSettings = {
+      ...state.trackSettings
+    };
+    delete nextTrackSettings[safeTrackId];
+
+    const nextSelection =
+      state.ui.dawSelection?.trackId === safeTrackId ? null : state.ui.dawSelection;
+
+    state = {
+      ...state,
+      tracks: nextTracks,
+      arrangement: nextArrangement,
+      trackSettings: nextTrackSettings,
+      mixer: syncMixerFromTracks(state.mixer, nextTracks),
+      ui: {
+        ...state.ui,
+        dawSelection: nextSelection
+      }
+    };
+    persistSettings();
+    emit();
+    return true;
   }
 
   function setMixer(patch) {
@@ -1156,7 +1591,7 @@ export function createTransportStore(initialState = {}) {
       return;
     }
 
-    const normalizedCell = cellOrNull ? normalizeArrangementCell(track.type, cellOrNull) : null;
+    const normalizedCell = cellOrNull ? normalizeArrangementCell(track, cellOrNull) : null;
     const nextTrackCells = {
       ...(state.arrangement[safeTrackId] || {})
     };
@@ -1263,6 +1698,9 @@ export function createTransportStore(initialState = {}) {
     deleteDrumClip,
     setBassSettings,
     setPianoSettings,
+    setTrackSettings,
+    addTrack,
+    removeTrack,
     setMixer,
     setTrackMix,
     setArrangementCell,

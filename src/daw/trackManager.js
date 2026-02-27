@@ -19,6 +19,8 @@ export function createTrackManager({
   store,
   bassTrack,
   pianoTrack,
+  padTrack,
+  padSynth,
   bassSf2Player,
   pianoSf2Player
 }) {
@@ -33,6 +35,20 @@ export function createTrackManager({
   }
 
   function getTrackByType(state, type) {
+    if (type === "drum") {
+      return (
+        state.tracks.find((track) => track.id === "track-drums") ||
+        state.tracks.find((track) => track.engine === "drum_clip") ||
+        null
+      );
+    }
+    if (type === "bass") {
+      return (
+        state.tracks.find((track) => track.id === "track-bass") ||
+        state.tracks.find((track) => track.engine === "bass_sf2") ||
+        null
+      );
+    }
     return state.tracks.find((track) => track.type === type) || null;
   }
 
@@ -103,11 +119,11 @@ export function createTrackManager({
     }
 
     const cell = state.arrangement?.[drumTrack.id]?.[currentBarIndex];
-    if (!cell || cell.kind !== "drum") {
+    if (!cell || (cell.type !== "drum" && cell.kind !== "drum")) {
       return;
     }
 
-    const clipRef = String(cell?.data?.clipRef || "shared-main");
+    const clipRef = String(cell?.clipRef || cell?.data?.clipRef || "shared-main");
     const laneMap =
       state.drumClips?.[clipRef]?.lanes ||
       state.drumClips?.["shared-main"]?.lanes ||
@@ -151,6 +167,14 @@ export function createTrackManager({
           stepTime,
           sixteenthSeconds
         });
+        if (padTrack?.scheduleArrangementStep) {
+          padTrack.scheduleArrangementStep({
+            currentBarIndex,
+            stepInBar,
+            stepTime,
+            sixteenthSeconds
+          });
+        }
       } else {
         scheduleDrumStepInDrumsMode(stepInLoop, stepTime);
       }
@@ -187,6 +211,9 @@ export function createTrackManager({
       if (typeof pianoTrack.resetArrangementState === "function") {
         pianoTrack.resetArrangementState();
       }
+      if (padSynth?.allNotesOff) {
+        padSynth.allNotesOff();
+      }
       bassSf2Player.allNotesOff();
       pianoSf2Player.allNotesOff();
       store.setTransport({ isPlaying: false });
@@ -212,6 +239,9 @@ export function createTrackManager({
     }
 
     await resumeAudioContext();
+    if (padSynth?.loadImpulseResponse) {
+      padSynth.loadImpulseResponse().catch(() => {});
+    }
     if (typeof pianoTrack.resetArrangementState === "function") {
       pianoTrack.resetArrangementState();
     }
@@ -227,6 +257,9 @@ export function createTrackManager({
     scheduler.stop();
     if (typeof pianoTrack.resetArrangementState === "function") {
       pianoTrack.resetArrangementState();
+    }
+    if (padSynth?.allNotesOff) {
+      padSynth.allNotesOff();
     }
     bassSf2Player.allNotesOff();
     pianoSf2Player.allNotesOff();
@@ -249,6 +282,9 @@ export function createTrackManager({
 
   function dispose() {
     stop();
+    if (padSynth?.dispose) {
+      padSynth.dispose();
+    }
     listeners.clear();
   }
 

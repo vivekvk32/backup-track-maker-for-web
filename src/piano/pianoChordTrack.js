@@ -1,5 +1,5 @@
 import { TRACK_IDS } from "../daw/transportStore";
-import { chooseSmartVoicing, normalizeChordData } from "./chordUtils";
+import { buildHarmonyMidi, getSegmentForStep } from "../harmony/harmonyGenerator";
 
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
@@ -10,7 +10,7 @@ function randomRange(min, max) {
 }
 
 const STYLE_STEP_OFFSETS = {
-  block: [0, 4],
+  block: [0],
   stabs8: [0, 2, 4, 6],
   arpUp: [0, 2, 4, 6],
   arpDown: [0, 2, 4, 6],
@@ -28,7 +28,7 @@ const STYLE_BASE_VELOCITY = {
 function getPianoTrack(state) {
   return (
     state.tracks.find((track) => track.id === TRACK_IDS.PIANO) ||
-    state.tracks.find((track) => track.type === "instrument") ||
+    state.tracks.find((track) => track.engine === "piano_sf2") ||
     null
   );
 }
@@ -43,34 +43,6 @@ function isTrackAudible(state, track) {
     return Boolean(track.solo);
   }
   return !Boolean(track.mute);
-}
-
-function getChordForStep(barData, stepInBar) {
-  const source = barData && typeof barData === "object" ? barData : null;
-  if (!source) {
-    return null;
-  }
-
-  if (source.type === "split") {
-    if (stepInBar < 8) {
-      return {
-        chord: normalizeChordData(source.firstHalf, "C"),
-        half: 0,
-        localStep: stepInBar
-      };
-    }
-    return {
-      chord: normalizeChordData(source.secondHalf, "G"),
-      half: 1,
-      localStep: stepInBar - 8
-    };
-  }
-
-  return {
-    chord: normalizeChordData(source.chord, "C"),
-    half: null,
-    localStep: stepInBar
-  };
 }
 
 function getArpOrder(style, voicing) {
@@ -92,15 +64,27 @@ function getArpOrder(style, voicing) {
   return [...voicing];
 }
 
-export function createPianoChordTrack({ sf2Player, store }) {
-  let previousVoicing = null;
-  let activeChordKey = "";
-  let activeVoicing = null;
+function fitPianoRange(midiNotes) {
+  if (!Array.isArray(midiNotes)) {
+    return [];
+  }
+  return midiNotes
+    .map((note) => {
+      let midi = Math.round(Number(note) || 60);
+      while (midi < 55) {
+        midi += 12;
+      }
+      while (midi > 84) {
+        midi -= 12;
+      }
+      return clamp(midi, 55, 84);
+    })
+    .sort((left, right) => left - right);
+}
 
+export function createPianoChordTrack({ sf2Player, store }) {
   function resetArrangementState() {
-    previousVoicing = null;
-    activeChordKey = "";
-    activeVoicing = null;
+    // no-op, kept for compatibility with existing track manager lifecycle.
   }
 
   function scheduleArrangementStep({ currentBarIndex, stepInBar, stepTime, sixteenthSeconds }) {
@@ -115,36 +99,28 @@ export function createPianoChordTrack({ sf2Player, store }) {
     }
 
     const cell = state.arrangement?.[track.id]?.[currentBarIndex];
-    if (!cell || cell.kind !== "chord") {
+    if (!cell || cell.type !== "note") {
       return;
     }
 
-    const chordPayload = getChordForStep(cell.data, stepInBar);
-    if (!chordPayload) {
+    const settings = state.trackSettings?.[track.id] || {};
+    const segment = getSegmentForStep(cell, stepInBar);
+    if (!segment) {
       return;
     }
 
-    const settings = state.pianoSettings || {};
     const style = Object.prototype.hasOwnProperty.call(STYLE_STEP_OFFSETS, settings.playStyle)
       ? settings.playStyle
       : "block";
-    const stepOffsets = STYLE_STEP_OFFSETS[style] || STYLE_STEP_OFFSETS.block;
-    const eventIndex = stepOffsets.indexOf(chordPayload.localStep % 8);
+    const eventOffsets = STYLE_STEP_OFFSETS[style] || STYLE_STEP_OFFSETS.block;
+    const localStep = segment.stepOffsetInSegment % 8;
+    const eventIndex = eventOffsets.indexOf(localStep);
     if (eventIndex < 0) {
       return;
     }
 
-    const chordKey = `${currentBarIndex}:${chordPayload.half ?? "full"}:${chordPayload.chord.symbol}`;
-    if (chordKey !== activeChordKey || !Array.isArray(activeVoicing) || !activeVoicing.length) {
-      activeVoicing = chooseSmartVoicing(chordPayload.chord, previousVoicing, {
-        minMidi: 55,
-        maxMidi: 79
-      });
-      activeChordKey = chordKey;
-      previousVoicing = activeVoicing;
-    }
-
-    if (!activeVoicing || !activeVoicing.length) {
+    const voicing = fitPianoRange(buildHarmonyMidi(segment.root, settings));
+    if (!voicing.length) {
       return;
     }
 
@@ -162,7 +138,7 @@ export function createPianoChordTrack({ sf2Player, store }) {
         : Math.max(0.08, sixteenthSeconds * 1.85);
 
     if (style === "block" || style === "stabs8") {
-      for (const midi of activeVoicing) {
+      for (const midi of voicing) {
         let velocity = baseVelocity;
         if (humanizeVelocity) {
           velocity = clamp(velocity * (1 + randomRange(-0.05, 0.05)), 0.08, 1);
@@ -172,7 +148,7 @@ export function createPianoChordTrack({ sf2Player, store }) {
       return;
     }
 
-    const arpOrder = getArpOrder(style, activeVoicing);
+    const arpOrder = getArpOrder(style, voicing);
     if (!arpOrder.length) {
       return;
     }
