@@ -75,16 +75,30 @@ export function createTrackManager({
     source.start(atTime);
   }
 
-  function scheduleDrumFromLaneMap(state, laneMap, stepIndex, stepTime, trackVolume = 1) {
-    const selectedSamples = state.drumPattern.selectedSamples;
-    const laneGains = state.drumPattern.laneGains;
+  function scheduleDrumFromLaneMap(
+    state,
+    laneMap,
+    stepIndex,
+    stepTime,
+    trackVolume = 1,
+    clipSelectedSamples = null,
+    clipLaneGains = null
+  ) {
+    const sharedSelectedSamples = state.drumPattern.selectedSamples || {};
+    const sharedLaneGains = state.drumPattern.laneGains || {};
+    const selectedSamples =
+      clipSelectedSamples && typeof clipSelectedSamples === "object"
+        ? clipSelectedSamples
+        : sharedSelectedSamples;
+    const laneGains =
+      clipLaneGains && typeof clipLaneGains === "object" ? clipLaneGains : sharedLaneGains;
 
     for (const [laneId, steps] of Object.entries(laneMap)) {
       if (!Array.isArray(steps) || !steps[stepIndex]) {
         continue;
       }
 
-      const samplePath = selectedSamples[laneId];
+      const samplePath = String(selectedSamples[laneId] || sharedSelectedSamples[laneId] || "");
       if (!samplePath) {
         continue;
       }
@@ -94,7 +108,14 @@ export function createTrackManager({
         continue;
       }
 
-      const laneVolume = clamp((Number(laneGains[laneId]) || 0) * trackVolume, 0, 1);
+      const laneGainValue = Number(laneGains[laneId]);
+      const fallbackLaneGain = Number(sharedLaneGains[laneId]);
+      const resolvedLaneGain = Number.isFinite(laneGainValue)
+        ? laneGainValue
+        : Number.isFinite(fallbackLaneGain)
+          ? fallbackLaneGain
+          : 0;
+      const laneVolume = clamp(resolvedLaneGain * trackVolume, 0, 1);
       scheduleDrumSample(buffer, stepTime, laneVolume);
     }
   }
@@ -124,11 +145,20 @@ export function createTrackManager({
     }
 
     const clipRef = String(cell?.clipRef || cell?.data?.clipRef || "shared-main");
+    const clip = state.drumClips?.[clipRef] || state.drumClips?.["shared-main"];
     const laneMap =
-      state.drumClips?.[clipRef]?.lanes ||
+      clip?.lanes ||
       state.drumClips?.["shared-main"]?.lanes ||
       state.drumPattern.lanes;
-    scheduleDrumFromLaneMap(state, laneMap, stepInBar, stepTime, drumTrack.volume);
+    scheduleDrumFromLaneMap(
+      state,
+      laneMap,
+      stepInBar,
+      stepTime,
+      drumTrack.volume,
+      clip?.selectedSamples,
+      clip?.laneGains
+    );
   }
 
   function scheduleMetronomeStep(stepInBar, stepTime) {

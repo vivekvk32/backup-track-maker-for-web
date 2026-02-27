@@ -45,7 +45,7 @@ export function createPadTrack({ padSynth, store }) {
         continue;
       }
       const duration = Math.max(0.12, sixteenthSeconds * segment.segmentSixteenths);
-      const baseVelocity = clamp(Number(track.volume) * 0.78, 0.04, 1);
+      const baseVelocity = clamp(Number(track.volume) * 0.52, 0.03, 0.7);
       padSynth.scheduleChord({
         midiNotes,
         startTime: stepTime,

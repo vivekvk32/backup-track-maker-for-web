@@ -96,6 +96,16 @@ function snapshotFirstBarPatternByLane(lanesById) {
   );
 }
 
+function snapshotSelectedSamplesByLane(lanesById) {
+  return Object.fromEntries(LANES.map((lane) => [lane.id, String(lanesById[lane.id]?.samplePath || "")]));
+}
+
+function snapshotLaneGainsByLane(lanesById) {
+  return Object.fromEntries(
+    LANES.map((lane) => [lane.id, clamp(Number(lanesById[lane.id]?.gain) || 0, 0, 1)])
+  );
+}
+
 function normalizeCustomPresets(rawPresets) {
   if (!Array.isArray(rawPresets)) {
     return [];
@@ -212,6 +222,7 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
             <div class="preset-save-row">
               <input id="custom-preset-name" type="text" maxlength="40" placeholder="My Groove" />
               <button id="save-preset" type="button">Save</button>
+              <button id="delete-preset" type="button">Delete</button>
             </div>
           </div>
           <label class="control">
@@ -227,6 +238,7 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
           <button id="stop" type="button">Stop</button>
           <button id="reset-pattern" type="button">Reset Pattern</button>
         </div>
+        <div class="inline-status">Saved grooves are available as DAW drum clips. Assign them per bar in the DAW Arrangement grid.</div>
       </section>
 
       <section class="panel">
@@ -311,6 +323,7 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
   const playBtn = rootElement.querySelector("#play");
   const stopBtn = rootElement.querySelector("#stop");
   const savePresetBtn = rootElement.querySelector("#save-preset");
+  const deletePresetBtn = rootElement.querySelector("#delete-preset");
   const exportWavBtn = rootElement.querySelector("#export-wav");
   const exportMp3Btn = rootElement.querySelector("#export-mp3");
   const exportProgressFillEl = rootElement.querySelector("#export-progress-fill");
@@ -371,34 +384,56 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
     buffersByPath: new Map(),
     sampleMetaByPath: new Map(),
     samplesByCategory: new Map(SAMPLE_CATEGORIES.map((name) => [name, []])),
-    failedSamples: []
+    failedSamples: [],
+    lastDrumPatternRef: sharedState.drumPattern
   };
 
-  function syncCustomPresetsToDawClips() {
-    const currentClips = store.getState().drumClips || {};
-    for (const preset of state.customPresets) {
+  let isEnsuringCustomPresetClips = false;
+
+  function ensureCustomPresetsInDawClips(shared = store.getState()) {
+    if (isEnsuringCustomPresetClips || state.customPresets.length === 0) {
+      return;
+    }
+
+    const currentClips =
+      shared?.drumClips && typeof shared.drumClips === "object" ? shared.drumClips : {};
+    const existingClipNames = new Set(
+      Object.entries(currentClips)
+        .filter(([clipRef]) => clipRef !== "shared-main")
+        .map(([, clip]) => String(clip?.name || "").trim().toLowerCase())
+        .filter(Boolean)
+    );
+
+    const missingPresets = state.customPresets.filter((preset) => {
       const name = String(preset?.name || "").trim();
-      if (!name) {
-        continue;
+      return name && !existingClipNames.has(name.toLowerCase());
+    });
+    if (missingPresets.length === 0) {
+      return;
+    }
+
+    isEnsuringCustomPresetClips = true;
+    try {
+      for (const preset of missingPresets) {
+        const name = String(preset?.name || "").trim();
+        const clipRef = toDrumClipRef(name);
+        if (!clipRef) {
+          continue;
+        }
+        store.setDrumClip(clipRef, {
+          name,
+          lanes: snapshotFirstBarPatternByLane(preset.patternByLane),
+          selectedSamples: { ...(shared?.drumPattern?.selectedSamples || {}) },
+          laneGains: { ...(shared?.drumPattern?.laneGains || {}) }
+        });
       }
-      const matchedClipEntry = Object.entries(currentClips).find(
-        ([clipRef, clip]) =>
-          clipRef !== "shared-main" &&
-          String(clip?.name || "").trim().toLowerCase() === name.toLowerCase()
-      );
-      const clipRef = matchedClipEntry ? matchedClipEntry[0] : toDrumClipRef(name);
-      if (!clipRef) {
-        continue;
-      }
-      store.setDrumClip(clipRef, {
-        name,
-        lanes: snapshotFirstBarPatternByLane(preset.patternByLane)
-      });
+    } finally {
+      isEnsuringCustomPresetClips = false;
     }
   }
 
   setMasterVolume(state.masterVolume);
-  syncCustomPresetsToDawClips();
+  ensureCustomPresetsInDawClips(sharedState);
   renderPresetOptions(state.presetValue);
   applyStoreDrumPatternToLocal();
 
@@ -447,8 +482,8 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
     return state.loopBars * 16;
   }
 
-  function applyStoreDrumPatternToLocal() {
-    const drumPattern = store.getState().drumPattern;
+  function applyStoreDrumPatternToLocal(drumPatternFromStore = store.getState().drumPattern) {
+    const drumPattern = drumPatternFromStore || store.getState().drumPattern;
     const stepCount = totalSteps();
     for (const lane of LANES) {
       const laneState = state.lanes[lane.id];
@@ -456,6 +491,7 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
       laneState.gain = clamp(Number(drumPattern.laneGains?.[lane.id]) || laneState.gain, 0, 1);
       laneState.samplePath = drumPattern.selectedSamples?.[lane.id] || laneState.samplePath;
     }
+    state.lastDrumPatternRef = drumPattern;
   }
 
   function syncDrumPatternToStore() {
@@ -503,7 +539,8 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
   }
 
   function saveCurrentPreset() {
-    const requestedName = String(controls.customPresetName.value || "").trim();
+    const selectedCustomName = fromCustomPresetValue(state.presetValue);
+    const requestedName = String(controls.customPresetName.value || selectedCustomName || "").trim();
     if (!requestedName) {
       setStatus("Enter a preset name before saving.", "warn");
       return;
@@ -548,19 +585,67 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
     if (clipRef) {
       store.setDrumClip(clipRef, {
         name: requestedName,
-        lanes: snapshotFirstBarPatternByLane(state.lanes)
+        lanes: snapshotFirstBarPatternByLane(state.lanes),
+        selectedSamples: snapshotSelectedSamplesByLane(state.lanes),
+        laneGains: snapshotLaneGainsByLane(state.lanes)
       });
     }
 
     const savedValue = toCustomPresetValue(snapshot.name);
     renderPresetOptions(savedValue);
     state.presetName = snapshot.name;
-    controls.customPresetName.value = "";
+    controls.customPresetName.value = snapshot.name;
     setStatus(
       wasUpdate
         ? `Updated preset "${snapshot.name}" and DAW drum clip.`
         : `Saved preset "${snapshot.name}" and DAW drum clip.`
     );
+  }
+
+  function deleteCurrentPreset() {
+    const selectedCustomName = fromCustomPresetValue(state.presetValue);
+    const requestedName = String(controls.customPresetName.value || selectedCustomName || "").trim();
+    if (!requestedName) {
+      setStatus("Select or enter a saved groove name to delete.", "warn");
+      return;
+    }
+
+    const existingIndex = state.customPresets.findIndex(
+      (item) => item.name.toLowerCase() === requestedName.toLowerCase()
+    );
+    if (existingIndex < 0) {
+      setStatus(`Saved groove "${requestedName}" was not found.`, "warn");
+      return;
+    }
+
+    const preset = state.customPresets[existingIndex];
+    const allowDelete = window.confirm(`Delete saved groove "${preset.name}" and its DAW drum clip?`);
+    if (!allowDelete) {
+      return;
+    }
+
+    state.customPresets.splice(existingIndex, 1);
+    if (!persistCustomPresets(state.customPresets)) {
+      setStatus("Could not delete preset from browser storage.", "warn");
+      return;
+    }
+
+    const drumClips = store.getState().drumClips || {};
+    const matchedClipEntry = Object.entries(drumClips).find(
+      ([clipRef, clip]) =>
+        clipRef !== "shared-main" &&
+        String(clip?.name || "").trim().toLowerCase() === preset.name.toLowerCase()
+    );
+    if (matchedClipEntry) {
+      store.deleteDrumClip(matchedClipEntry[0]);
+    }
+
+    const fallbackPreset = PRESET_NAMES[0];
+    renderPresetOptions(fallbackPreset);
+    state.presetName = fallbackPreset;
+    controls.customPresetName.value = "";
+    applyPreset(fallbackPreset);
+    setStatus(`Deleted saved groove "${preset.name}".`);
   }
 
   function matchesPackFilter(sample) {
@@ -820,6 +905,7 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
       }
 
       state.presetName = customPreset.name;
+      controls.customPresetName.value = customPreset.name;
       state.loopBars = customPreset.loopBars;
       controls.loopBars.value = String(customPreset.loopBars);
       store.setTransport({ loopBars: customPreset.loopBars });
@@ -828,6 +914,7 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
     }
 
     state.presetName = presetValue;
+    controls.customPresetName.value = "";
     const pattern = buildPresetPattern(presetValue, state.loopBars);
     applyPattern(pattern);
   }
@@ -902,6 +989,10 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
     saveCurrentPreset();
   });
 
+  deletePresetBtn.addEventListener("click", () => {
+    deleteCurrentPreset();
+  });
+
   controls.customPresetName.addEventListener("keydown", (event) => {
     if (event.key !== "Enter") {
       return;
@@ -970,18 +1061,23 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
   });
 
   function syncFromSharedState(shared) {
+    ensureCustomPresetsInDawClips(shared);
+
     const transport = shared.transport;
     const mixerState = shared.mixer;
     const nextLoopBars = [1, 2, 4].includes(Number(transport.loopBars))
       ? Number(transport.loopBars)
       : 1;
-    if (nextLoopBars !== state.loopBars) {
+    const loopBarsChanged = nextLoopBars !== state.loopBars;
+    if (loopBarsChanged) {
       state.loopBars = nextLoopBars;
-      for (const lane of LANES) {
-        state.lanes[lane.id].steps = resizeSteps(state.lanes[lane.id].steps, totalSteps());
-      }
-      syncDrumPatternToStore();
-      renderGrid();
+    }
+
+    const drumPatternChanged = shared.drumPattern !== state.lastDrumPatternRef;
+    if (loopBarsChanged || drumPatternChanged) {
+      applyStoreDrumPatternToLocal(shared.drumPattern);
+      renderLaneControls();
+      renderSelectedSamples();
     }
 
     state.isPlaying = Boolean(transport.isPlaying);
@@ -1157,7 +1253,6 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
     ensureLaneSampleSelections();
     renderLaneControls();
     renderSelectedSamples();
-    applyPreset(state.presetValue);
     syncDrumPatternToStore();
 
     state.ready = loaded.buffersByPath.size > 0;

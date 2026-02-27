@@ -18,9 +18,9 @@ export function createPadSynth({ audioContext, outputNode, irUrl = "/ir/small-ha
   let irLoaded = false;
   const activeVoices = new Set();
 
-  dryGain.gain.setValueAtTime(1, audioContext.currentTime);
+  dryGain.gain.setValueAtTime(0.5, audioContext.currentTime);
   reverbSendGain.gain.setValueAtTime(0.18, audioContext.currentTime);
-  reverbReturnGain.gain.setValueAtTime(0.35, audioContext.currentTime);
+  reverbReturnGain.gain.setValueAtTime(0.14, audioContext.currentTime);
 
   dryGain.connect(outputNode);
   reverbSendGain.connect(reverbReturnGain);
@@ -69,7 +69,7 @@ export function createPadSynth({ audioContext, outputNode, irUrl = "/ir/small-ha
     const reverbSend = clamp(Number(settings.reverbSend) || 0, 0, 1);
     const vibratoDepth = clamp(Number(settings.vibratoDepth) || 0, 0, 80);
     const vibratoRateHz = clamp(Number(settings.vibratoRateHz) || 4, 0.1, 12);
-    const safeVelocity = clamp(Number(velocity) || 0.72, 0.02, 1);
+    const safeVelocity = clamp(Number(velocity) || 0.52, 0.015, 0.8);
     const frequency = midiToFrequency(midi);
     const attack = attackMs / 1000;
     const release = releaseMs / 1000;
@@ -120,10 +120,13 @@ export function createPadSynth({ audioContext, outputNode, irUrl = "/ir/small-ha
     const oscDetunes = [-detuneCents, 0, detuneCents];
     for (const cents of oscDetunes) {
       const osc = audioContext.createOscillator();
+      const oscLevel = audioContext.createGain();
+      oscLevel.gain.setValueAtTime(0.22, startTime);
       osc.type = "sawtooth";
       osc.frequency.setValueAtTime(frequency, startTime);
       osc.detune.setValueAtTime(cents, startTime);
-      osc.connect(filterNode);
+      osc.connect(oscLevel);
+      oscLevel.connect(filterNode);
       osc.start(startTime);
       osc.stop(stopTime + 0.05);
       voice.oscillators.push(osc);
@@ -179,7 +182,7 @@ export function createPadSynth({ audioContext, outputNode, irUrl = "/ir/small-ha
     const safeDuration = Math.max(0.08, Number(duration) || 0.9);
     for (let index = 0; index < midiNotes.length; index += 1) {
       const midi = Math.round(Number(midiNotes[index]) || 60);
-      let noteVelocity = clamp((Number(velocity) || 0.72) * Number(trackVolume || 1), 0.02, 1);
+      let noteVelocity = clamp((Number(velocity) || 0.52) * 0.58, 0.015, 0.45);
       let noteStart = Number(startTime);
       if (humanizeVelocity) {
         noteVelocity = clamp(noteVelocity * (1 + randomRange(-0.04, 0.04)), 0.02, 1);

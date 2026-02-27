@@ -122,6 +122,7 @@ export async function initAppShell(rootElement) {
   };
 
   const store = createTransportStore();
+  store.loadPersistedSettings();
 
   const { audioContext, masterGain } = getAudioNodes();
   const mixer = createMixer({

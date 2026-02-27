@@ -57,6 +57,24 @@ Build for static hosting:
 npm run build
 ```
 
+## DAW drum clips per bar
+- Create a groove in `Drums`.
+- Click `Save Groove + DAW Clip` and give it a name (for example `Verse`).
+- Create/save another groove if needed (for example `Fill`).
+- Open `DAW` and click any bar cell in the `Drums` row.
+- In `Edit Drum Bar`, choose the clip and save.
+- Repeat per bar to build the arrangement.
+
+Storage behavior:
+- Drum clips and DAW arrangement cells are stored in browser/session state.
+- No filesystem "DAW folder" is required for clip storage.
+
+Expected behavior checks:
+- Different clips on bar 1 and bar 2 play different drum content.
+- Updating a saved groove with the same name updates all bars using that clip.
+- Reloading and reopening a session keeps clip assignments.
+- DAW WAV/MP3 export follows per-bar clip assignments.
+
 ## Notes
 - Runtime uses no external network calls.
 - SF2 playback uses bundled npm package `sf2-synth-audio-worklet` (no CDN at runtime).

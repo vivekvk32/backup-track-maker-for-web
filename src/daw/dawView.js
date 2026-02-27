@@ -24,8 +24,19 @@ const PIANO_SF2_OPTIONS = [
   {
     value: "/instruments/Stein_Grand_Piano.sf2",
     label: "Stein Grand Piano"
+  },
+  {
+    value: "/instruments/projectsam_world_percussion.sf2",
+    label: "ProjectSAM World Percussion (True Strike 2 W)"
   }
 ];
+
+function renderPianoSf2ChoiceOptions() {
+  const builtIn = PIANO_SF2_OPTIONS.map(
+    (option) => `<option value="${option.value}">${escapeHtml(option.label)}</option>`
+  ).join("");
+  return `${builtIn}<option value="custom">Custom Path</option>`;
+}
 
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
@@ -358,7 +369,7 @@ export function initDawView(rootElement, { store, trackManager, padSynth, bassSf
         <label class="control"><span>Play Style</span><select id="daw-piano-style"><option value="block">Block Chords</option><option value="stabs8">8th Stabs</option><option value="arpUp">Arpeggio Up</option><option value="arpDown">Arpeggio Down</option><option value="arpUpDown">Arpeggio Up/Down</option></select></label>
         <label class="control checkbox"><input id="daw-piano-humanize-velocity" type="checkbox" /><span>Humanize Velocity (+/-5%)</span></label>
         <label class="control checkbox"><input id="daw-piano-humanize-timing" type="checkbox" /><span>Humanize Timing (+/-5ms)</span></label>
-        <label class="control"><span>Piano SF2 Option</span><select id="daw-piano-sf2-choice"><option value="/instruments/1115_Korg_IS50_Marimboyd.sf2">Korg IS50 (Marimboyd)</option><option value="/instruments/Stein_Grand_Piano.sf2">Stein Grand Piano</option><option value="custom">Custom Path</option></select></label>
+        <label class="control"><span>Piano SF2 Option</span><select id="daw-piano-sf2-choice">${renderPianoSf2ChoiceOptions()}</select></label>
         <label class="control"><span>Piano SF2 Path</span><input id="daw-piano-sf2-path" type="text" /></label>
       </div>
       <div class="transport-buttons"><button id="daw-piano-sf2-load" type="button">Load Piano SF2</button><button id="daw-piano-sf2-test" type="button">Test Piano</button><span id="daw-piano-sf2-status" class="inline-status">Idle</span></div>
@@ -394,6 +405,7 @@ export function initDawView(rootElement, { store, trackManager, padSynth, bassSf
         </select>
         <button id="daw-add-track" type="button">Add Track</button>
       </div>
+      <div class="inline-status">Drum bars are clip-based. Click a Drums cell to select a saved clip for that bar.</div>
       <div class="daw-arrangement-shell">
         <div class="daw-track-list-column"><div class="daw-track-header">Track List</div><div id="daw-track-list"></div></div>
         <div class="daw-grid-column"><div class="daw-grid-scroll"><div id="daw-bar-head" class="daw-bar-head-row"></div><div id="daw-grid-rows"></div></div></div>

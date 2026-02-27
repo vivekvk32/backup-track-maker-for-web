@@ -10,6 +10,7 @@ const STORAGE_ARRANGEMENT_V3 = "drum-loop-maker.arrangement.v3";
 const STORAGE_ARRANGEMENT_V2 = "drum-loop-maker.arrangement.v2";
 const STORAGE_UI_V2 = "drum-loop-maker.ui.v2";
 const STORAGE_MIXER = "drum-loop-maker.mixer.v1";
+const STORAGE_DRUM_PATTERN_V1 = "drum-loop-maker.drum-pattern.v1";
 
 const LEGACY_TRANSPORT = "drum-loop-maker.transport.v1";
 const LEGACY_BASS = "drum-loop-maker.bass.v1";
@@ -122,18 +123,40 @@ function createOneBarLaneSnapshot(lanes) {
   );
 }
 
-function normalizeDrumClip(clip, fallbackName) {
+function createSelectedSampleSnapshot(selectedSamples, fallbackSelectedSamples = {}) {
+  const source = selectedSamples && typeof selectedSamples === "object" ? selectedSamples : {};
+  const fallback =
+    fallbackSelectedSamples && typeof fallbackSelectedSamples === "object"
+      ? fallbackSelectedSamples
+      : {};
+  return Object.fromEntries(
+    LANE_IDS.map((laneId) => [laneId, String(source[laneId] ?? fallback[laneId] ?? "")])
+  );
+}
+
+function createLaneGainSnapshot(laneGains, fallbackLaneGains = {}) {
+  const source = laneGains && typeof laneGains === "object" ? laneGains : {};
+  const fallback =
+    fallbackLaneGains && typeof fallbackLaneGains === "object" ? fallbackLaneGains : {};
+  return Object.fromEntries(
+    LANE_IDS.map((laneId) => [laneId, clamp(Number(source[laneId] ?? fallback[laneId] ?? 1), 0, 1)])
+  );
+}
+
+function normalizeDrumClip(clip, fallbackName, fallbackSelectedSamples, fallbackLaneGains) {
   if (!clip || typeof clip !== "object") {
     return null;
   }
   const name = String(clip.name || fallbackName || "Clip").trim() || String(fallbackName || "Clip");
   return {
     name,
-    lanes: createOneBarLaneSnapshot(clip.lanes)
+    lanes: createOneBarLaneSnapshot(clip.lanes),
+    selectedSamples: createSelectedSampleSnapshot(clip.selectedSamples, fallbackSelectedSamples),
+    laneGains: createLaneGainSnapshot(clip.laneGains, fallbackLaneGains)
   };
 }
 
-function normalizeDrumClips(drumClips, fallbackPatternLanes) {
+function normalizeDrumClips(drumClips, fallbackPatternLanes, fallbackSelectedSamples, fallbackLaneGains) {
   const source = drumClips && typeof drumClips === "object" ? drumClips : {};
   const next = {};
 
@@ -142,7 +165,12 @@ function normalizeDrumClips(drumClips, fallbackPatternLanes) {
     if (!safeRef) {
       continue;
     }
-    const normalized = normalizeDrumClip(clip, safeRef);
+    const normalized = normalizeDrumClip(
+      clip,
+      safeRef,
+      fallbackSelectedSamples,
+      fallbackLaneGains
+    );
     if (!normalized) {
       continue;
     }
@@ -151,7 +179,9 @@ function normalizeDrumClips(drumClips, fallbackPatternLanes) {
 
   next[SHARED_DRUM_CLIP_REF] = {
     name: "Shared Main",
-    lanes: createOneBarLaneSnapshot(fallbackPatternLanes)
+    lanes: createOneBarLaneSnapshot(fallbackPatternLanes),
+    selectedSamples: createSelectedSampleSnapshot(fallbackSelectedSamples),
+    laneGains: createLaneGainSnapshot(fallbackLaneGains)
   };
 
   return next;
@@ -160,7 +190,9 @@ function normalizeDrumClips(drumClips, fallbackPatternLanes) {
 function syncSharedDrumClipFromPattern(targetState) {
   targetState.drumClips = normalizeDrumClips(
     targetState.drumClips,
-    targetState.drumPattern?.lanes
+    targetState.drumPattern?.lanes,
+    targetState.drumPattern?.selectedSamples,
+    targetState.drumPattern?.laneGains
   );
 }
 
@@ -782,7 +814,12 @@ function defaultState() {
     },
     tracks,
     arrangement: createEmptyArrangement(tracks),
-    drumClips: normalizeDrumClips(null, drumPattern.lanes),
+    drumClips: normalizeDrumClips(
+      null,
+      drumPattern.lanes,
+      drumPattern.selectedSamples,
+      drumPattern.laneGains
+    ),
     trackSettings,
     bassSettings,
     pianoSettings,
@@ -958,7 +995,12 @@ function normalizeStoreState(inputState = {}) {
   );
 
   normalizePatternsForLoopBars(merged, merged.transport.loopBars);
-  merged.drumClips = normalizeDrumClips(merged.drumClips, merged.drumPattern?.lanes);
+  merged.drumClips = normalizeDrumClips(
+    merged.drumClips,
+    merged.drumPattern?.lanes,
+    merged.drumPattern?.selectedSamples,
+    merged.drumPattern?.laneGains
+  );
   syncSharedDrumClipFromPattern(merged);
 
   return merged;
@@ -1006,6 +1048,7 @@ export function createTransportStore(initialState = {}) {
     writeStorage(STORAGE_ARRANGEMENT_V3, arrangementPayload);
     writeStorage(STORAGE_ARRANGEMENT_V4, arrangementPayload);
     writeStorage(STORAGE_MIXER, mixerPayload);
+    writeStorage(STORAGE_DRUM_PATTERN_V1, state.drumPattern);
     writeStorage(STORAGE_UI_V2, {
       bassSf2Path: state.ui.bassSf2Path,
       pianoSf2Path: state.ui.pianoSf2Path
@@ -1045,6 +1088,36 @@ export function createTransportStore(initialState = {}) {
       };
     }
 
+    const drumPatternSaved = readStorage(STORAGE_DRUM_PATTERN_V1);
+    if (drumPatternSaved && typeof drumPatternSaved === "object") {
+      state.drumPattern = {
+        ...state.drumPattern,
+        ...drumPatternSaved,
+        lanes: {
+          ...state.drumPattern.lanes,
+          ...(drumPatternSaved.lanes || {})
+        },
+        laneGains: {
+          ...state.drumPattern.laneGains,
+          ...(drumPatternSaved.laneGains || {})
+        },
+        selectedSamples: {
+          ...state.drumPattern.selectedSamples,
+          ...(drumPatternSaved.selectedSamples || {})
+        },
+        fallback: {
+          ...state.drumPattern.fallback,
+          ...(drumPatternSaved.fallback || {}),
+          lanes: {
+            ...state.drumPattern.fallback.lanes,
+            ...(drumPatternSaved?.fallback?.lanes || {})
+          }
+        }
+      };
+      state.drumPattern.sourceMode =
+        drumPatternSaved.sourceMode === "fallback" ? "fallback" : "shared";
+    }
+
     const arrangementSaved =
       readStorage(STORAGE_ARRANGEMENT_V4) ||
       readStorage(STORAGE_ARRANGEMENT_V3) || readStorage(STORAGE_ARRANGEMENT_V2);
@@ -1056,7 +1129,12 @@ export function createTransportStore(initialState = {}) {
         state.tracks,
         state.transport.arrangementBars
       );
-      state.drumClips = normalizeDrumClips(arrangementSaved.drumClips, state.drumPattern?.lanes);
+      state.drumClips = normalizeDrumClips(
+        arrangementSaved.drumClips,
+        state.drumPattern?.lanes,
+        state.drumPattern?.selectedSamples,
+        state.drumPattern?.laneGains
+      );
       const nextBass = normalizeBassSettings(arrangementSaved.bassSettings, state.bassSettings);
       const nextPiano = normalizePianoSettings(
         arrangementSaved.pianoSettings,
@@ -1083,7 +1161,12 @@ export function createTransportStore(initialState = {}) {
         state.tracks,
         state.transport.arrangementBars
       );
-      state.drumClips = normalizeDrumClips(state.drumClips, state.drumPattern?.lanes);
+      state.drumClips = normalizeDrumClips(
+        state.drumClips,
+        state.drumPattern?.lanes,
+        state.drumPattern?.selectedSamples,
+        state.drumPattern?.laneGains
+      );
       const nextBass = normalizeBassSettings(state.bassSettings, defaultSnapshot.bassSettings);
       const nextPiano = normalizePianoSettings(
         state.pianoSettings,
@@ -1240,7 +1323,12 @@ export function createTransportStore(initialState = {}) {
       return;
     }
 
-    const normalizedClip = normalizeDrumClip(clipPatch, safeRef);
+    const normalizedClip = normalizeDrumClip(
+      clipPatch,
+      safeRef,
+      state.drumPattern?.selectedSamples,
+      state.drumPattern?.laneGains
+    );
     if (!normalizedClip) {
       return;
     }
