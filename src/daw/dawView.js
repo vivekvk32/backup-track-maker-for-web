@@ -405,7 +405,7 @@ export function initDawView(rootElement, { store, trackManager, padSynth, bassSf
         </select>
         <button id="daw-add-track" type="button">Add Track</button>
       </div>
-      <div class="inline-status">Drum bars are clip-based. Click a Drums cell to select a saved clip for that bar.</div>
+      <div class="inline-status">Drum bars are clip-based. Click a Drums cell and select a clip. Changes apply immediately.</div>
       <div class="daw-arrangement-shell">
         <div class="daw-track-list-column"><div class="daw-track-header">Track List</div><div id="daw-track-list"></div></div>
         <div class="daw-grid-column"><div class="daw-grid-scroll"><div id="daw-bar-head" class="daw-bar-head-row"></div><div id="daw-grid-rows"></div></div></div>
@@ -426,7 +426,7 @@ export function initDawView(rootElement, { store, trackManager, padSynth, bassSf
           <label class="control hidden" id="editor-first-wrap"><span>First Half</span><select id="editor-first-note"></select></label>
           <label class="control hidden" id="editor-second-wrap"><span>Second Half</span><select id="editor-second-note"></select></label>
         </div>
-        <div class="transport-buttons"><button id="editor-save" type="button">Save</button><button id="editor-clear" type="button">Clear</button><button id="editor-cancel" type="button">Cancel</button></div>
+        <div class="transport-buttons"><button id="editor-save" type="button">Done</button><button id="editor-clear" type="button">Clear</button><button id="editor-cancel" type="button">Cancel</button></div>
       </div>
     </div>
 
@@ -448,7 +448,7 @@ export function initDawView(rootElement, { store, trackManager, padSynth, bassSf
           <label class="control hidden" id="chord-second-bass-wrap"><span>Second Slash</span><select id="chord-second-bass"></select></label>
           <label class="control hidden" id="chord-second-symbol-wrap"><span>Second Symbol</span><input id="chord-second-symbol" type="text" readonly /></label>
         </div>
-        <div class="transport-buttons"><button id="chord-editor-save" type="button">Save</button><button id="chord-editor-clear" type="button">Clear</button><button id="chord-editor-cancel" type="button">Cancel</button></div>
+        <div class="transport-buttons"><button id="chord-editor-save" type="button">Done</button><button id="chord-editor-clear" type="button">Clear</button><button id="chord-editor-cancel" type="button">Cancel</button></div>
       </div>
     </div>
 
@@ -458,7 +458,7 @@ export function initDawView(rootElement, { store, trackManager, padSynth, bassSf
         <div class="control-grid">
           <label class="control"><span>Drum Clip</span><select id="drum-editor-clip"></select></label>
         </div>
-        <div class="transport-buttons"><button id="drum-editor-save" type="button">Save</button><button id="drum-editor-clear" type="button">Clear</button><button id="drum-editor-cancel" type="button">Cancel</button></div>
+        <div class="transport-buttons"><button id="drum-editor-save" type="button">Done</button><button id="drum-editor-clear" type="button">Clear</button><button id="drum-editor-cancel" type="button">Cancel</button></div>
       </div>
     </div>
   `;
@@ -838,6 +838,75 @@ export function initDawView(rootElement, { store, trackManager, padSynth, bassSf
   function closeDrumEditor() {
     drumEditorState.open = false;
     controls.drumEditor.classList.add("hidden");
+  }
+
+  function applyNoteEditorSelection({ closeAfterApply = false } = {}) {
+    if (!editorState.open) {
+      return;
+    }
+    if (editorState.mode === "split") {
+      store.setArrangementCell(editorState.trackId, editorState.barIndex, {
+        type: "note",
+        root: normalizeNoteName(editorState.firstHalf, "C"),
+        split: true,
+        secondRoot: normalizeNoteName(editorState.secondHalf, "G")
+      });
+    } else {
+      store.setArrangementCell(editorState.trackId, editorState.barIndex, {
+        type: "note",
+        root: normalizeNoteName(editorState.fullNote, "C"),
+        split: false,
+        secondRoot: null
+      });
+    }
+    if (closeAfterApply) {
+      closeNoteEditor();
+    }
+  }
+
+  function applyChordEditorSelection({ closeAfterApply = false } = {}) {
+    if (!chordEditorState.open) {
+      return;
+    }
+    refreshChordEditorSymbols();
+    if (chordEditorState.mode === "split") {
+      store.setArrangementCell(chordEditorState.trackId, chordEditorState.barIndex, {
+        kind: "chord",
+        data: {
+          type: "split",
+          firstHalf: normalizeChordData(chordEditorState.firstHalf, "C"),
+          secondHalf: normalizeChordData(chordEditorState.secondHalf, "G")
+        }
+      });
+    } else {
+      store.setArrangementCell(chordEditorState.trackId, chordEditorState.barIndex, {
+        kind: "chord",
+        data: {
+          type: "full",
+          chord: normalizeChordData(chordEditorState.fullChord, "C")
+        }
+      });
+    }
+    if (closeAfterApply) {
+      closeChordEditor();
+    }
+  }
+
+  function applyDrumEditorSelection({ closeAfterApply = false } = {}) {
+    if (!drumEditorState.open) {
+      return;
+    }
+    const state = store.getState();
+    const clipRef = state.drumClips?.[drumEditorState.clipRef]
+      ? drumEditorState.clipRef
+      : SHARED_DRUM_CLIP_REF;
+    store.setArrangementCell(drumEditorState.trackId, drumEditorState.barIndex, {
+      type: "drum",
+      clipRef
+    });
+    if (closeAfterApply) {
+      closeDrumEditor();
+    }
   }
 
   function getEngineConfig(kind) {
@@ -1514,36 +1583,22 @@ export function initDawView(rootElement, { store, trackManager, padSynth, bassSf
 
   controls.editorMode.addEventListener("change", (event) => {
     setEditorMode(String(event.target.value || "full"));
+    applyNoteEditorSelection();
   });
   controls.editorFullNote.addEventListener("change", (event) => {
     editorState.fullNote = normalizeNoteName(event.target.value || "C", "C");
+    applyNoteEditorSelection({ closeAfterApply: true });
   });
   controls.editorFirstNote.addEventListener("change", (event) => {
     editorState.firstHalf = normalizeNoteName(event.target.value || "C", "C");
+    applyNoteEditorSelection();
   });
   controls.editorSecondNote.addEventListener("change", (event) => {
     editorState.secondHalf = normalizeNoteName(event.target.value || "G", "G");
+    applyNoteEditorSelection();
   });
   controls.editorSave.addEventListener("click", () => {
-    if (!editorState.open) {
-      return;
-    }
-    if (editorState.mode === "split") {
-      store.setArrangementCell(editorState.trackId, editorState.barIndex, {
-        type: "note",
-        root: normalizeNoteName(editorState.firstHalf, "C"),
-        split: true,
-        secondRoot: normalizeNoteName(editorState.secondHalf, "G")
-      });
-    } else {
-      store.setArrangementCell(editorState.trackId, editorState.barIndex, {
-        type: "note",
-        root: normalizeNoteName(editorState.fullNote, "C"),
-        split: false,
-        secondRoot: null
-      });
-    }
-    closeNoteEditor();
+    applyNoteEditorSelection({ closeAfterApply: true });
   });
   controls.editorClear.addEventListener("click", () => {
     if (!editorState.open) {
@@ -1558,6 +1613,7 @@ export function initDawView(rootElement, { store, trackManager, padSynth, bassSf
   controls.chordEditorMode.addEventListener("change", (event) => {
     setChordEditorMode(String(event.target.value || "full"));
     refreshChordEditorSymbols();
+    applyChordEditorSelection();
   });
   for (const control of [
     controls.chordFullRoot,
@@ -1572,32 +1628,11 @@ export function initDawView(rootElement, { store, trackManager, padSynth, bassSf
   ]) {
     control.addEventListener("change", () => {
       refreshChordEditorSymbols();
+      applyChordEditorSelection();
     });
   }
   controls.chordEditorSave.addEventListener("click", () => {
-    if (!chordEditorState.open) {
-      return;
-    }
-    refreshChordEditorSymbols();
-    if (chordEditorState.mode === "split") {
-      store.setArrangementCell(chordEditorState.trackId, chordEditorState.barIndex, {
-        kind: "chord",
-        data: {
-          type: "split",
-          firstHalf: normalizeChordData(chordEditorState.firstHalf, "C"),
-          secondHalf: normalizeChordData(chordEditorState.secondHalf, "G")
-        }
-      });
-    } else {
-      store.setArrangementCell(chordEditorState.trackId, chordEditorState.barIndex, {
-        kind: "chord",
-        data: {
-          type: "full",
-          chord: normalizeChordData(chordEditorState.fullChord, "C")
-        }
-      });
-    }
-    closeChordEditor();
+    applyChordEditorSelection({ closeAfterApply: true });
   });
   controls.chordEditorClear.addEventListener("click", () => {
     if (!chordEditorState.open) {
@@ -1611,20 +1646,10 @@ export function initDawView(rootElement, { store, trackManager, padSynth, bassSf
   });
   controls.drumEditorClip.addEventListener("change", (event) => {
     drumEditorState.clipRef = String(event.target.value || SHARED_DRUM_CLIP_REF);
+    applyDrumEditorSelection({ closeAfterApply: true });
   });
   controls.drumEditorSave.addEventListener("click", () => {
-    if (!drumEditorState.open) {
-      return;
-    }
-    const state = store.getState();
-    const clipRef = state.drumClips?.[drumEditorState.clipRef]
-      ? drumEditorState.clipRef
-      : SHARED_DRUM_CLIP_REF;
-    store.setArrangementCell(drumEditorState.trackId, drumEditorState.barIndex, {
-      type: "drum",
-      clipRef
-    });
-    closeDrumEditor();
+    applyDrumEditorSelection({ closeAfterApply: true });
   });
   controls.drumEditorClear.addEventListener("click", () => {
     if (!drumEditorState.open) {
