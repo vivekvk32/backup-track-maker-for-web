@@ -1045,6 +1045,3456 @@
     "pack": "Drum Samples II"
   },
   {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_bounce.wav",
+    "name": "BASS_bounce.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/BOWS/BASS_BOW1.wav",
+    "name": "BASS_BOW1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/BOWS/BASS_BOW2.wav",
+    "name": "BASS_BOW2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/BOWS/BASS_BOW3.wav",
+    "name": "BASS_BOW3.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/BOWS/BASS_BOW4.wav",
+    "name": "BASS_BOW4.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/BOWS/BASS_BOW5.WAV",
+    "name": "BASS_BOW5.WAV",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/BOWS/BASS_BOW6.wav",
+    "name": "BASS_BOW6.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/BOWS/BASS_BOW7.wav",
+    "name": "BASS_BOW7.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/BOWS/BASS_BOW8.wav",
+    "name": "BASS_BOW8.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_change the game.wav",
+    "name": "BASS_change the game.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_CHUCRUT.wav",
+    "name": "BASS_CHUCRUT.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_cissie.wav",
+    "name": "BASS_cissie.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_classic shit.wav",
+    "name": "BASS_classic shit.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_CLUB.wav",
+    "name": "BASS_CLUB.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_crazy.wav",
+    "name": "BASS_crazy.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_flickofthewrist.wav",
+    "name": "BASS_flickofthewrist.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_FUNKY.wav",
+    "name": "BASS_FUNKY.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_GROWL.wav",
+    "name": "BASS_GROWL.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_guaracha1.wav",
+    "name": "BASS_guaracha1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_guaracha2.wav",
+    "name": "BASS_guaracha2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_mostbasicstab.wav",
+    "name": "BASS_mostbasicstab.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_notbased.wav",
+    "name": "BASS_notbased.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_PEARL.wav",
+    "name": "BASS_PEARL.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_PEDAL.wav",
+    "name": "BASS_PEDAL.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_pluck808.wav",
+    "name": "BASS_pluck808.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_ressie.wav",
+    "name": "BASS_ressie.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_S.wav",
+    "name": "BASS_S.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_semi808.wav",
+    "name": "BASS_semi808.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_SLIDE.wav",
+    "name": "BASS_SLIDE.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_spi.wav",
+    "name": "BASS_spi.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_T.wav",
+    "name": "BASS_T.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_telepatia.wav",
+    "name": "BASS_telepatia.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_tothebeat.wav",
+    "name": "BASS_tothebeat.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_watchyourmouth.wav",
+    "name": "BASS_watchyourmouth.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_weirdest shit.wav",
+    "name": "BASS_weirdest shit.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_WZ.wav",
+    "name": "BASS_WZ.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_Y.wav",
+    "name": "BASS_Y.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/BASS_Z.wav",
+    "name": "BASS_Z.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_303.wav",
+    "name": "BOMBOS_DUROS_303.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_45k.wav",
+    "name": "BOMBOS_DUROS_45k.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_a tu compás.wav",
+    "name": "BOMBOS_DUROS_a tu compás.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_AIGHT.wav",
+    "name": "BOMBOS_DUROS_AIGHT.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_Bad Bunny.wav",
+    "name": "BOMBOS_DUROS_Bad Bunny.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_Baile.wav",
+    "name": "BOMBOS_DUROS_Baile.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_balin.wav",
+    "name": "BOMBOS_DUROS_balin.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_BARRIOFINO.wav",
+    "name": "BOMBOS_DUROS_BARRIOFINO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_BLADE.wav",
+    "name": "BOMBOS_DUROS_BLADE.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_C'EST LA VIE.wav",
+    "name": "BOMBOS_DUROS_C'EST LA VIE.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_CABRÓN.wav",
+    "name": "BOMBOS_DUROS_CABRÓN.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_CANCHA.wav",
+    "name": "BOMBOS_DUROS_CANCHA.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_clean af.wav",
+    "name": "BOMBOS_DUROS_clean af.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_DESDE EL BARRO.wav",
+    "name": "BOMBOS_DUROS_DESDE EL BARRO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_dirty.wav",
+    "name": "BOMBOS_DUROS_dirty.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_grit1.wav",
+    "name": "BOMBOS_DUROS_grit1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_grit2.wav",
+    "name": "BOMBOS_DUROS_grit2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_HARDEST.wav",
+    "name": "BOMBOS_DUROS_HARDEST.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_HEAVY.wav",
+    "name": "BOMBOS_DUROS_HEAVY.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_HYPERPOP.wav",
+    "name": "BOMBOS_DUROS_HYPERPOP.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_ilegal.wav",
+    "name": "BOMBOS_DUROS_ilegal.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_INSIDE THIS KICK THERE IS A SNARE.wav",
+    "name": "BOMBOS_DUROS_INSIDE THIS KICK THERE IS A SNARE.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_KICK.wav",
+    "name": "BOMBOS_DUROS_KICK.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_LATA.wav",
+    "name": "BOMBOS_DUROS_LATA.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_limpio.wav",
+    "name": "BOMBOS_DUROS_limpio.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_LONG BOI.wav",
+    "name": "BOMBOS_DUROS_LONG BOI.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_MALLA METÁLICA.wav",
+    "name": "BOMBOS_DUROS_MALLA METÁLICA.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_MEAN GIRL.wav",
+    "name": "BOMBOS_DUROS_MEAN GIRL.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_MÍSTICO.wav",
+    "name": "BOMBOS_DUROS_MÍSTICO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_NO SABEN CON QUE.wav",
+    "name": "BOMBOS_DUROS_NO SABEN CON QUE.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_OSCURO.wav",
+    "name": "BOMBOS_DUROS_OSCURO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_profundo.wav",
+    "name": "BOMBOS_DUROS_profundo.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_Reggaeton Clásico (con tum).wav",
+    "name": "BOMBOS_DUROS_Reggaeton Clásico (con tum).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_Reggaeton Clásico (sin tum).wav",
+    "name": "BOMBOS_DUROS_Reggaeton Clásico (sin tum).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_SAMPLED.wav",
+    "name": "BOMBOS_DUROS_SAMPLED.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_sizzle.wav",
+    "name": "BOMBOS_DUROS_sizzle.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_SUCIO.wav",
+    "name": "BOMBOS_DUROS_SUCIO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/HARD KICKS/BOMBOS_DUROS_TIGHT.wav",
+    "name": "BOMBOS_DUROS_TIGHT.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_30hz.wav",
+    "name": "BOMBOS_SUAVES_30hz.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_80HZ.wav",
+    "name": "BOMBOS_SUAVES_80HZ.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_BAILE LENTO.wav",
+    "name": "BOMBOS_SUAVES_BAILE LENTO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_bajando.wav",
+    "name": "BOMBOS_SUAVES_bajando.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_BICHO.wav",
+    "name": "BOMBOS_SUAVES_BICHO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_BOW.wav",
+    "name": "BOMBOS_SUAVES_BOW.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_bumpin.wav",
+    "name": "BOMBOS_SUAVES_bumpin.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_calladitos.wav",
+    "name": "BOMBOS_SUAVES_calladitos.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_DIOR.wav",
+    "name": "BOMBOS_SUAVES_DIOR.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_duro.wav",
+    "name": "BOMBOS_SUAVES_duro.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_el bombo más duro.wav",
+    "name": "BOMBOS_SUAVES_el bombo más duro.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_EL ESTILO.wav",
+    "name": "BOMBOS_SUAVES_EL ESTILO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_el roce con tu piel.wav",
+    "name": "BOMBOS_SUAVES_el roce con tu piel.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_EL SUACE.wav",
+    "name": "BOMBOS_SUAVES_EL SUACE.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_ENCIMA.wav",
+    "name": "BOMBOS_SUAVES_ENCIMA.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_filtrado.wav",
+    "name": "BOMBOS_SUAVES_filtrado.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_kicksnare1.wav",
+    "name": "BOMBOS_SUAVES_kicksnare1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_kicksnare2.wav",
+    "name": "BOMBOS_SUAVES_kicksnare2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_kicksnare3.wav",
+    "name": "BOMBOS_SUAVES_kicksnare3.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_kicksnare4.wav",
+    "name": "BOMBOS_SUAVES_kicksnare4.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_kicksnare5.wav",
+    "name": "BOMBOS_SUAVES_kicksnare5.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_kicksnare6.wav",
+    "name": "BOMBOS_SUAVES_kicksnare6.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_LA META.wav",
+    "name": "BOMBOS_SUAVES_LA META.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_lentamente.wav",
+    "name": "BOMBOS_SUAVES_lentamente.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_no suave.wav",
+    "name": "BOMBOS_SUAVES_no suave.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_PERCEPCION.wav",
+    "name": "BOMBOS_SUAVES_PERCEPCION.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_PIEL.wav",
+    "name": "BOMBOS_SUAVES_PIEL.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_profundo.wav",
+    "name": "BOMBOS_SUAVES_profundo.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_RECORRIDO.wav",
+    "name": "BOMBOS_SUAVES_RECORRIDO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_round.wav",
+    "name": "BOMBOS_SUAVES_round.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_sensual.wav",
+    "name": "BOMBOS_SUAVES_sensual.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_SINCERAMENTE.wav",
+    "name": "BOMBOS_SUAVES_SINCERAMENTE.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_TACTO.wav",
+    "name": "BOMBOS_SUAVES_TACTO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_tras la pared.wav",
+    "name": "BOMBOS_SUAVES_tras la pared.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BOMBOS/SOFT KICKS/BOMBOS_SUAVES_VIEJITO.wav",
+    "name": "BOMBOS_SUAVES_VIEJITO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_1.wav",
+    "name": "CYM_HH_1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_10.wav",
+    "name": "CYM_HH_10.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_11.wav",
+    "name": "CYM_HH_11.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_12.wav",
+    "name": "CYM_HH_12.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_13.wav",
+    "name": "CYM_HH_13.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_14.wav",
+    "name": "CYM_HH_14.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_15.wav",
+    "name": "CYM_HH_15.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_16.wav",
+    "name": "CYM_HH_16.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_17.wav",
+    "name": "CYM_HH_17.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_18.WAV",
+    "name": "CYM_HH_18.WAV",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_19.wav",
+    "name": "CYM_HH_19.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_2.wav",
+    "name": "CYM_HH_2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_20.wav",
+    "name": "CYM_HH_20.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_21.wav",
+    "name": "CYM_HH_21.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_22.wav",
+    "name": "CYM_HH_22.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_23.wav",
+    "name": "CYM_HH_23.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_24.wav",
+    "name": "CYM_HH_24.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_25.wav",
+    "name": "CYM_HH_25.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_26.wav",
+    "name": "CYM_HH_26.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_27.wav",
+    "name": "CYM_HH_27.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_28.wav",
+    "name": "CYM_HH_28.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_29.wav",
+    "name": "CYM_HH_29.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_3.wav",
+    "name": "CYM_HH_3.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_30.wav",
+    "name": "CYM_HH_30.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_31.wav",
+    "name": "CYM_HH_31.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_32.wav",
+    "name": "CYM_HH_32.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_33.wav",
+    "name": "CYM_HH_33.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_34.wav",
+    "name": "CYM_HH_34.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_35.wav",
+    "name": "CYM_HH_35.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_36.wav",
+    "name": "CYM_HH_36.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_37.wav",
+    "name": "CYM_HH_37.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_38.wav",
+    "name": "CYM_HH_38.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_39.wav",
+    "name": "CYM_HH_39.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_4.wav",
+    "name": "CYM_HH_4.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_40.wav",
+    "name": "CYM_HH_40.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_5.wav",
+    "name": "CYM_HH_5.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_6.wav",
+    "name": "CYM_HH_6.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_7.wav",
+    "name": "CYM_HH_7.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_8.wav",
+    "name": "CYM_HH_8.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_9.wav",
+    "name": "CYM_HH_9.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/CYM_HH_best.wav",
+    "name": "CYM_HH_best.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/OPEN HATZ/CYM_OH_1.wav",
+    "name": "CYM_OH_1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/OPEN HATZ/CYM_OH_10.wav",
+    "name": "CYM_OH_10.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/OPEN HATZ/CYM_OH_11.wav",
+    "name": "CYM_OH_11.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/OPEN HATZ/CYM_OH_12.wav",
+    "name": "CYM_OH_12.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/OPEN HATZ/CYM_OH_13.wav",
+    "name": "CYM_OH_13.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/OPEN HATZ/CYM_OH_14.wav",
+    "name": "CYM_OH_14.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/OPEN HATZ/CYM_OH_15.wav",
+    "name": "CYM_OH_15.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/OPEN HATZ/CYM_OH_2.wav",
+    "name": "CYM_OH_2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/OPEN HATZ/CYM_OH_3.wav",
+    "name": "CYM_OH_3.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/OPEN HATZ/CYM_OH_4.wav",
+    "name": "CYM_OH_4.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/OPEN HATZ/CYM_OH_5.wav",
+    "name": "CYM_OH_5.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/OPEN HATZ/CYM_OH_6.wav",
+    "name": "CYM_OH_6.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/OPEN HATZ/CYM_OH_7.wav",
+    "name": "CYM_OH_7.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/OPEN HATZ/CYM_OH_8.wav",
+    "name": "CYM_OH_8.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/OPEN HATZ/CYM_OH_9.wav",
+    "name": "CYM_OH_9.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CRASHES & RIDES/CYM_PLATILLOS_no tengo más nombres (1).wav",
+    "name": "CYM_PLATILLOS_no tengo más nombres (1).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CRASHES & RIDES/CYM_PLATILLOS_no tengo más nombres (10).wav",
+    "name": "CYM_PLATILLOS_no tengo más nombres (10).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CRASHES & RIDES/CYM_PLATILLOS_no tengo más nombres (11).wav",
+    "name": "CYM_PLATILLOS_no tengo más nombres (11).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CRASHES & RIDES/CYM_PLATILLOS_no tengo más nombres (12).wav",
+    "name": "CYM_PLATILLOS_no tengo más nombres (12).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CRASHES & RIDES/CYM_PLATILLOS_no tengo más nombres (13).wav",
+    "name": "CYM_PLATILLOS_no tengo más nombres (13).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CRASHES & RIDES/CYM_PLATILLOS_no tengo más nombres (14).wav",
+    "name": "CYM_PLATILLOS_no tengo más nombres (14).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CRASHES & RIDES/CYM_PLATILLOS_no tengo más nombres (15).wav",
+    "name": "CYM_PLATILLOS_no tengo más nombres (15).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CRASHES & RIDES/CYM_PLATILLOS_no tengo más nombres (2).wav",
+    "name": "CYM_PLATILLOS_no tengo más nombres (2).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CRASHES & RIDES/CYM_PLATILLOS_no tengo más nombres (3).wav",
+    "name": "CYM_PLATILLOS_no tengo más nombres (3).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CRASHES & RIDES/CYM_PLATILLOS_no tengo más nombres (4).wav",
+    "name": "CYM_PLATILLOS_no tengo más nombres (4).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CRASHES & RIDES/CYM_PLATILLOS_no tengo más nombres (5).wav",
+    "name": "CYM_PLATILLOS_no tengo más nombres (5).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CRASHES & RIDES/CYM_PLATILLOS_no tengo más nombres (6).wav",
+    "name": "CYM_PLATILLOS_no tengo más nombres (6).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CRASHES & RIDES/CYM_PLATILLOS_no tengo más nombres (7).wav",
+    "name": "CYM_PLATILLOS_no tengo más nombres (7).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CRASHES & RIDES/CYM_PLATILLOS_no tengo más nombres (8).wav",
+    "name": "CYM_PLATILLOS_no tengo más nombres (8).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CRASHES & RIDES/CYM_PLATILLOS_no tengo más nombres (9).wav",
+    "name": "CYM_PLATILLOS_no tengo más nombres (9).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/SUBBASSES/haha boom.wav",
+    "name": "haha boom.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (1).wav",
+    "name": "IMPACTO (1).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (10).wav",
+    "name": "IMPACTO (10).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (11).wav",
+    "name": "IMPACTO (11).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (12).wav",
+    "name": "IMPACTO (12).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (13).wav",
+    "name": "IMPACTO (13).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (14).wav",
+    "name": "IMPACTO (14).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (15).wav",
+    "name": "IMPACTO (15).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (16).wav",
+    "name": "IMPACTO (16).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (17).wav",
+    "name": "IMPACTO (17).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (18).wav",
+    "name": "IMPACTO (18).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (19).wav",
+    "name": "IMPACTO (19).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (2).wav",
+    "name": "IMPACTO (2).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (20).wav",
+    "name": "IMPACTO (20).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (21).wav",
+    "name": "IMPACTO (21).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (22).wav",
+    "name": "IMPACTO (22).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (23).wav",
+    "name": "IMPACTO (23).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (24).wav",
+    "name": "IMPACTO (24).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (25).wav",
+    "name": "IMPACTO (25).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (26).wav",
+    "name": "IMPACTO (26).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (27).wav",
+    "name": "IMPACTO (27).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (28).wav",
+    "name": "IMPACTO (28).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (29).wav",
+    "name": "IMPACTO (29).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (3).wav",
+    "name": "IMPACTO (3).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (30).wav",
+    "name": "IMPACTO (30).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (31).wav",
+    "name": "IMPACTO (31).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (32).wav",
+    "name": "IMPACTO (32).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (33).wav",
+    "name": "IMPACTO (33).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (34).wav",
+    "name": "IMPACTO (34).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (35).wav",
+    "name": "IMPACTO (35).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (36).wav",
+    "name": "IMPACTO (36).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (37).wav",
+    "name": "IMPACTO (37).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (38).wav",
+    "name": "IMPACTO (38).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (39).wav",
+    "name": "IMPACTO (39).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (4).wav",
+    "name": "IMPACTO (4).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (40).wav",
+    "name": "IMPACTO (40).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (41).wav",
+    "name": "IMPACTO (41).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (42).wav",
+    "name": "IMPACTO (42).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (43).wav",
+    "name": "IMPACTO (43).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (44).wav",
+    "name": "IMPACTO (44).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (5).wav",
+    "name": "IMPACTO (5).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (6).wav",
+    "name": "IMPACTO (6).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (7).wav",
+    "name": "IMPACTO (7).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (8).wav",
+    "name": "IMPACTO (8).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/IMPACTOS/IMPACTO (9).wav",
+    "name": "IMPACTO (9).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_AIRY HIT (1).wav",
+    "name": "PERC_GOLPES_AIRY HIT (1).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_AIRY HIT (2).wav",
+    "name": "PERC_GOLPES_AIRY HIT (2).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_AIRY HIT (3).wav",
+    "name": "PERC_GOLPES_AIRY HIT (3).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_AIRY HIT (4).wav",
+    "name": "PERC_GOLPES_AIRY HIT (4).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_AIRY HIT (5).wav",
+    "name": "PERC_GOLPES_AIRY HIT (5).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_AIRY HIT BIG.wav",
+    "name": "PERC_GOLPES_AIRY HIT BIG.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_AIRY HIT DEEP.wav",
+    "name": "PERC_GOLPES_AIRY HIT DEEP.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_AIRY MINI SNARE.wav",
+    "name": "PERC_GOLPES_AIRY MINI SNARE.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_AIRY PERC.wav",
+    "name": "PERC_GOLPES_AIRY PERC.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_bell snare.wav",
+    "name": "PERC_GOLPES_bell snare.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_BIG & HEAVY.wav",
+    "name": "PERC_GOLPES_BIG & HEAVY.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_BIG BUSSY BITCH.wav",
+    "name": "PERC_GOLPES_BIG BUSSY BITCH.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_broken hit.wav",
+    "name": "PERC_GOLPES_broken hit.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_CLAP1.wav",
+    "name": "PERC_GOLPES_CLAP1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_CLAP2.wav",
+    "name": "PERC_GOLPES_CLAP2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_CLAP3.wav",
+    "name": "PERC_GOLPES_CLAP3.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_classic.wav",
+    "name": "PERC_GOLPES_classic.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_clean.wav",
+    "name": "PERC_GOLPES_clean.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_CRUSHED HIT.wav",
+    "name": "PERC_GOLPES_CRUSHED HIT.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_cymbal fx.wav",
+    "name": "PERC_GOLPES_cymbal fx.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_electrical junction.wav",
+    "name": "PERC_GOLPES_electrical junction.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_filtrado.wav",
+    "name": "PERC_GOLPES_filtrado.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_fuerte.wav",
+    "name": "PERC_GOLPES_fuerte.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_game.wav",
+    "name": "PERC_GOLPES_game.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_glass hit.wav",
+    "name": "PERC_GOLPES_glass hit.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_GOLPES PARA BOMBOS (1).wav",
+    "name": "PERC_GOLPES_GOLPES PARA BOMBOS (1).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_GOLPES PARA BOMBOS (2).wav",
+    "name": "PERC_GOLPES_GOLPES PARA BOMBOS (2).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_GOLPES PARA BOMBOS (3).wav",
+    "name": "PERC_GOLPES_GOLPES PARA BOMBOS (3).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_hammercito1.wav",
+    "name": "PERC_GOLPES_hammercito1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_hammercito2.wav",
+    "name": "PERC_GOLPES_hammercito2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_heavy metal.wav",
+    "name": "PERC_GOLPES_heavy metal.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_hi.wav",
+    "name": "PERC_GOLPES_hi.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_hit.wav",
+    "name": "PERC_GOLPES_hit.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_hondo.wav",
+    "name": "PERC_GOLPES_hondo.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_intimo.wav",
+    "name": "PERC_GOLPES_intimo.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_koduro.wav",
+    "name": "PERC_GOLPES_koduro.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_LA FECHA.wav",
+    "name": "PERC_GOLPES_LA FECHA.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_lata.wav",
+    "name": "PERC_GOLPES_lata.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_los clásicos de siempre (1).wav",
+    "name": "PERC_GOLPES_los clásicos de siempre (1).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_los clásicos de siempre (10).wav",
+    "name": "PERC_GOLPES_los clásicos de siempre (10).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_los clásicos de siempre (11) pero en realidad es nuevo desde cero.wav",
+    "name": "PERC_GOLPES_los clásicos de siempre (11) pero en realidad es nuevo desde cero.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_los clásicos de siempre (2).wav",
+    "name": "PERC_GOLPES_los clásicos de siempre (2).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_los clásicos de siempre (3).wav",
+    "name": "PERC_GOLPES_los clásicos de siempre (3).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_los clásicos de siempre (4) mejorado.wav",
+    "name": "PERC_GOLPES_los clásicos de siempre (4) mejorado.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_los clásicos de siempre (5).wav",
+    "name": "PERC_GOLPES_los clásicos de siempre (5).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_los clásicos de siempre (6) super mini.wav",
+    "name": "PERC_GOLPES_los clásicos de siempre (6) super mini.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_los clásicos de siempre (7).wav",
+    "name": "PERC_GOLPES_los clásicos de siempre (7).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_los clásicos de siempre (8).wav",
+    "name": "PERC_GOLPES_los clásicos de siempre (8).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_los clásicos de siempre (9).wav",
+    "name": "PERC_GOLPES_los clásicos de siempre (9).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_maderita.wav",
+    "name": "PERC_GOLPES_maderita.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_MALLA METÁLICA.wav",
+    "name": "PERC_GOLPES_MALLA METÁLICA.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_martes.wav",
+    "name": "PERC_GOLPES_martes.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_metalcito.wav",
+    "name": "PERC_GOLPES_metalcito.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_PALITO.wav",
+    "name": "PERC_GOLPES_PALITO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_pillo.wav",
+    "name": "PERC_GOLPES_pillo.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_R&B.wav",
+    "name": "PERC_GOLPES_R&B.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_RIM.wav",
+    "name": "PERC_GOLPES_RIM.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_rych1.wav",
+    "name": "PERC_GOLPES_rych1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_rych2.wav",
+    "name": "PERC_GOLPES_rych2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_rych3.wav",
+    "name": "PERC_GOLPES_rych3.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_rych4.wav",
+    "name": "PERC_GOLPES_rych4.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_tu cama.wav",
+    "name": "PERC_GOLPES_tu cama.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_tube.wav",
+    "name": "PERC_GOLPES_tube.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_tumba.wav",
+    "name": "PERC_GOLPES_tumba.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_ultraminigolpe.wav",
+    "name": "PERC_GOLPES_ultraminigolpe.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_vox hit.wav",
+    "name": "PERC_GOLPES_vox hit.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_WHOOPIN.wav",
+    "name": "PERC_GOLPES_WHOOPIN.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Golpes/PERC_GOLPES_ZAY PERC.wav",
+    "name": "PERC_GOLPES_ZAY PERC.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_ALIENZ.wav",
+    "name": "PERC_NICEST_ALIENZ.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_ballin.wav",
+    "name": "PERC_NICEST_ballin.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_BELL.wav",
+    "name": "PERC_NICEST_BELL.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_bird.wav",
+    "name": "PERC_NICEST_bird.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_car engine.wav",
+    "name": "PERC_NICEST_car engine.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_CHAQUE.wav",
+    "name": "PERC_NICEST_CHAQUE.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_CLAVE.wav",
+    "name": "PERC_NICEST_CLAVE.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_COCKY.wav",
+    "name": "PERC_NICEST_COCKY.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_CORTOCIRCUITO.wav",
+    "name": "PERC_NICEST_CORTOCIRCUITO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_crow.wav",
+    "name": "PERC_NICEST_crow.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_DANCEHALL.wav",
+    "name": "PERC_NICEST_DANCEHALL.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_decaying bell.wav",
+    "name": "PERC_NICEST_decaying bell.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_deeproll.wav",
+    "name": "PERC_NICEST_deeproll.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_DISONANCE.wav",
+    "name": "PERC_NICEST_DISONANCE.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_DISONANTE.wav",
+    "name": "PERC_NICEST_DISONANTE.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_FIESTERO.wav",
+    "name": "PERC_NICEST_FIESTERO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_FUTURISTIK.wav",
+    "name": "PERC_NICEST_FUTURISTIK.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_game fx.wav",
+    "name": "PERC_NICEST_game fx.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_GRAB.wav",
+    "name": "PERC_NICEST_GRAB.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_grey.wav",
+    "name": "PERC_NICEST_grey.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_GUIRO DIGITAL.wav",
+    "name": "PERC_NICEST_GUIRO DIGITAL.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_GÛIRO.wav",
+    "name": "PERC_NICEST_GÛIRO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_HEAVY GUIRO.wav",
+    "name": "PERC_NICEST_HEAVY GUIRO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_LAS LLAVES DEL AUTO AL REVEZ.wav",
+    "name": "PERC_NICEST_LAS LLAVES DEL AUTO AL REVEZ.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_LAS LLAVES DEL AUTO.wav",
+    "name": "PERC_NICEST_LAS LLAVES DEL AUTO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_LATITA LOFI.wav",
+    "name": "PERC_NICEST_LATITA LOFI.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_mba.wav",
+    "name": "PERC_NICEST_mba.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_mortal.wav",
+    "name": "PERC_NICEST_mortal.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_my vox.wav",
+    "name": "PERC_NICEST_my vox.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_PLAYFUL.wav",
+    "name": "PERC_NICEST_PLAYFUL.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_ponelo encima de tu kick.wav",
+    "name": "PERC_NICEST_ponelo encima de tu kick.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_PROTOCOCKY.wav",
+    "name": "PERC_NICEST_PROTOCOCKY.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_recarga.wav",
+    "name": "PERC_NICEST_recarga.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_reversed.wav",
+    "name": "PERC_NICEST_reversed.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_ring moded decaying bell.wav",
+    "name": "PERC_NICEST_ring moded decaying bell.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_ring moded disonant hit.wav",
+    "name": "PERC_NICEST_ring moded disonant hit.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_RINGTONE.wav",
+    "name": "PERC_NICEST_RINGTONE.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_ruidito.wav",
+    "name": "PERC_NICEST_ruidito.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_salsa fill.wav",
+    "name": "PERC_NICEST_salsa fill.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_SAWY.wav",
+    "name": "PERC_NICEST_SAWY.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_stomp.wav",
+    "name": "PERC_NICEST_stomp.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_suspiro.wav",
+    "name": "PERC_NICEST_suspiro.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_TOPA.wav",
+    "name": "PERC_NICEST_TOPA.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_triangulo.wav",
+    "name": "PERC_NICEST_triangulo.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_tribal.wav",
+    "name": "PERC_NICEST_tribal.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_VELLY.wav",
+    "name": "PERC_NICEST_VELLY.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_vibes.wav",
+    "name": "PERC_NICEST_vibes.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_vroom.wav",
+    "name": "PERC_NICEST_vroom.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Nicest/PERC_NICEST_YES MORE METAL.wav",
+    "name": "PERC_NICEST_YES MORE METAL.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_69.wav",
+    "name": "PERC_ORGANICO_69.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_aaaaaa.wav",
+    "name": "PERC_ORGANICO_aaaaaa.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_ALGO NUEVO.wav",
+    "name": "PERC_ORGANICO_ALGO NUEVO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_arabe1.wav",
+    "name": "PERC_ORGANICO_arabe1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_arabe2.wav",
+    "name": "PERC_ORGANICO_arabe2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_BAILE1.wav",
+    "name": "PERC_ORGANICO_BAILE1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_BAILE2.wav",
+    "name": "PERC_ORGANICO_BAILE2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_BELL1.wav",
+    "name": "PERC_ORGANICO_BELL1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_BELL2.wav",
+    "name": "PERC_ORGANICO_BELL2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_BELL3.wav",
+    "name": "PERC_ORGANICO_BELL3.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_BELL4.wav",
+    "name": "PERC_ORGANICO_BELL4.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_bingo.wav",
+    "name": "PERC_ORGANICO_bingo.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_BOMBO.wav",
+    "name": "PERC_ORGANICO_BOMBO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_bongo digital.wav",
+    "name": "PERC_ORGANICO_bongo digital.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_bongo.wav",
+    "name": "PERC_ORGANICO_bongo.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_BOOM.wav",
+    "name": "PERC_ORGANICO_BOOM.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_CAJA.wav",
+    "name": "PERC_ORGANICO_CAJA.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_CAPÓ.wav",
+    "name": "PERC_ORGANICO_CAPÓ.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_CARNAVAL.wav",
+    "name": "PERC_ORGANICO_CARNAVAL.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_casi clave.wav",
+    "name": "PERC_ORGANICO_casi clave.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_chiquito.wav",
+    "name": "PERC_ORGANICO_chiquito.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_clap1.wav",
+    "name": "PERC_ORGANICO_clap1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_clap2.wav",
+    "name": "PERC_ORGANICO_clap2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_clap3.wav",
+    "name": "PERC_ORGANICO_clap3.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_classicclave1.wav",
+    "name": "PERC_ORGANICO_classicclave1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_classicclave2.wav",
+    "name": "PERC_ORGANICO_classicclave2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_classicclave3.wav",
+    "name": "PERC_ORGANICO_classicclave3.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_clave1.wav",
+    "name": "PERC_ORGANICO_clave1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_clave2.wav",
+    "name": "PERC_ORGANICO_clave2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_clave3.wav",
+    "name": "PERC_ORGANICO_clave3.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_clavemadera.wav",
+    "name": "PERC_ORGANICO_clavemadera.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_contacto.wav",
+    "name": "PERC_ORGANICO_contacto.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_cowbell.wav",
+    "name": "PERC_ORGANICO_cowbell.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_DADDYT.wav",
+    "name": "PERC_ORGANICO_DADDYT.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_dancehall.wav",
+    "name": "PERC_ORGANICO_dancehall.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_digital bongo1.wav",
+    "name": "PERC_ORGANICO_digital bongo1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_digital bongo2.wav",
+    "name": "PERC_ORGANICO_digital bongo2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_digital fill.wav",
+    "name": "PERC_ORGANICO_digital fill.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_djembe digital1.wav",
+    "name": "PERC_ORGANICO_djembe digital1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_djembe digital2.wav",
+    "name": "PERC_ORGANICO_djembe digital2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_ENTRE DOS.wav",
+    "name": "PERC_ORGANICO_ENTRE DOS.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_fat ass.wav",
+    "name": "PERC_ORGANICO_fat ass.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_FUTURISTA.wav",
+    "name": "PERC_ORGANICO_FUTURISTA.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_HACIA ARRIBA.wav",
+    "name": "PERC_ORGANICO_HACIA ARRIBA.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_HELLO WORLD.wav",
+    "name": "PERC_ORGANICO_HELLO WORLD.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_juguete.wav",
+    "name": "PERC_ORGANICO_juguete.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_LA NOTA.wav",
+    "name": "PERC_ORGANICO_LA NOTA.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_latita.wav",
+    "name": "PERC_ORGANICO_latita.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_LINEA.wav",
+    "name": "PERC_ORGANICO_LINEA.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_maderita1.wav",
+    "name": "PERC_ORGANICO_maderita1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_maderita2.wav",
+    "name": "PERC_ORGANICO_maderita2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_MINI CAJITA.wav",
+    "name": "PERC_ORGANICO_MINI CAJITA.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_minipalito.wav",
+    "name": "PERC_ORGANICO_minipalito.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_minipalitometalico.wav",
+    "name": "PERC_ORGANICO_minipalitometalico.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_neofuturista.wav",
+    "name": "PERC_ORGANICO_neofuturista.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_nos movemos.wav",
+    "name": "PERC_ORGANICO_nos movemos.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_nota definida.wav",
+    "name": "PERC_ORGANICO_nota definida.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_note.wav",
+    "name": "PERC_ORGANICO_note.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_palito1.wav",
+    "name": "PERC_ORGANICO_palito1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_palito2.wav",
+    "name": "PERC_ORGANICO_palito2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_palito3.wav",
+    "name": "PERC_ORGANICO_palito3.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_palito4.wav",
+    "name": "PERC_ORGANICO_palito4.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_palito5.wav",
+    "name": "PERC_ORGANICO_palito5.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_palito6.wav",
+    "name": "PERC_ORGANICO_palito6.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_palito7.wav",
+    "name": "PERC_ORGANICO_palito7.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_palito8.wav",
+    "name": "PERC_ORGANICO_palito8.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_palito9.wav",
+    "name": "PERC_ORGANICO_palito9.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_PLATILLO.wav",
+    "name": "PERC_ORGANICO_PLATILLO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_platos1.wav",
+    "name": "PERC_ORGANICO_platos1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_platos2.wav",
+    "name": "PERC_ORGANICO_platos2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_platos3.wav",
+    "name": "PERC_ORGANICO_platos3.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_REDOBLANTE.wav",
+    "name": "PERC_ORGANICO_REDOBLANTE.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_roll1.wav",
+    "name": "PERC_ORGANICO_roll1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_roll2.wav",
+    "name": "PERC_ORGANICO_roll2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_roll3.wav",
+    "name": "PERC_ORGANICO_roll3.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_seco y duro.wav",
+    "name": "PERC_ORGANICO_seco y duro.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_semitimbal.wav",
+    "name": "PERC_ORGANICO_semitimbal.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_sillon.wav",
+    "name": "PERC_ORGANICO_sillon.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_snap finger.wav",
+    "name": "PERC_ORGANICO_snap finger.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_snap wood.wav",
+    "name": "PERC_ORGANICO_snap wood.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_SOBRE LA PIEL.wav",
+    "name": "PERC_ORGANICO_SOBRE LA PIEL.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_tambor perc.wav",
+    "name": "PERC_ORGANICO_tambor perc.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_timbal1.wav",
+    "name": "PERC_ORGANICO_timbal1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_timbal2.wav",
+    "name": "PERC_ORGANICO_timbal2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_timbal3.wav",
+    "name": "PERC_ORGANICO_timbal3.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_timbal4.wav",
+    "name": "PERC_ORGANICO_timbal4.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_timbal5.wav",
+    "name": "PERC_ORGANICO_timbal5.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_timbal6.wav",
+    "name": "PERC_ORGANICO_timbal6.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_triangle thing.wav",
+    "name": "PERC_ORGANICO_triangle thing.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_tum.wav",
+    "name": "PERC_ORGANICO_tum.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_turrx1.wav",
+    "name": "PERC_ORGANICO_turrx1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_turrx2.wav",
+    "name": "PERC_ORGANICO_turrx2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_turrx3.wav",
+    "name": "PERC_ORGANICO_turrx3.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_V.wav",
+    "name": "PERC_ORGANICO_V.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_W.wav",
+    "name": "PERC_ORGANICO_W.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_weird latita.wav",
+    "name": "PERC_ORGANICO_weird latita.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Organico/PERC_ORGANICO_WOOD.wav",
+    "name": "PERC_ORGANICO_WOOD.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_AMBIENT.wav",
+    "name": "PERC_PIEDRITA_AMBIENT.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_bell.wav",
+    "name": "PERC_PIEDRITA_bell.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_bolsita.wav",
+    "name": "PERC_PIEDRITA_bolsita.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_BROKEN CAN.wav",
+    "name": "PERC_PIEDRITA_BROKEN CAN.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_CACHETE.wav",
+    "name": "PERC_PIEDRITA_CACHETE.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_casualmente.wav",
+    "name": "PERC_PIEDRITA_casualmente.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_chip.wav",
+    "name": "PERC_PIEDRITA_chip.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_CRA'.wav",
+    "name": "PERC_PIEDRITA_CRA'.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_dale perri.wav",
+    "name": "PERC_PIEDRITA_dale perri.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_DELAY.wav",
+    "name": "PERC_PIEDRITA_DELAY.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_DEMBOW.wav",
+    "name": "PERC_PIEDRITA_DEMBOW.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_EL JACUZZI.wav",
+    "name": "PERC_PIEDRITA_EL JACUZZI.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_ESTALLO.wav",
+    "name": "PERC_PIEDRITA_ESTALLO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_estridente.wav",
+    "name": "PERC_PIEDRITA_estridente.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_FIESTERO.wav",
+    "name": "PERC_PIEDRITA_FIESTERO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_gonorreico.wav",
+    "name": "PERC_PIEDRITA_gonorreico.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_hammer.wav",
+    "name": "PERC_PIEDRITA_hammer.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_laser.wav",
+    "name": "PERC_PIEDRITA_laser.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_lejos.wav",
+    "name": "PERC_PIEDRITA_lejos.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_maquinaria.wav",
+    "name": "PERC_PIEDRITA_maquinaria.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_mini.wav",
+    "name": "PERC_PIEDRITA_mini.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_mood.wav",
+    "name": "PERC_PIEDRITA_mood.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_OOO BABY.wav",
+    "name": "PERC_PIEDRITA_OOO BABY.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_pedal.wav",
+    "name": "PERC_PIEDRITA_pedal.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_PICADA.wav",
+    "name": "PERC_PIEDRITA_PICADA.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_PIEDRADEVERDAD.wav",
+    "name": "PERC_PIEDRITA_PIEDRADEVERDAD.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_piña.wav",
+    "name": "PERC_PIEDRITA_piña.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_PROP.wav",
+    "name": "PERC_PIEDRITA_PROP.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_racinclu.wav",
+    "name": "PERC_PIEDRITA_racinclu.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_RING.wav",
+    "name": "PERC_PIEDRITA_RING.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_roll1.wav",
+    "name": "PERC_PIEDRITA_roll1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_roll2.wav",
+    "name": "PERC_PIEDRITA_roll2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_ROMPEVIDRIOS.wav",
+    "name": "PERC_PIEDRITA_ROMPEVIDRIOS.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_SAG.wav",
+    "name": "PERC_PIEDRITA_SAG.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_sey.wav",
+    "name": "PERC_PIEDRITA_sey.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_SODA.wav",
+    "name": "PERC_PIEDRITA_SODA.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_SUCIO.wav",
+    "name": "PERC_PIEDRITA_SUCIO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_trabanjando en la construcción.wav",
+    "name": "PERC_PIEDRITA_trabanjando en la construcción.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_wah wah.wav",
+    "name": "PERC_PIEDRITA_wah wah.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_what is that.wav",
+    "name": "PERC_PIEDRITA_what is that.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/PERCU/Piedrita de Asfalto/PERC_PIEDRITA_YES.wav",
+    "name": "PERC_PIEDRITA_YES.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (1).wav",
+    "name": "RIM (1).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (10).wav",
+    "name": "RIM (10).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (11).wav",
+    "name": "RIM (11).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (12).wav",
+    "name": "RIM (12).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (13).wav",
+    "name": "RIM (13).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (14).wav",
+    "name": "RIM (14).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (15).wav",
+    "name": "RIM (15).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (16).wav",
+    "name": "RIM (16).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (17).wav",
+    "name": "RIM (17).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (18).wav",
+    "name": "RIM (18).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (19).wav",
+    "name": "RIM (19).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (2).wav",
+    "name": "RIM (2).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (20).wav",
+    "name": "RIM (20).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (21).wav",
+    "name": "RIM (21).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (22).wav",
+    "name": "RIM (22).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (23).wav",
+    "name": "RIM (23).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (24).wav",
+    "name": "RIM (24).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (25).wav",
+    "name": "RIM (25).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (26).wav",
+    "name": "RIM (26).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (27).wav",
+    "name": "RIM (27).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (28).wav",
+    "name": "RIM (28).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (29).wav",
+    "name": "RIM (29).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (3).wav",
+    "name": "RIM (3).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (4).wav",
+    "name": "RIM (4).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (5).wav",
+    "name": "RIM (5).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (6).wav",
+    "name": "RIM (6).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (7).wav",
+    "name": "RIM (7).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (8).wav",
+    "name": "RIM (8).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/RIM (9).wav",
+    "name": "RIM (9).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/RIMSHOT/SNAP-RIM (30).wav",
+    "name": "SNAP-RIM (30).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_BAD GYAL.wav",
+    "name": "SNARE_NEW STYLEZ_BAD GYAL.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_BELLAQUEA.wav",
+    "name": "SNARE_NEW STYLEZ_BELLAQUEA.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_CHOP.wav",
+    "name": "SNARE_NEW STYLEZ_CHOP.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_COSCUELLA.wav",
+    "name": "SNARE_NEW STYLEZ_COSCUELLA.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_DANCEHALL.wav",
+    "name": "SNARE_NEW STYLEZ_DANCEHALL.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_DEMBOW.wav",
+    "name": "SNARE_NEW STYLEZ_DEMBOW.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_duet.wav",
+    "name": "SNARE_NEW STYLEZ_duet.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_el sol.wav",
+    "name": "SNARE_NEW STYLEZ_el sol.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_flow.wav",
+    "name": "SNARE_NEW STYLEZ_flow.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_HIGH TAMBOR.wav",
+    "name": "SNARE_NEW STYLEZ_HIGH TAMBOR.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_ÍNTIMO.wav",
+    "name": "SNARE_NEW STYLEZ_ÍNTIMO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_LA CONGA.wav",
+    "name": "SNARE_NEW STYLEZ_LA CONGA.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_LA CREAM.wav",
+    "name": "SNARE_NEW STYLEZ_LA CREAM.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_LA ROSALÍA.wav",
+    "name": "SNARE_NEW STYLEZ_LA ROSALÍA.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_LATA LOFI.wav",
+    "name": "SNARE_NEW STYLEZ_LATA LOFI.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_lento.wav",
+    "name": "SNARE_NEW STYLEZ_lento.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_lindo.wav",
+    "name": "SNARE_NEW STYLEZ_lindo.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_LONGUI.wav",
+    "name": "SNARE_NEW STYLEZ_LONGUI.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_MENEAITO.wav",
+    "name": "SNARE_NEW STYLEZ_MENEAITO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_NUEVAMENTE.wav",
+    "name": "SNARE_NEW STYLEZ_NUEVAMENTE.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_PALITOPIEDRA.wav",
+    "name": "SNARE_NEW STYLEZ_PALITOPIEDRA.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_panama.wav",
+    "name": "SNARE_NEW STYLEZ_panama.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_pop.wav",
+    "name": "SNARE_NEW STYLEZ_pop.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_ready.wav",
+    "name": "SNARE_NEW STYLEZ_ready.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_RITMO.wav",
+    "name": "SNARE_NEW STYLEZ_RITMO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_SECO.wav",
+    "name": "SNARE_NEW STYLEZ_SECO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_SUCIO Y VICIOSO.wav",
+    "name": "SNARE_NEW STYLEZ_SUCIO Y VICIOSO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_SUSPIRO.wav",
+    "name": "SNARE_NEW STYLEZ_SUSPIRO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_textura.wav",
+    "name": "SNARE_NEW STYLEZ_textura.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_TRAPETON.wav",
+    "name": "SNARE_NEW STYLEZ_TRAPETON.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_TUNEADO.wav",
+    "name": "SNARE_NEW STYLEZ_TUNEADO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_wack.wav",
+    "name": "SNARE_NEW STYLEZ_wack.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_watchit.wav",
+    "name": "SNARE_NEW STYLEZ_watchit.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/New Style/SNARE_NEW STYLEZ_z.wav",
+    "name": "SNARE_NEW STYLEZ_z.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_AL FRENTE.wav",
+    "name": "SNARE_OLD SCHOOL_AL FRENTE.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_ANIMAL.wav",
+    "name": "SNARE_OLD SCHOOL_ANIMAL.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_ARCHIVO.wav",
+    "name": "SNARE_OLD SCHOOL_ARCHIVO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_AUTO.wav",
+    "name": "SNARE_OLD SCHOOL_AUTO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_cálido.wav",
+    "name": "SNARE_OLD SCHOOL_cálido.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_CLÁSICO.wav",
+    "name": "SNARE_OLD SCHOOL_CLÁSICO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_CRISPY.wav",
+    "name": "SNARE_OLD SCHOOL_CRISPY.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_DADDY.wav",
+    "name": "SNARE_OLD SCHOOL_DADDY.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_DARKIE.wav",
+    "name": "SNARE_OLD SCHOOL_DARKIE.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_DE LA CALLE.wav",
+    "name": "SNARE_OLD SCHOOL_DE LA CALLE.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_estoy tranqui.wav",
+    "name": "SNARE_OLD SCHOOL_estoy tranqui.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_FIESTA.wav",
+    "name": "SNARE_OLD SCHOOL_FIESTA.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_fresh.wav",
+    "name": "SNARE_OLD SCHOOL_fresh.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_HACELOOOOO.wav",
+    "name": "SNARE_OLD SCHOOL_HACELOOOOO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_kitida.wav",
+    "name": "SNARE_OLD SCHOOL_kitida.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_komosesiente.wav",
+    "name": "SNARE_OLD SCHOOL_komosesiente.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_la fuente.wav",
+    "name": "SNARE_OLD SCHOOL_la fuente.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_LUNEY.wav",
+    "name": "SNARE_OLD SCHOOL_LUNEY.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_METAL.wav",
+    "name": "SNARE_OLD SCHOOL_METAL.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_NADIE TIRA MEJOR QUE YO.wav",
+    "name": "SNARE_OLD SCHOOL_NADIE TIRA MEJOR QUE YO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_NICKI.wav",
+    "name": "SNARE_OLD SCHOOL_NICKI.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_OTRO CLÁSICO.wav",
+    "name": "SNARE_OLD SCHOOL_OTRO CLÁSICO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_PESO.wav",
+    "name": "SNARE_OLD SCHOOL_PESO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_PHONY.wav",
+    "name": "SNARE_OLD SCHOOL_PHONY.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_PLAYERO.wav",
+    "name": "SNARE_OLD SCHOOL_PLAYERO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_REGGEATON BREAK.wav",
+    "name": "SNARE_OLD SCHOOL_REGGEATON BREAK.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_reversion de lo que uso por mucho tiempo.wav",
+    "name": "SNARE_OLD SCHOOL_reversion de lo que uso por mucho tiempo.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_RIDDIM.wav",
+    "name": "SNARE_OLD SCHOOL_RIDDIM.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_S.wav",
+    "name": "SNARE_OLD SCHOOL_S.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_TUMTUM.wav",
+    "name": "SNARE_OLD SCHOOL_TUMTUM.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_wachiwachima.wav",
+    "name": "SNARE_OLD SCHOOL_wachiwachima.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_yikes.wav",
+    "name": "SNARE_OLD SCHOOL_yikes.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Old School Style/SNARE_OLD SCHOOL_Z.wav",
+    "name": "SNARE_OLD SCHOOL_Z.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_CARNAVAL.wav",
+    "name": "SNARE_PERREO_CARNAVAL.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_cheto.wav",
+    "name": "SNARE_PERREO_cheto.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_coche.wav",
+    "name": "SNARE_PERREO_coche.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_COMO SI ESTVIERAMOS EN LA PISCINA.wav",
+    "name": "SNARE_PERREO_COMO SI ESTVIERAMOS EN LA PISCINA.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_DEMBOW 1.wav",
+    "name": "SNARE_PERREO_DEMBOW 1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_DEMBOW 2.wav",
+    "name": "SNARE_PERREO_DEMBOW 2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_disgusting.wav",
+    "name": "SNARE_PERREO_disgusting.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_DURO.wav",
+    "name": "SNARE_PERREO_DURO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_EN TU CARRO.wav",
+    "name": "SNARE_PERREO_EN TU CARRO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_ETEE SECH.wav",
+    "name": "SNARE_PERREO_ETEE SECH.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_galactic S2.wav",
+    "name": "SNARE_PERREO_galactic S2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_GOLPE.wav",
+    "name": "SNARE_PERREO_GOLPE.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_INDUSTRIAL.wav",
+    "name": "SNARE_PERREO_INDUSTRIAL.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_INTENSO.wav",
+    "name": "SNARE_PERREO_INTENSO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_LA COSA ARDE.wav",
+    "name": "SNARE_PERREO_LA COSA ARDE.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_MADERA.wav",
+    "name": "SNARE_PERREO_MADERA.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_masiva.wav",
+    "name": "SNARE_PERREO_masiva.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_metelesazon.wav",
+    "name": "SNARE_PERREO_metelesazon.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_NEON.wav",
+    "name": "SNARE_PERREO_NEON.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_PARTI.wav",
+    "name": "SNARE_PERREO_PARTI.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_partifiestero.wav",
+    "name": "SNARE_PERREO_partifiestero.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_pegadito.wav",
+    "name": "SNARE_PERREO_pegadito.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_PEPE.wav",
+    "name": "SNARE_PERREO_PEPE.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_PERREO NACIONAL.wav",
+    "name": "SNARE_PERREO_PERREO NACIONAL.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_PERREO SUCIO.wav",
+    "name": "SNARE_PERREO_PERREO SUCIO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_pesado.wav",
+    "name": "SNARE_PERREO_pesado.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_QUE ARRANQUE.wav",
+    "name": "SNARE_PERREO_QUE ARRANQUE.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_ranchie.wav",
+    "name": "SNARE_PERREO_ranchie.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_RESPIRO.wav",
+    "name": "SNARE_PERREO_RESPIRO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_ricomusic.wav",
+    "name": "SNARE_PERREO_ricomusic.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_SUPERLATA.wav",
+    "name": "SNARE_PERREO_SUPERLATA.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_TEKKEN.wav",
+    "name": "SNARE_PERREO_TEKKEN.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_tk1.wav",
+    "name": "SNARE_PERREO_tk1.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_tk2.wav",
+    "name": "SNARE_PERREO_tk2.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/TAMBORES/Perreo/SNARE_PERREO_YZ.wav",
+    "name": "SNARE_PERREO_YZ.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_ASCENDING TRANSIENT.wav",
+    "name": "SOUNDBANK_ASCENDING TRANSIENT.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_bellybuttom_D.wav",
+    "name": "SOUNDBANK_bellybuttom_D.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_BRASSY_D.wav",
+    "name": "SOUNDBANK_BRASSY_D.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_CUTE ORGAN_C.wav",
+    "name": "SOUNDBANK_CUTE ORGAN_C.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_DECAY PAD_C.wav",
+    "name": "SOUNDBANK_DECAY PAD_C.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_DIGITAL MALLET.wav",
+    "name": "SOUNDBANK_DIGITAL MALLET.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_DISTORTED BELL.wav",
+    "name": "SOUNDBANK_DISTORTED BELL.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_GHOSLTY ORGAN_C.wav",
+    "name": "SOUNDBANK_GHOSLTY ORGAN_C.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_MIRRORS EDGE.wav",
+    "name": "SOUNDBANK_MIRRORS EDGE.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_MORE BELL.wav",
+    "name": "SOUNDBANK_MORE BELL.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_NOISE BELL.wav",
+    "name": "SOUNDBANK_NOISE BELL.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_noquieropensarmasennombres_C (1).wav",
+    "name": "SOUNDBANK_noquieropensarmasennombres_C (1).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_noquieropensarmasennombres_C (3).wav",
+    "name": "SOUNDBANK_noquieropensarmasennombres_C (3).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_noquieropensarmasennombres_C (4).wav",
+    "name": "SOUNDBANK_noquieropensarmasennombres_C (4).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_PIANO.wav",
+    "name": "SOUNDBANK_PIANO.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_SHORT FLUTE.wav",
+    "name": "SOUNDBANK_SHORT FLUTE.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_STAB.wav",
+    "name": "SOUNDBANK_STAB.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_STRANGE WHISTLE_GRANULIZER_G.wav",
+    "name": "SOUNDBANK_STRANGE WHISTLE_GRANULIZER_G.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_supertranca (1)_D.wav",
+    "name": "SOUNDBANK_supertranca (1)_D.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_supertranca (2)_D.wav",
+    "name": "SOUNDBANK_supertranca (2)_D.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_supertranca (3)_D.wav",
+    "name": "SOUNDBANK_supertranca (3)_D.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_supertranca (4)_D.wav",
+    "name": "SOUNDBANK_supertranca (4)_D.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_supertranca (5)_D.wav",
+    "name": "SOUNDBANK_supertranca (5)_D.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_TELECASTER (1).wav",
+    "name": "SOUNDBANK_TELECASTER (1).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_TELECASTER (2).wav",
+    "name": "SOUNDBANK_TELECASTER (2).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_TELECASTER (3).wav",
+    "name": "SOUNDBANK_TELECASTER (3).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_TOY_GRANULIZER_C.wav",
+    "name": "SOUNDBANK_TOY_GRANULIZER_C.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/INSTRUMENTS/SOUNDBANK_TRIANGULE WAVE_GRANULIZER_A.wav",
+    "name": "SOUNDBANK_TRIANGULE WAVE_GRANULIZER_A.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/SUBBASSES/SUB_BASS_(1).wav",
+    "name": "SUB_BASS_(1).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/SUBBASSES/SUB_BASS_(10).wav",
+    "name": "SUB_BASS_(10).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/SUBBASSES/SUB_BASS_(11).wav",
+    "name": "SUB_BASS_(11).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/SUBBASSES/SUB_BASS_(12).wav",
+    "name": "SUB_BASS_(12).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/SUBBASSES/SUB_BASS_(2).wav",
+    "name": "SUB_BASS_(2).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/SUBBASSES/SUB_BASS_(3).wav",
+    "name": "SUB_BASS_(3).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/SUBBASSES/SUB_BASS_(4).wav",
+    "name": "SUB_BASS_(4).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/SUBBASSES/SUB_BASS_(5).wav",
+    "name": "SUB_BASS_(5).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/SUBBASSES/SUB_BASS_(6).wav",
+    "name": "SUB_BASS_(6).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/SUBBASSES/SUB_BASS_(7).wav",
+    "name": "SUB_BASS_(7).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/SUBBASSES/SUB_BASS_(8).wav",
+    "name": "SUB_BASS_(8).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/SUBBASSES/SUB_BASS_(9).wav",
+    "name": "SUB_BASS_(9).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/SUBBASSES/SUB_BASS_dope ass bass.wav",
+    "name": "SUB_BASS_dope ass bass.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/SUBBASSES/SUB_BASS_REESE (1).wav",
+    "name": "SUB_BASS_REESE (1).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/SUBBASSES/SUB_BASS_REESE (2).wav",
+    "name": "SUB_BASS_REESE (2).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/SUBBASSES/SUB_BASS_REESE (3).wav",
+    "name": "SUB_BASS_REESE (3).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/SUBBASSES/SUB_BASS_REESE (4).wav",
+    "name": "SUB_BASS_REESE (4).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/SUBBASSES/SUB_BASS_REESE (5).wav",
+    "name": "SUB_BASS_REESE (5).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/SUBBASSES/SUB_BASS_REESE (6).wav",
+    "name": "SUB_BASS_REESE (6).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/SUBBASSES/SUB_BASS_REESE (7).wav",
+    "name": "SUB_BASS_REESE (7).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (1).wav",
+    "name": "VOXPERC (1).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (10).wav",
+    "name": "VOXPERC (10).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (11).wav",
+    "name": "VOXPERC (11).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (12).WAV",
+    "name": "VOXPERC (12).WAV",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (13).wav",
+    "name": "VOXPERC (13).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (14).wav",
+    "name": "VOXPERC (14).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (15).wav",
+    "name": "VOXPERC (15).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (16).wav",
+    "name": "VOXPERC (16).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (17).wav",
+    "name": "VOXPERC (17).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (18).wav",
+    "name": "VOXPERC (18).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (19).wav",
+    "name": "VOXPERC (19).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (2).wav",
+    "name": "VOXPERC (2).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (20).wav",
+    "name": "VOXPERC (20).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (21).wav",
+    "name": "VOXPERC (21).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (22).wav",
+    "name": "VOXPERC (22).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (23).wav",
+    "name": "VOXPERC (23).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (24).wav",
+    "name": "VOXPERC (24).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (25).wav",
+    "name": "VOXPERC (25).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (26).wav",
+    "name": "VOXPERC (26).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (3).wav",
+    "name": "VOXPERC (3).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (4).wav",
+    "name": "VOXPERC (4).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (5).wav",
+    "name": "VOXPERC (5).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (6).wav",
+    "name": "VOXPERC (6).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (7).wav",
+    "name": "VOXPERC (7).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (8).wav",
+    "name": "VOXPERC (8).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/VOXPERC/VOXPERC (9).wav",
+    "name": "VOXPERC (9).wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/CYMBALS/CLOSED HATZ/w.wav",
+    "name": "w.wav",
+    "pack": "latin drums"
+  },
+  {
+    "path": "samples/latin drums/BAJOS/STABS/z.wav",
+    "name": "z.wav",
+    "pack": "latin drums"
+  },
+  {
     "path": "samples/Real Drums Vol. 1/BONUS - Demo Tracks/3 Big Room House 128BPM/Bass.wav",
     "name": "Bass.wav",
     "pack": "Real Drums Vol. 1"

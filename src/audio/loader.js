@@ -39,36 +39,51 @@ export function categorizeSampleName(fileName, samplePath = "") {
   const context = `${name} ${pathHint}`;
 
   if (
-    containsAny(context, ["open", "ohh", "hho", "openhat", "hatopen"]) ||
-    containsRegex(context, /\brd\s*c\s*oh\b/)
+    containsAny(context, ["open", "ohh", "hho", "openhat", "hatopen", "open hatz"]) ||
+    containsRegex(context, /\brd\s*c\s*oh\b/) ||
+    containsRegex(context, /\bcym\s*oh\b/)
   ) {
     return "open_hat";
   }
 
   if (
-    containsAny(context, ["closed", "chh", "hhc", "closedhat", "hatclosed"]) ||
-    containsRegex(context, /\brd\s*c\s*hh\b/)
+    containsAny(context, ["closed", "chh", "hhc", "closedhat", "hatclosed", "closed hatz"]) ||
+    containsRegex(context, /\brd\s*c\s*hh\b/) ||
+    containsRegex(context, /\bcym\s*hh\b/)
   ) {
     return "closed_hat";
   }
 
   if (
-    containsAny(context, ["kick", "bass drum", "bassdrum"]) ||
+    containsAny(context, ["kick", "kicks", "kickz", "bass drum", "bassdrum", "bombo", "bombos"]) ||
     containsRegex(context, /\bbd\b/) ||
     containsRegex(context, /\brd\s*k\b/)
   ) {
     return "kick";
   }
-  if (containsAny(context, ["snare"]) || containsRegex(context, /\brd\s*s\b/)) return "snare";
-  if (containsAny(context, ["crash"]) || containsRegex(context, /\brd\s*c\s*c\b/)) return "crash";
+  if (
+    containsAny(context, ["snare", "tambor", "tambores"]) ||
+    containsRegex(context, /\brd\s*s\b/) ||
+    containsRegex(context, /\brim\s*shot\b/) ||
+    containsRegex(context, /\brimshot\b/)
+  ) {
+    return "snare";
+  }
+  if (containsAny(context, ["crash", "platillo"]) || containsRegex(context, /\brd\s*c\s*c\b/)) {
+    return "crash";
+  }
   if (containsAny(context, ["ride"]) || containsRegex(context, /\brd\s*c\s*r\b/)) return "ride";
   if (containsAny(context, ["clap"]) || containsRegex(context, /\brd\s*c\s*\d/)) return "clap";
   if (containsAny(context, ["tom"]) || containsRegex(context, /\brd\s*t\b/)) return "tom";
   if (containsAny(context, ["shaker"]) || containsRegex(context, /\brd\s*p\s*sh\b/))
     return "shaker";
-  if (containsAny(context, ["perc", "percussion"]) || containsRegex(context, /\brd\s*p\b/))
+  if (
+    containsAny(context, ["perc", "percussion", "percu", "voxp", "impacto", "impactos", "golpes"]) ||
+    containsRegex(context, /\brd\s*p\b/)
+  ) {
     return "perc";
-  if (containsAny(context, ["cowbell"]) || containsRegex(context, /\brd\s*p\s*bb\b/))
+  }
+  if (containsAny(context, ["cowbell", "cencerro"]) || containsRegex(context, /\brd\s*p\s*bb\b/))
     return "cowbell";
 
   if (containsAny(context, ["hihat", "hats", "hat"])) {

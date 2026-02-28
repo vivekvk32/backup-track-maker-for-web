@@ -4,6 +4,63 @@ import path from "node:path";
 const projectRoot = process.cwd();
 const samplesRoot = path.join(projectRoot, "public", "samples");
 const outputPath = path.join(projectRoot, "public", "samples.json");
+const latinSourceRoot = path.join(projectRoot, "sample tracks", "latin drums");
+const latinDestinationRoot = path.join(samplesRoot, "latin drums");
+
+async function syncLatinPack() {
+  const sourceStat = await fs.stat(latinSourceRoot).catch(() => null);
+  if (!sourceStat || !sourceStat.isDirectory()) {
+    console.warn(
+      `Latin pack source not found at ${latinSourceRoot}. Skipping Latin sync and continuing manifest generation.`
+    );
+    return;
+  }
+
+  let copied = 0;
+  let skipped = 0;
+
+  async function copyWavTree(sourceDir, destinationDir) {
+    const entries = await fs.readdir(sourceDir, { withFileTypes: true });
+    await fs.mkdir(destinationDir, { recursive: true });
+
+    for (const entry of entries) {
+      const sourcePath = path.join(sourceDir, entry.name);
+      const destinationPath = path.join(destinationDir, entry.name);
+
+      if (entry.isDirectory()) {
+        await copyWavTree(sourcePath, destinationPath);
+        continue;
+      }
+
+      if (!entry.isFile()) {
+        continue;
+      }
+
+      if (path.extname(entry.name).toLowerCase() !== ".wav") {
+        continue;
+      }
+
+      const sourceFileStat = await fs.stat(sourcePath);
+      const destinationFileStat = await fs.stat(destinationPath).catch(() => null);
+      const shouldCopy =
+        !destinationFileStat ||
+        destinationFileStat.size !== sourceFileStat.size ||
+        destinationFileStat.mtimeMs < sourceFileStat.mtimeMs;
+
+      if (shouldCopy) {
+        await fs.copyFile(sourcePath, destinationPath);
+        copied += 1;
+      } else {
+        skipped += 1;
+      }
+    }
+  }
+
+  await copyWavTree(latinSourceRoot, latinDestinationRoot);
+  console.log(
+    `Latin pack sync complete from "${latinSourceRoot}" to "${latinDestinationRoot}" (copied: ${copied}, skipped: ${skipped}).`
+  );
+}
 
 async function walkDirectory(dirPath, collector) {
   const entries = await fs.readdir(dirPath, { withFileTypes: true });
@@ -39,6 +96,8 @@ async function walkDirectory(dirPath, collector) {
 
 async function main() {
   try {
+    await syncLatinPack();
+
     const rootStat = await fs.stat(samplesRoot).catch(() => null);
     if (!rootStat || !rootStat.isDirectory()) {
       console.error(

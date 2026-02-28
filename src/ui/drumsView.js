@@ -25,6 +25,34 @@ const LANES = [
 ];
 const CUSTOM_PRESETS_STORAGE_KEY = "drum-loop-maker.custom-presets.v1";
 const CUSTOM_PRESET_VALUE_PREFIX = "custom:";
+const LATIN_PACK_CANONICAL_NAME = "latin drums";
+const LATIN_MAIN_CLIP_REF = "clip-latin-dembow-main";
+const LATIN_FILL_CLIP_REF = "clip-latin-dembow-fill";
+const LATIN_PRESET_NAMES = new Set([
+  "Latin Dembow Basic",
+  "Latin Dembow Busy",
+  "Latin Dembow Fill"
+]);
+const LATIN_LANE_GAIN_OVERRIDES = Object.freeze({
+  snare: 0.95,
+  clap: 0.92,
+  perc: 0.9,
+  open_hat: 0.9,
+  crash: 0.95
+});
+const LATIN_LANE_HINTS = Object.freeze({
+  kick: [["bombos"], ["bombo"], ["kick"]],
+  snare: [["tambores"], ["rimshot"], ["snare"]],
+  closed_hat: [["closed hat"], ["cym hh"], ["hihat"], ["hat"]],
+  open_hat: [["open hat"], ["cym oh"], ["openhat"]],
+  clap: [["clap"]],
+  perc: [["percu"], ["voxp"], ["impacto"], ["golpes"], ["organico"]],
+  crash: [["crash"], ["platillos"]],
+  ride: [["ride"], ["platillos"]],
+  tom: [["tom"], ["tambores"]],
+  shaker: [["shaker"]],
+  cowbell: [["cowbell"], ["cencerro"]]
+});
 
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
@@ -163,6 +191,10 @@ function persistCustomPresets(customPresets) {
   } catch {
     return false;
   }
+}
+
+function isLatinPresetName(presetName) {
+  return LATIN_PRESET_NAMES.has(String(presetName || ""));
 }
 
 export async function initDrumsView(rootElement, { store, trackManager }) {
@@ -389,6 +421,7 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
   };
 
   let isEnsuringCustomPresetClips = false;
+  let isSeedingLatinClips = false;
 
   function ensureCustomPresetsInDawClips(shared = store.getState()) {
     if (isEnsuringCustomPresetClips || state.customPresets.length === 0) {
@@ -508,6 +541,167 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
       selectedSamples,
       laneGains
     });
+  }
+
+  function snapshotFirstBarFromPatternByLane(patternByLane) {
+    return Object.fromEntries(
+      LANE_IDS.map((laneId) => [laneId, resizeSteps(patternByLane?.[laneId], 16)])
+    );
+  }
+
+  function resolveLatinPackName(availablePacks = state.availablePacks) {
+    return (
+      availablePacks.find(
+        (packName) => String(packName || "").toLowerCase() === LATIN_PACK_CANONICAL_NAME
+      ) || ""
+    );
+  }
+
+  function sampleMatchesHintTokens(sample, tokens) {
+    const searchable = `${sample?.path || ""} ${sample?.name || ""}`
+      .toLowerCase()
+      .replace(/[\\/_-]+/g, " ");
+    return tokens.every((token) => searchable.includes(token));
+  }
+
+  function pickLatinSamplePathForLane(laneId, latinPackName) {
+    if (!latinPackName) {
+      return "";
+    }
+
+    const lane = LANES.find((item) => item.id === laneId);
+    if (!lane) {
+      return "";
+    }
+
+    const categorySamples = (state.samplesByCategory.get(lane.category) || []).filter(
+      (sample) => sample.pack === latinPackName
+    );
+    const unknownSamples = (state.samplesByCategory.get("unknown") || []).filter(
+      (sample) => sample.pack === latinPackName
+    );
+    const candidates = [...categorySamples, ...unknownSamples];
+    const hintGroups = LATIN_LANE_HINTS[laneId] || [];
+
+    for (const tokens of hintGroups) {
+      const matched = candidates.find((sample) => sampleMatchesHintTokens(sample, tokens));
+      if (matched) {
+        return matched.path;
+      }
+    }
+
+    return categorySamples[0]?.path || unknownSamples[0]?.path || "";
+  }
+
+  function buildLatinSelectedSamples(latinPackName, fallbackSelectedSamples = {}) {
+    const selectedSamples = Object.fromEntries(
+      LANE_IDS.map((laneId) => [laneId, String(fallbackSelectedSamples[laneId] || "")])
+    );
+
+    for (const laneId of LANE_IDS) {
+      const latinSamplePath = pickLatinSamplePathForLane(laneId, latinPackName);
+      if (latinSamplePath) {
+        selectedSamples[laneId] = latinSamplePath;
+      }
+    }
+
+    return selectedSamples;
+  }
+
+  function buildLatinLaneGains(fallbackLaneGains = {}) {
+    const laneGains = Object.fromEntries(
+      LANE_IDS.map((laneId) => [laneId, clamp(Number(fallbackLaneGains[laneId] ?? 1) || 1, 0, 1)])
+    );
+
+    for (const [laneId, gain] of Object.entries(LATIN_LANE_GAIN_OVERRIDES)) {
+      laneGains[laneId] = clamp(Number(gain) || 1, 0, 1);
+    }
+
+    return laneGains;
+  }
+
+  function applyLatinLaneSetup({ warnIfPackMissing = true } = {}) {
+    const latinPackName = resolveLatinPackName();
+    if (!latinPackName) {
+      if (warnIfPackMissing && state.ready) {
+        setStatus(
+          "Latin preset applied, but pack 'latin drums' was not found. Keeping current sample selections.",
+          "warn"
+        );
+      }
+      return false;
+    }
+
+    state.packSource = latinPackName;
+    controls.samplePackSource.value = latinPackName;
+
+    for (const lane of LANES) {
+      const latinSamplePath = pickLatinSamplePathForLane(lane.id, latinPackName);
+      if (latinSamplePath) {
+        state.lanes[lane.id].samplePath = latinSamplePath;
+      }
+
+      if (Object.prototype.hasOwnProperty.call(LATIN_LANE_GAIN_OVERRIDES, lane.id)) {
+        state.lanes[lane.id].gain = clamp(
+          Number(LATIN_LANE_GAIN_OVERRIDES[lane.id]) || 1,
+          0,
+          1
+        );
+      }
+    }
+
+    syncDrumPatternToStore();
+    renderLaneControls();
+    renderSelectedSamples();
+    return true;
+  }
+
+  function ensureLatinDawClips() {
+    if (isSeedingLatinClips) {
+      return;
+    }
+
+    const currentState = store.getState();
+    const drumClips = currentState?.drumClips || {};
+    const clipSpecs = [
+      {
+        clipRef: LATIN_MAIN_CLIP_REF,
+        name: "Latin Dembow Main",
+        presetName: "Latin Dembow Basic"
+      },
+      {
+        clipRef: LATIN_FILL_CLIP_REF,
+        name: "Latin Dembow Fill",
+        presetName: "Latin Dembow Fill"
+      }
+    ];
+    const missingSpecs = clipSpecs.filter((spec) => !drumClips[spec.clipRef]);
+    if (missingSpecs.length === 0) {
+      return;
+    }
+
+    const latinPackName = resolveLatinPackName();
+    const selectedSamples = buildLatinSelectedSamples(
+      latinPackName,
+      currentState?.drumPattern?.selectedSamples || snapshotSelectedSamplesByLane(state.lanes)
+    );
+    const laneGains = buildLatinLaneGains(
+      currentState?.drumPattern?.laneGains || snapshotLaneGainsByLane(state.lanes)
+    );
+
+    isSeedingLatinClips = true;
+    try {
+      for (const spec of missingSpecs) {
+        store.setDrumClip(spec.clipRef, {
+          name: spec.name,
+          lanes: snapshotFirstBarFromPatternByLane(buildPresetPattern(spec.presetName, 1)),
+          selectedSamples,
+          laneGains
+        });
+      }
+    } finally {
+      isSeedingLatinClips = false;
+    }
   }
 
   function renderPresetOptions(selectedValue = state.presetValue) {
@@ -917,6 +1111,9 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
     controls.customPresetName.value = "";
     const pattern = buildPresetPattern(presetValue, state.loopBars);
     applyPattern(pattern);
+    if (isLatinPresetName(presetValue)) {
+      applyLatinLaneSetup({ warnIfPackMissing: true });
+    }
   }
 
   controls.bpmRange.addEventListener("input", (event) => {
@@ -1250,6 +1447,10 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
       new Set(Array.from(state.sampleMetaByPath.values()).map((item) => item.pack))
     ).sort((a, b) => a.localeCompare(b, undefined, { sensitivity: "base" }));
     updatePackSourceOptions();
+    if (isLatinPresetName(state.presetName)) {
+      applyLatinLaneSetup({ warnIfPackMissing: false });
+    }
+    ensureLatinDawClips();
     ensureLaneSampleSelections();
     renderLaneControls();
     renderSelectedSamples();

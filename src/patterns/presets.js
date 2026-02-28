@@ -18,6 +18,9 @@ export const PRESET_NAMES = [
   "Bossa Nova Slow",
   "Bossa Nova Basic",
   "Bossa Nova Fast",
+  "Latin Dembow Basic",
+  "Latin Dembow Busy",
+  "Latin Dembow Fill",
   "Empty"
 ];
 export const LANE_IDS = [
@@ -152,6 +155,32 @@ const BASE_PRESETS = {
     snare: [4, 10, 12],
     closed_hat: EVERY_STEP,
     shaker: EVERY_TWO_STEPS
+  },
+  "Latin Dembow Basic": {
+    kick: [0, 3, 8, 10, 11],
+    snare: [4, 12],
+    clap: [12],
+    closed_hat: EVERY_TWO_STEPS,
+    open_hat: [7, 15],
+    perc: [6, 14]
+  },
+  "Latin Dembow Busy": {
+    kick: [0, 3, 6, 8, 10, 11, 14],
+    snare: [4, 12],
+    clap: [4, 12],
+    closed_hat: EVERY_STEP,
+    open_hat: [7, 15],
+    perc: [2, 6, 10, 14]
+  },
+  "Latin Dembow Fill": {
+    kick: [0, 3, 8, 10, 11, 14],
+    snare: [4, 11, 12, 15],
+    clap: [12],
+    closed_hat: EVERY_TWO_STEPS,
+    open_hat: [15],
+    perc: [6, 7, 14, 15],
+    tom: [13, 14, 15],
+    crash: [0]
   },
   Empty: {}
 };

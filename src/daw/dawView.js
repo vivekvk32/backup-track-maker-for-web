@@ -150,7 +150,7 @@ function renderTrackListRows(tracks, selectedTrackId) {
       return `<div class="daw-track-row ${selectedTrackId === track.id ? "selected" : ""}">
         <div class="daw-track-title">${track.name}</div>
         <div class="daw-track-controls">
-          <label>Vol <input data-role="track-volume" data-track-id="${track.id}" type="range" min="0" max="1" step="0.01" value="${track.volume}" /></label>
+          <label>Vol <input data-role="track-volume" data-track-id="${track.id}" type="range" min="0" max="1" step="0.001" value="${track.volume}" /></label>
           <label class="tiny"><input data-role="track-mute" data-track-id="${track.id}" type="checkbox" ${track.mute ? "checked" : ""} />M</label>
           <label class="tiny"><input data-role="track-solo" data-track-id="${track.id}" type="checkbox" ${track.solo ? "checked" : ""} />S</label>
           ${canDelete ? `<button type="button" data-role="remove-track" data-track-id="${track.id}">Del</button>` : ""}

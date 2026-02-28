@@ -69,7 +69,11 @@ export function createPadSynth({ audioContext, outputNode, irUrl = "/ir/small-ha
     const reverbSend = clamp(Number(settings.reverbSend) || 0, 0, 1);
     const vibratoDepth = clamp(Number(settings.vibratoDepth) || 0, 0, 80);
     const vibratoRateHz = clamp(Number(settings.vibratoRateHz) || 4, 0.1, 12);
-    const safeVelocity = clamp(Number(velocity) || 0.52, 0.015, 0.8);
+    const velocityValue = Number(velocity);
+    const safeVelocity = clamp(Number.isFinite(velocityValue) ? velocityValue : 0.52, 0, 0.8);
+    if (safeVelocity <= 0.0001) {
+      return;
+    }
     const frequency = midiToFrequency(midi);
     const attack = attackMs / 1000;
     const release = releaseMs / 1000;
@@ -177,18 +181,28 @@ export function createPadSynth({ audioContext, outputNode, irUrl = "/ir/small-ha
     if (!Array.isArray(midiNotes) || !midiNotes.length) {
       return;
     }
+    const safeTrackVolume = clamp(Number(trackVolume) || 0, 0, 1);
+    if (safeTrackVolume <= 0.0001) {
+      return;
+    }
     const humanizeVelocity = Boolean(settings?.humanize?.velocity);
     const humanizeTiming = Boolean(settings?.humanize?.timing);
     const safeDuration = Math.max(0.08, Number(duration) || 0.9);
+    const velocityValue = Number(velocity);
+    const baseVelocity = Number.isFinite(velocityValue) ? velocityValue : 0.52;
+    const shapedTrackVolume = Math.pow(safeTrackVolume, 0.75);
     for (let index = 0; index < midiNotes.length; index += 1) {
       const midi = Math.round(Number(midiNotes[index]) || 60);
-      let noteVelocity = clamp((Number(velocity) || 0.52) * 0.58, 0.015, 0.45);
+      let noteVelocity = clamp(baseVelocity * shapedTrackVolume * 0.58, 0, 0.45);
       let noteStart = Number(startTime);
       if (humanizeVelocity) {
-        noteVelocity = clamp(noteVelocity * (1 + randomRange(-0.04, 0.04)), 0.02, 1);
+        noteVelocity = clamp(noteVelocity * (1 + randomRange(-0.04, 0.04)), 0, 1);
       }
       if (humanizeTiming) {
         noteStart += randomRange(-0.0045, 0.0045);
+      }
+      if (noteVelocity <= 0.0001) {
+        continue;
       }
       const panWidth = clamp(Number(settings?.detuneCents) || 0, 0, 60) / 60;
       const spread = midiNotes.length <= 1 ? 0 : (index / (midiNotes.length - 1)) * 2 - 1;
