@@ -289,6 +289,8 @@ export async function renderPatternOffline({
   bpm,
   swingPercent,
   loopBars,
+  stepsPerBar = 16,
+  timeSignature = { beatsPerBar: 4, beatUnit: 4 },
   durationMinutes,
   masterVolume,
   lanes,
@@ -299,11 +301,21 @@ export async function renderPatternOffline({
   const safeBpm = clamp(Number(bpm) || 120, 30, 300);
   const safeSwing = clamp(Number(swingPercent) || 0, 0, 60);
   const safeBars = [1, 2, 4].includes(Number(loopBars)) ? Number(loopBars) : 1;
+  const safeStepsPerBar = [4, 8, 16, 32].includes(Number(stepsPerBar)) ? Number(stepsPerBar) : 16;
+  const safeTimeSignatureSource =
+    timeSignature && typeof timeSignature === "object" ? timeSignature : {};
+  const safeTimeSignature = {
+    beatsPerBar: clamp(Math.round(Number(safeTimeSignatureSource.beatsPerBar) || 4), 1, 16),
+    beatUnit: [2, 3, 4, 8, 16].includes(Math.round(Number(safeTimeSignatureSource.beatUnit) || 4))
+      ? Math.round(Number(safeTimeSignatureSource.beatUnit) || 4)
+      : 4
+  };
   const safeMinutes = clamp(Number(durationMinutes) || 4, 1, 30);
   const totalSeconds = safeMinutes * 60;
   const frameCount = Math.ceil(totalSeconds * sampleRate);
-  const totalSteps = safeBars * 16;
-  const sixteenth = (60 / safeBpm) / 4;
+  const totalSteps = safeBars * safeStepsPerBar;
+  const barSeconds = (60 / safeBpm) * safeTimeSignature.beatsPerBar * (4 / safeTimeSignature.beatUnit);
+  const stepSeconds = barSeconds / safeStepsPerBar;
 
   const offlineContext = new OfflineAudioContext(2, frameCount, sampleRate);
   const offlineMaster = offlineContext.createGain();
@@ -314,14 +326,14 @@ export async function renderPatternOffline({
   let stepIndex = 0;
 
   while (baseTime < totalSeconds) {
-    const swingOffset = stepIndex % 2 === 1 ? (safeSwing / 100) * sixteenth : 0;
+    const swingOffset = stepIndex % 2 === 1 ? (safeSwing / 100) * stepSeconds : 0;
     const eventTime = baseTime + swingOffset;
     if (eventTime >= totalSeconds) {
       break;
     }
 
     const stepInPattern = stepIndex % totalSteps;
-    const stepInBar = stepInPattern % 16;
+    const stepInBar = stepInPattern % safeStepsPerBar;
 
     for (const lane of Object.values(lanes)) {
       if (!lane || !lane.samplePath || !Array.isArray(lane.steps)) {
@@ -343,7 +355,11 @@ export async function renderPatternOffline({
       metronome?.enabled &&
       shouldTriggerMetronomeStep(
         stepInBar,
-        metronome.subdivision || METRONOME_SUBDIVISIONS.QUARTER
+        metronome.subdivision || METRONOME_SUBDIVISIONS.QUARTER,
+        {
+          stepsPerBar: safeStepsPerBar,
+          timeSignature: safeTimeSignature
+        }
       )
     ) {
       const isAccent = Boolean(metronome.accentBeatOne) && stepInBar === 0;
@@ -354,7 +370,7 @@ export async function renderPatternOffline({
       });
     }
 
-    baseTime += sixteenth;
+    baseTime += stepSeconds;
     stepIndex += 1;
   }
 

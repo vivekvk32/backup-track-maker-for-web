@@ -53,9 +53,83 @@ const LATIN_LANE_HINTS = Object.freeze({
   shaker: [["shaker"]],
   cowbell: [["cowbell"], ["cencerro"]]
 });
+const STEP_DIVISION_VALUES = [4, 8, 16, 32];
+const TIME_SIGNATURE_OPTIONS = [
+  { label: "2/4", beatsPerBar: 2, beatUnit: 4 },
+  { label: "3/3", beatsPerBar: 3, beatUnit: 3 },
+  { label: "3/4", beatsPerBar: 3, beatUnit: 4 },
+  { label: "4/4", beatsPerBar: 4, beatUnit: 4 },
+  { label: "5/4", beatsPerBar: 5, beatUnit: 4 },
+  { label: "6/8", beatsPerBar: 6, beatUnit: 8 },
+  { label: "7/8", beatsPerBar: 7, beatUnit: 8 },
+  { label: "12/8", beatsPerBar: 12, beatUnit: 8 }
+];
+const TIME_SIGNATURE_OPTION_VALUES = new Set(
+  TIME_SIGNATURE_OPTIONS.map((option) => `${option.beatsPerBar}/${option.beatUnit}`)
+);
+const DEFAULT_TIME_SIGNATURE = Object.freeze({ beatsPerBar: 4, beatUnit: 4 });
+const DAW_CLIP_STEPS_PER_BAR = 16;
 
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
+}
+
+function normalizeStepDivision(value, fallback = 16) {
+  const requested = Number(value);
+  if (STEP_DIVISION_VALUES.includes(requested)) {
+    return requested;
+  }
+
+  const fallbackValue = Number(fallback);
+  return STEP_DIVISION_VALUES.includes(fallbackValue) ? fallbackValue : 16;
+}
+
+function timeSignatureToValue(timeSignature) {
+  const beatsPerBar = Number(timeSignature?.beatsPerBar) || 4;
+  const beatUnit = Number(timeSignature?.beatUnit) || 4;
+  return `${beatsPerBar}/${beatUnit}`;
+}
+
+function normalizeTimeSignature(value, fallback = DEFAULT_TIME_SIGNATURE) {
+  const fallbackSig = fallback && typeof fallback === "object" ? fallback : DEFAULT_TIME_SIGNATURE;
+  const fallbackValue = timeSignatureToValue(fallbackSig);
+
+  if (typeof value === "string") {
+    const trimmed = value.trim();
+    if (TIME_SIGNATURE_OPTION_VALUES.has(trimmed)) {
+      const [beatsPart, beatPart] = trimmed.split("/");
+      return {
+        beatsPerBar: Number(beatsPart),
+        beatUnit: Number(beatPart)
+      };
+    }
+  }
+
+  if (value && typeof value === "object") {
+    const beatsPerBar = Math.max(1, Math.min(16, Math.round(Number(value.beatsPerBar) || 0)));
+    const beatUnitRaw = Math.round(Number(value.beatUnit) || 0);
+    const beatUnit = [2, 3, 4, 8, 16].includes(beatUnitRaw) ? beatUnitRaw : null;
+    const optionValue = `${beatsPerBar}/${beatUnit}`;
+    if (beatUnit !== null && TIME_SIGNATURE_OPTION_VALUES.has(optionValue)) {
+      return {
+        beatsPerBar,
+        beatUnit
+      };
+    }
+  }
+
+  return normalizeTimeSignature(fallbackValue, DEFAULT_TIME_SIGNATURE);
+}
+
+function isSameTimeSignature(left, right) {
+  return (
+    Number(left?.beatsPerBar) === Number(right?.beatsPerBar) &&
+    Number(left?.beatUnit) === Number(right?.beatUnit)
+  );
+}
+
+function computeTotalSteps(loopBars, stepDivision) {
+  return loopBars * stepDivision;
 }
 
 function createInitialLanes(totalSteps) {
@@ -120,7 +194,7 @@ function snapshotPatternByLane(lanesById, totalSteps) {
 
 function snapshotFirstBarPatternByLane(lanesById) {
   return Object.fromEntries(
-    LANE_IDS.map((laneId) => [laneId, resizeSteps(lanesById[laneId]?.steps, 16)])
+    LANE_IDS.map((laneId) => [laneId, resizeSteps(lanesById[laneId]?.steps, DAW_CLIP_STEPS_PER_BAR)])
   );
 }
 
@@ -153,10 +227,14 @@ function normalizeCustomPresets(rawPresets) {
     }
 
     const loopBars = [1, 2, 4].includes(Number(preset?.loopBars)) ? Number(preset.loopBars) : 1;
-    const totalSteps = loopBars * 16;
+    const stepDivision = normalizeStepDivision(preset?.stepDivision, 16);
+    const timeSignature = normalizeTimeSignature(preset?.timeSignature, DEFAULT_TIME_SIGNATURE);
+    const totalSteps = computeTotalSteps(loopBars, stepDivision);
     normalized.push({
       name,
       loopBars,
+      stepDivision,
+      timeSignature,
       patternByLane: Object.fromEntries(
         LANES.map((lane) => [
           lane.id,
@@ -317,6 +395,30 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
 
       <section class="panel">
         <h2>Step Sequencer</h2>
+        <div class="control-grid">
+          <label class="control">
+            <span>Divisions Per Bar</span>
+            <select id="step-division">
+              <option value="4">4</option>
+              <option value="8">8</option>
+              <option value="16" selected>16</option>
+              <option value="32">32</option>
+            </select>
+          </label>
+          <label class="control">
+            <span>Time Signature</span>
+            <select id="time-signature">
+              <option value="2/4">2/4</option>
+              <option value="3/3">3/3</option>
+              <option value="3/4">3/4</option>
+              <option value="4/4" selected>4/4</option>
+              <option value="5/4">5/4</option>
+              <option value="6/8">6/8</option>
+              <option value="7/8">7/8</option>
+              <option value="12/8">12/8</option>
+            </select>
+          </label>
+        </div>
         <div id="sequencer-grid"></div>
       </section>
 
@@ -368,6 +470,8 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
     masterVolume: rootElement.querySelector("#master-volume"),
     trackMinutes: rootElement.querySelector("#track-minutes"),
     loopBars: rootElement.querySelector("#loop-bars"),
+    stepDivision: rootElement.querySelector("#step-division"),
+    timeSignature: rootElement.querySelector("#time-signature"),
     resetPattern: rootElement.querySelector("#reset-pattern"),
     metronomeEnabled: rootElement.querySelector("#metronome-enabled"),
     metronomeVolume: rootElement.querySelector("#metronome-volume"),
@@ -394,6 +498,8 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
     loopBars: [1, 2, 4].includes(Number(sharedState.transport.loopBars))
       ? Number(sharedState.transport.loopBars)
       : 1,
+    stepDivision: normalizeStepDivision(sharedState.transport.stepsPerBar, 16),
+    timeSignature: normalizeTimeSignature(sharedState.transport.timeSignature, DEFAULT_TIME_SIGNATURE),
     presetName: "Rock",
     presetValue: "Rock",
     customPresets: loadCustomPresets(),
@@ -409,9 +515,12 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
       subdivision: sharedState.transport.metronome.subdivision || METRONOME_SUBDIVISIONS.QUARTER
     },
     lanes: createInitialLanes(
-      ([1, 2, 4].includes(Number(sharedState.transport.loopBars))
-        ? Number(sharedState.transport.loopBars)
-        : 1) * 16
+      computeTotalSteps(
+        [1, 2, 4].includes(Number(sharedState.transport.loopBars))
+          ? Number(sharedState.transport.loopBars)
+          : 1,
+        normalizeStepDivision(sharedState.transport.stepsPerBar, 16)
+      )
     ),
     buffersByPath: new Map(),
     sampleMetaByPath: new Map(),
@@ -512,7 +621,7 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
   }
 
   function totalSteps() {
-    return state.loopBars * 16;
+    return computeTotalSteps(state.loopBars, state.stepDivision);
   }
 
   function applyStoreDrumPatternToLocal(drumPatternFromStore = store.getState().drumPattern) {
@@ -545,7 +654,7 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
 
   function snapshotFirstBarFromPatternByLane(patternByLane) {
     return Object.fromEntries(
-      LANE_IDS.map((laneId) => [laneId, resizeSteps(patternByLane?.[laneId], 16)])
+      LANE_IDS.map((laneId) => [laneId, resizeSteps(patternByLane?.[laneId], DAW_CLIP_STEPS_PER_BAR)])
     );
   }
 
@@ -748,6 +857,8 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
     const snapshot = {
       name: requestedName,
       loopBars: state.loopBars,
+      stepDivision: state.stepDivision,
+      timeSignature: { ...state.timeSignature },
       patternByLane: snapshotPatternByLane(state.lanes, totalSteps())
     };
 
@@ -1070,6 +1181,8 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
     grid.render({
       lanes: LANES,
       totalSteps: totalSteps(),
+      stepsPerBar: state.stepDivision,
+      beatsPerBar: state.timeSignature.beatsPerBar,
       pattern,
       currentStep: state.currentStep
     });
@@ -1101,8 +1214,16 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
       state.presetName = customPreset.name;
       controls.customPresetName.value = customPreset.name;
       state.loopBars = customPreset.loopBars;
+      state.stepDivision = normalizeStepDivision(customPreset.stepDivision, state.stepDivision);
+      state.timeSignature = normalizeTimeSignature(customPreset.timeSignature, state.timeSignature);
       controls.loopBars.value = String(customPreset.loopBars);
-      store.setTransport({ loopBars: customPreset.loopBars });
+      controls.stepDivision.value = String(state.stepDivision);
+      controls.timeSignature.value = timeSignatureToValue(state.timeSignature);
+      store.setTransport({
+        loopBars: customPreset.loopBars,
+        stepsPerBar: state.stepDivision,
+        timeSignature: state.timeSignature
+      });
       applyPattern(customPreset.patternByLane);
       return;
     }
@@ -1176,6 +1297,16 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
       ? Number(event.target.value)
       : 1;
     store.setTransport({ loopBars: nextLoopBars });
+  });
+
+  controls.stepDivision.addEventListener("change", (event) => {
+    const nextStepDivision = normalizeStepDivision(event.target.value, state.stepDivision);
+    store.setTransport({ stepsPerBar: nextStepDivision });
+  });
+
+  controls.timeSignature.addEventListener("change", (event) => {
+    const nextTimeSignature = normalizeTimeSignature(event.target.value, state.timeSignature);
+    store.setTransport({ timeSignature: nextTimeSignature });
   });
 
   presetEl.addEventListener("change", (event) => {
@@ -1269,9 +1400,19 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
     if (loopBarsChanged) {
       state.loopBars = nextLoopBars;
     }
+    const nextStepDivision = normalizeStepDivision(transport.stepsPerBar, state.stepDivision);
+    const stepDivisionChanged = nextStepDivision !== state.stepDivision;
+    if (stepDivisionChanged) {
+      state.stepDivision = nextStepDivision;
+    }
+    const nextTimeSignature = normalizeTimeSignature(transport.timeSignature, state.timeSignature);
+    const timeSignatureChanged = !isSameTimeSignature(nextTimeSignature, state.timeSignature);
+    if (timeSignatureChanged) {
+      state.timeSignature = nextTimeSignature;
+    }
 
     const drumPatternChanged = shared.drumPattern !== state.lastDrumPatternRef;
-    if (loopBarsChanged || drumPatternChanged) {
+    if (loopBarsChanged || stepDivisionChanged || drumPatternChanged) {
       applyStoreDrumPatternToLocal(shared.drumPattern);
       renderLaneControls();
       renderSelectedSamples();
@@ -1294,6 +1435,8 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
     controls.trackMinutes.value = String(state.trackMinutes);
     controls.masterVolume.value = String(state.masterVolume);
     controls.loopBars.value = String(state.loopBars);
+    controls.stepDivision.value = String(state.stepDivision);
+    controls.timeSignature.value = timeSignatureToValue(state.timeSignature);
     controls.metronomeEnabled.checked = state.metronome.enabled;
     controls.metronomeVolume.value = String(state.metronome.volume);
     controls.metronomeAccent.checked = state.metronome.accentBeatOne;
@@ -1369,6 +1512,8 @@ export async function initDrumsView(rootElement, { store, trackManager }) {
         bpm: state.bpm,
         swingPercent: state.swingPercent,
         loopBars: state.loopBars,
+        stepsPerBar: state.stepDivision,
+        timeSignature: state.timeSignature,
         durationMinutes: state.exportMinutes,
         masterVolume: state.masterVolume,
         lanes: lanesSnapshot,

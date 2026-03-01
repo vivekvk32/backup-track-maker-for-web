@@ -1,8 +1,36 @@
-﻿const LOOKAHEAD_MS = 25;
+const LOOKAHEAD_MS = 25;
 const SCHEDULE_AHEAD_TIME = 0.12;
+const DAW_STEPS_PER_BAR = 16;
 
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
+}
+
+function normalizeStepsPerBar(value) {
+  const numeric = Number(value);
+  if ([4, 8, 16, 32].includes(numeric)) {
+    return numeric;
+  }
+  return 16;
+}
+
+function normalizeTimeSignature(value) {
+  const source = value && typeof value === "object" ? value : {};
+  const beatsPerBar = clamp(Math.round(Number(source.beatsPerBar) || 4), 1, 16);
+  const beatUnitRaw = Math.round(Number(source.beatUnit) || 4);
+  const beatUnit = [2, 3, 4, 8, 16].includes(beatUnitRaw) ? beatUnitRaw : 4;
+  return {
+    beatsPerBar,
+    beatUnit
+  };
+}
+
+function getDrumStepDurationSeconds({ bpm, stepsPerBar, timeSignature }) {
+  const beatsPerBar = clamp(Math.round(Number(timeSignature?.beatsPerBar) || 4), 1, 16);
+  const beatUnitRaw = Math.round(Number(timeSignature?.beatUnit) || 4);
+  const beatUnit = [2, 3, 4, 8, 16].includes(beatUnitRaw) ? beatUnitRaw : 4;
+  const barSeconds = (60 / bpm) * beatsPerBar * (4 / beatUnit);
+  return barSeconds / Math.max(1, stepsPerBar);
 }
 
 function getPlaybackWindow(transport) {
@@ -19,22 +47,30 @@ function getPlaybackWindow(transport) {
       return {
         context,
         barOffset: startBar,
-        totalSteps: Math.max(16, (safeEnd - startBar + 1) * 16)
+        stepsPerBar: DAW_STEPS_PER_BAR,
+        timeSignature: { beatsPerBar: 4, beatUnit: 4 },
+        totalSteps: Math.max(DAW_STEPS_PER_BAR, (safeEnd - startBar + 1) * DAW_STEPS_PER_BAR)
       };
     }
 
     return {
       context,
       barOffset: 0,
-      totalSteps: Math.max(16, arrangementBars * 16)
+      stepsPerBar: DAW_STEPS_PER_BAR,
+      timeSignature: { beatsPerBar: 4, beatUnit: 4 },
+      totalSteps: Math.max(DAW_STEPS_PER_BAR, arrangementBars * DAW_STEPS_PER_BAR)
     };
   }
 
   const loopBars = [1, 2, 4].includes(Number(transport.loopBars)) ? Number(transport.loopBars) : 1;
+  const stepsPerBar = normalizeStepsPerBar(transport.stepsPerBar);
+  const timeSignature = normalizeTimeSignature(transport.timeSignature);
   return {
     context: "drums",
     barOffset: 0,
-    totalSteps: Math.max(16, loopBars * 16)
+    stepsPerBar,
+    timeSignature,
+    totalSteps: Math.max(stepsPerBar, loopBars * stepsPerBar)
   };
 }
 
@@ -73,11 +109,11 @@ export function createScheduler({ audioContext, getState, onScheduleStep, onStep
     pendingVisualTimeouts.add(timeoutId);
   }
 
-  function scheduleStep(stepIndex, baseStepTime, sixteenthSeconds) {
+  function scheduleStep(stepIndex, baseStepTime, stepSeconds) {
     const state = getState();
     const transport = state.transport;
     const swingPercent = clamp(Number(transport.swingPercent) || 0, 0, 60);
-    const swingOffset = stepIndex % 2 === 1 ? (swingPercent / 100) * sixteenthSeconds : 0;
+    const swingOffset = stepIndex % 2 === 1 ? (swingPercent / 100) * stepSeconds : 0;
     const stepTime = baseStepTime + swingOffset;
 
     if (stepTime >= stopAtTime) {
@@ -86,8 +122,8 @@ export function createScheduler({ audioContext, getState, onScheduleStep, onStep
 
     const window = getPlaybackWindow(transport);
     const stepInLoop = stepIndex % window.totalSteps;
-    const stepInBar = stepInLoop % 16;
-    const currentBarIndex = window.barOffset + Math.floor(stepInLoop / 16);
+    const stepInBar = stepInLoop % window.stepsPerBar;
+    const currentBarIndex = window.barOffset + Math.floor(stepInLoop / window.stepsPerBar);
 
     const payload = {
       stepIndex,
@@ -95,8 +131,10 @@ export function createScheduler({ audioContext, getState, onScheduleStep, onStep
       stepInBar,
       currentBarIndex,
       context: window.context,
+      stepsPerBar: window.stepsPerBar,
+      timeSignature: window.timeSignature,
       stepTime,
-      sixteenthSeconds
+      sixteenthSeconds: stepSeconds
     };
 
     if (onScheduleStep) {
@@ -134,11 +172,18 @@ export function createScheduler({ audioContext, getState, onScheduleStep, onStep
 
       const state = getState();
       const bpm = clamp(Number(state.transport.bpm) || 120, 30, 300);
-      const sixteenth = (60 / bpm) / 4;
-      scheduleStep(currentStep, nextNoteTime, sixteenth);
-      nextNoteTime += sixteenth;
-
       const window = getPlaybackWindow(state.transport);
+      const stepDurationSeconds =
+        window.context === "daw"
+          ? (60 / bpm) / 4
+          : getDrumStepDurationSeconds({
+              bpm,
+              stepsPerBar: window.stepsPerBar,
+              timeSignature: window.timeSignature
+            });
+
+      scheduleStep(currentStep, nextNoteTime, stepDurationSeconds);
+      nextNoteTime += stepDurationSeconds;
       currentStep = (currentStep + 1) % window.totalSteps;
     }
   }
@@ -169,4 +214,3 @@ export function createScheduler({ audioContext, getState, onScheduleStep, onStep
     }
   };
 }
-

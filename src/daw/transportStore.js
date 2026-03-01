@@ -15,6 +15,8 @@ const STORAGE_DRUM_PATTERN_V1 = "drum-loop-maker.drum-pattern.v1";
 const LEGACY_TRANSPORT = "drum-loop-maker.transport.v1";
 const LEGACY_BASS = "drum-loop-maker.bass.v1";
 const METRONOME_SUBDIVISION_VALUES = new Set(["half", "quarter", "eighth", "sixteenth"]);
+const STEP_DIVISION_VALUES = new Set([4, 8, 16, 32]);
+const TIME_SIGNATURE_BEAT_UNITS = new Set([2, 3, 4, 8, 16]);
 const TRACK_ENGINES = new Set(["drum_clip", "bass_sf2", "piano_sf2", "pad_synth"]);
 const HARMONY_MODES = new Set(["triad", "power", "seventh", "sus2", "sus4", "single"]);
 const SCALE_MODES = new Set(["major", "minor", "pentatonic", "blues"]);
@@ -75,6 +77,42 @@ function normalizeArrangementBars(value) {
 
 function normalizeLoopBars(value) {
   return [1, 2, 4].includes(Number(value)) ? Number(value) : 1;
+}
+
+function normalizeStepsPerBar(value, fallback = 16) {
+  const requested = Number(value);
+  if (STEP_DIVISION_VALUES.has(requested)) {
+    return requested;
+  }
+
+  const fallbackValue = Number(fallback);
+  return STEP_DIVISION_VALUES.has(fallbackValue) ? fallbackValue : 16;
+}
+
+function normalizeTimeSignature(value, fallback = { beatsPerBar: 4, beatUnit: 4 }) {
+  const source = value && typeof value === "object" ? value : {};
+  const fallbackSource = fallback && typeof fallback === "object" ? fallback : {};
+
+  const beatsPerBar = clampInt(
+    source.beatsPerBar ?? fallbackSource.beatsPerBar ?? 4,
+    1,
+    16
+  );
+  const beatUnitRaw = clampInt(
+    source.beatUnit ?? fallbackSource.beatUnit ?? 4,
+    1,
+    16
+  );
+  const beatUnit = TIME_SIGNATURE_BEAT_UNITS.has(beatUnitRaw)
+    ? beatUnitRaw
+    : TIME_SIGNATURE_BEAT_UNITS.has(Number(fallbackSource.beatUnit))
+      ? Number(fallbackSource.beatUnit)
+      : 4;
+
+  return {
+    beatsPerBar,
+    beatUnit
+  };
 }
 
 function normalizePlayContext(value) {
@@ -653,6 +691,8 @@ function normalizeTransport(transport, fallback) {
     bpm: clamp(Number(source.bpm) || fallback.bpm, 30, 300),
     swingPercent: clamp(Number(source.swingPercent) || fallback.swingPercent, 0, 60),
     loopBars: normalizeLoopBars(source.loopBars ?? fallback.loopBars),
+    stepsPerBar: normalizeStepsPerBar(source.stepsPerBar, fallback.stepsPerBar),
+    timeSignature: normalizeTimeSignature(source.timeSignature, fallback.timeSignature),
     arrangementBars,
     loopRange: normalizeLoopRange(source.loopRange ?? fallback.loopRange, arrangementBars),
     trackMinutes: clamp(Number(source.trackMinutes) || fallback.trackMinutes, 1, 30),
@@ -674,8 +714,8 @@ function normalizeTransport(transport, fallback) {
   };
 }
 
-function normalizePatternsForLoopBars(sourceState, loopBars) {
-  const totalSteps = loopBars * 16;
+function normalizePatternsForLoopBars(sourceState, loopBars, stepsPerBar = 16) {
+  const totalSteps = loopBars * normalizeStepsPerBar(stepsPerBar);
   const nextState = sourceState;
 
   const resizedSharedLanes = {};
@@ -784,6 +824,11 @@ function defaultState() {
       bpm: 110,
       swingPercent: 0,
       loopBars: 1,
+      stepsPerBar: 16,
+      timeSignature: {
+        beatsPerBar: 4,
+        beatUnit: 4
+      },
       arrangementBars: 64,
       loopRange: {
         enabled: false,
@@ -994,7 +1039,11 @@ function normalizeStoreState(inputState = {}) {
     merged.tracks
   );
 
-  normalizePatternsForLoopBars(merged, merged.transport.loopBars);
+  normalizePatternsForLoopBars(
+    merged,
+    merged.transport.loopBars,
+    merged.transport.stepsPerBar
+  );
   merged.drumClips = normalizeDrumClips(
     merged.drumClips,
     merged.drumPattern?.lanes,
@@ -1021,6 +1070,8 @@ export function createTransportStore(initialState = {}) {
       bpm: state.transport.bpm,
       swingPercent: state.transport.swingPercent,
       loopBars: state.transport.loopBars,
+      stepsPerBar: state.transport.stepsPerBar,
+      timeSignature: state.transport.timeSignature,
       arrangementBars: state.transport.arrangementBars,
       loopRange: state.transport.loopRange,
       trackMinutes: state.transport.trackMinutes,
@@ -1202,7 +1253,11 @@ export function createTransportStore(initialState = {}) {
     } else {
       state.tracks = syncTracksFromMixer(state.tracks, state.mixer);
     }
-    normalizePatternsForLoopBars(state, state.transport.loopBars);
+    normalizePatternsForLoopBars(
+      state,
+      state.transport.loopBars,
+      state.transport.stepsPerBar
+    );
     syncSharedDrumClipFromPattern(state);
 
     emit();
@@ -1261,7 +1316,7 @@ export function createTransportStore(initialState = {}) {
           : null
       }
     };
-    normalizePatternsForLoopBars(state, nextTransport.loopBars);
+    normalizePatternsForLoopBars(state, nextTransport.loopBars, nextTransport.stepsPerBar);
     syncSharedDrumClipFromPattern(state);
     persistSettings();
     emit();
@@ -1311,7 +1366,11 @@ export function createTransportStore(initialState = {}) {
       ...state,
       drumPattern: nextDrumPattern
     };
-    normalizePatternsForLoopBars(state, state.transport.loopBars);
+    normalizePatternsForLoopBars(
+      state,
+      state.transport.loopBars,
+      state.transport.stepsPerBar
+    );
     syncSharedDrumClipFromPattern(state);
     persistSettings();
     emit();

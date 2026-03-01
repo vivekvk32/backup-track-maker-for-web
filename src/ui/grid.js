@@ -1,9 +1,9 @@
-function laneStepsHtml(laneId, totalSteps, steps, currentStep) {
+function laneStepsHtml(laneId, totalSteps, steps, currentStep, beatInterval) {
   const buttons = [];
   for (let step = 0; step < totalSteps; step += 1) {
     const isOn = Boolean(steps[step]);
     const isPlayhead = step === currentStep;
-    const beatClass = step % 4 === 0 ? "beat" : "";
+    const beatClass = step % beatInterval === 0 ? "beat" : "";
     const classes = ["step-btn", isOn ? "on" : "off", isPlayhead ? "playhead" : "", beatClass]
       .filter(Boolean)
       .join(" ");
@@ -39,14 +39,15 @@ export function createSequencerGrid(container, { onToggleStep }) {
   });
 
   return {
-    render({ lanes, totalSteps, pattern, currentStep }) {
+    render({ lanes, totalSteps, pattern, currentStep, stepsPerBar = 16, beatsPerBar = 4 }) {
+      const beatInterval = Math.max(1, Math.round((Number(stepsPerBar) || 16) / (Number(beatsPerBar) || 4)));
       const rows = lanes
         .map((lane) => {
           const lanePattern = pattern[lane.id] || Array.from({ length: totalSteps }, () => false);
           return `<div class="grid-row">
             <div class="grid-lane-label">${lane.label}</div>
             <div class="grid-steps">
-              ${laneStepsHtml(lane.id, totalSteps, lanePattern, currentStep)}
+              ${laneStepsHtml(lane.id, totalSteps, lanePattern, currentStep, beatInterval)}
             </div>
           </div>`;
         })

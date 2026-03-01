@@ -161,13 +161,22 @@ export function createTrackManager({
     );
   }
 
-  function scheduleMetronomeStep(stepInBar, stepTime) {
+  function scheduleMetronomeStep(
+    stepInBar,
+    stepTime,
+    { stepsPerBar = 16, timeSignature = { beatsPerBar: 4, beatUnit: 4 } } = {}
+  ) {
     const transport = store.getState().transport;
     if (!transport.metronome.enabled) {
       return;
     }
 
-    if (!shouldTriggerMetronomeStep(stepInBar, transport.metronome.subdivision)) {
+    if (
+      !shouldTriggerMetronomeStep(stepInBar, transport.metronome.subdivision, {
+        stepsPerBar,
+        timeSignature
+      })
+    ) {
       return;
     }
 
@@ -182,7 +191,16 @@ export function createTrackManager({
   const scheduler = createScheduler({
     audioContext,
     getState: () => store.getState(),
-    onScheduleStep({ context, stepInLoop, stepInBar, currentBarIndex, stepTime, sixteenthSeconds }) {
+    onScheduleStep({
+      context,
+      stepInLoop,
+      stepInBar,
+      currentBarIndex,
+      stepsPerBar,
+      timeSignature,
+      stepTime,
+      sixteenthSeconds
+    }) {
       if (context === "daw") {
         scheduleDrumStepInDawMode(currentBarIndex, stepInBar, stepTime);
         bassTrack.scheduleArrangementStep({
@@ -209,16 +227,20 @@ export function createTrackManager({
         scheduleDrumStepInDrumsMode(stepInLoop, stepTime);
       }
 
-      scheduleMetronomeStep(stepInBar, stepTime);
+      scheduleMetronomeStep(stepInBar, stepTime, {
+        stepsPerBar,
+        timeSignature
+      });
     },
     onStep(stepPayload) {
       if (stepPayload.context === "daw") {
+        const halfSplit = Math.max(1, Math.floor((Number(stepPayload.stepsPerBar) || 16) / 2));
         store.setUi({
           playheadStep: -1,
           dawPlayhead: {
             barIndex: stepPayload.currentBarIndex,
             stepInBar: stepPayload.stepInBar,
-            activeHalf: stepPayload.stepInBar < 8 ? 0 : 1
+            activeHalf: stepPayload.stepInBar < halfSplit ? 0 : 1
           }
         });
       } else {
