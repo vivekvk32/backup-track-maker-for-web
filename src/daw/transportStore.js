@@ -1,6 +1,7 @@
 import { normalizeNoteName } from "../bass/rootNoteUtils";
 import { LANE_IDS, buildPresetPattern } from "../patterns/presets";
 import { normalizeChordData } from "../piano/chordUtils";
+import { DEFAULT_GENERIC_SF2_PATH } from "../sf2/sf2Library";
 
 const STORAGE_TRANSPORT_V2 = "drum-loop-maker.transport.v2";
 const STORAGE_TRANSPORT_V3 = "drum-loop-maker.transport.v3";
@@ -17,7 +18,7 @@ const LEGACY_BASS = "drum-loop-maker.bass.v1";
 const METRONOME_SUBDIVISION_VALUES = new Set(["half", "quarter", "eighth", "sixteenth"]);
 const STEP_DIVISION_VALUES = new Set([4, 8, 16, 32]);
 const TIME_SIGNATURE_BEAT_UNITS = new Set([2, 3, 4, 8, 16]);
-const TRACK_ENGINES = new Set(["drum_clip", "bass_sf2", "piano_sf2", "pad_synth"]);
+const TRACK_ENGINES = new Set(["drum_clip", "bass_sf2", "piano_sf2", "pad_synth", "sf2_track"]);
 const HARMONY_MODES = new Set(["triad", "power", "seventh", "sus2", "sus4", "single"]);
 const SCALE_MODES = new Set(["major", "minor", "pentatonic", "blues"]);
 const PIANO_PLAY_STYLES = new Set(["block", "stabs8", "arpUp", "arpDown", "arpUpDown"]);
@@ -272,6 +273,9 @@ function defaultNameForEngine(engine) {
   if (engine === "piano_sf2") {
     return "Piano";
   }
+  if (engine === "sf2_track") {
+    return "SF2 Instrument";
+  }
   return "Pad";
 }
 
@@ -349,24 +353,39 @@ function normalizeNoteCell(cellData) {
   };
 }
 
+function isChordArrangementTrack(trackLike) {
+  if (!trackLike || typeof trackLike !== "object") {
+    return false;
+  }
+
+  return (
+    trackLike.id === TRACK_IDS.BASS ||
+    trackLike.id === TRACK_IDS.PIANO ||
+    trackLike.type === "bass" ||
+    trackLike.engine === "bass_sf2" ||
+    trackLike.engine === "piano_sf2" ||
+    trackLike.engine === "sf2_track"
+  );
+}
+
 function migrateLegacyNoteBarToChordBar(cellData) {
   const noteBar = normalizeNoteCell(cellData);
-  if (noteBar.type === "split") {
+  if (noteBar.split) {
     return {
       type: "split",
       firstHalf: normalizeChordData(
         {
-          root: noteBar.firstHalf,
+          root: noteBar.root,
           quality: "maj"
         },
-        noteBar.firstHalf
+        noteBar.root
       ),
       secondHalf: normalizeChordData(
         {
-          root: noteBar.secondHalf,
+          root: noteBar.secondRoot,
           quality: "maj"
         },
-        noteBar.secondHalf
+        noteBar.secondRoot
       )
     };
   }
@@ -375,10 +394,10 @@ function migrateLegacyNoteBarToChordBar(cellData) {
     type: "full",
     chord: normalizeChordData(
       {
-        root: noteBar.note,
+        root: noteBar.root,
         quality: "maj"
       },
-      noteBar.note
+      noteBar.root
     )
   };
 }
@@ -439,19 +458,28 @@ function normalizeArrangementCell(trackType, cell) {
 
   if (cell.kind === "chord") {
     const normalizedChord = normalizeChordBarCell(cell.data);
-    if (normalizedChord.type === "split") {
+    if (isChordArrangementTrack(trackType)) {
       return {
-        type: "note",
-        root: normalizeNoteName(normalizedChord.firstHalf?.root || "C", "C"),
-        split: true,
-        secondRoot: normalizeNoteName(normalizedChord.secondHalf?.root || "G", "G")
+        kind: "chord",
+        data: normalizedChord
       };
     }
+
+    const fallbackNoteCell =
+      normalizedChord.type === "split"
+        ? {
+            root: normalizeNoteName(normalizedChord.firstHalf?.root || "C", "C"),
+            split: true,
+            secondRoot: normalizeNoteName(normalizedChord.secondHalf?.root || "G", "G")
+          }
+        : {
+            root: normalizeNoteName(normalizedChord.chord?.root || "C", "C"),
+            split: false,
+            secondRoot: null
+          };
     return {
       type: "note",
-      root: normalizeNoteName(normalizedChord.chord?.root || "C", "C"),
-      split: false,
-      secondRoot: null
+      ...fallbackNoteCell
     };
   }
 
@@ -543,6 +571,10 @@ function defaultTrackSettingsForTrack(track) {
     filterCutoffHz: 2200,
     detuneCents: 8,
     reverbSend: 0.18,
+    echoMix: 0,
+    echoFeedback: 0.3,
+    echoTimeMs: 280,
+    padLevelTrim: 1,
     vibratoDepth: 5,
     vibratoRateHz: 4,
     humanize: {
@@ -578,6 +610,33 @@ function defaultTrackSettingsForTrack(track) {
     };
   }
 
+  if (track?.engine === "pad_synth") {
+    return {
+      ...base,
+      attackMs: 180,
+      releaseMs: 1100,
+      filterCutoffHz: 2000,
+      detuneCents: 10,
+      reverbSend: 0.16,
+      padLevelTrim: 0.35,
+      vibratoDepth: 5
+    };
+  }
+
+  if (track?.engine === "sf2_track") {
+    return {
+      ...base,
+      attackMs: 30,
+      releaseMs: 220,
+      filterCutoffHz: 5200,
+      detuneCents: 0,
+      reverbSend: 0.1,
+      vibratoDepth: 0,
+      playStyle: "block",
+      sf2Path: DEFAULT_GENERIC_SF2_PATH
+    };
+  }
+
   return base;
 }
 
@@ -594,6 +653,14 @@ function normalizeTrackSettingsEntry(settings, fallback, track) {
     filterCutoffHz: clampInt(source.filterCutoffHz ?? defaults.filterCutoffHz, 80, 20000),
     detuneCents: clamp(Number(source.detuneCents ?? defaults.detuneCents) || defaults.detuneCents, 0, 60),
     reverbSend: clamp(Number(source.reverbSend ?? defaults.reverbSend) || defaults.reverbSend, 0, 1),
+    echoMix: clamp(Number(source.echoMix ?? defaults.echoMix) || defaults.echoMix, 0, 1),
+    echoFeedback: clamp(
+      Number(source.echoFeedback ?? defaults.echoFeedback) || defaults.echoFeedback,
+      0,
+      0.92
+    ),
+    echoTimeMs: clampInt(source.echoTimeMs ?? defaults.echoTimeMs, 50, 1200),
+    padLevelTrim: clamp(Number(source.padLevelTrim ?? defaults.padLevelTrim) || defaults.padLevelTrim, 0, 1),
     vibratoDepth: clamp(Number(source.vibratoDepth ?? defaults.vibratoDepth) || defaults.vibratoDepth, 0, 80),
     vibratoRateHz: clamp(Number(source.vibratoRateHz ?? defaults.vibratoRateHz) || defaults.vibratoRateHz, 0.1, 12),
     humanize: {
@@ -618,6 +685,13 @@ function normalizeTrackSettingsEntry(settings, fallback, track) {
     next.playStyle = PIANO_PLAY_STYLES.has(source.playStyle)
       ? source.playStyle
       : defaults.playStyle || "block";
+  }
+
+  if (track?.engine === "sf2_track") {
+    next.playStyle = PIANO_PLAY_STYLES.has(source.playStyle)
+      ? source.playStyle
+      : defaults.playStyle || "block";
+    next.sf2Path = String(source.sf2Path ?? defaults.sf2Path ?? DEFAULT_GENERIC_SF2_PATH).trim();
   }
 
   return next;
@@ -1585,6 +1659,17 @@ export function createTransportStore(initialState = {}) {
       track = { ...DEFAULT_TRACKS[1] };
     } else if (safeEngine === "piano_sf2") {
       track = { ...DEFAULT_TRACKS[2] };
+    } else if (safeEngine === "sf2_track") {
+      const sf2Count = state.tracks.filter((item) => item.engine === "sf2_track").length + 1;
+      track = {
+        id: `track-sf2-${Date.now()}-${sf2Count}`,
+        type: "instrument",
+        engine: "sf2_track",
+        name: `SF2 Instrument ${sf2Count}`,
+        volume: 0.9,
+        mute: false,
+        solo: false
+      };
     } else {
       const padCount = state.tracks.filter((item) => item.engine === "pad_synth").length + 1;
       track = {

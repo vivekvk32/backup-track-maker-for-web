@@ -139,12 +139,29 @@ export function createSf2Player({
   let loadGeneration = 0;
 
   const outputGain = audioContext.createGain();
+  const dryGain = audioContext.createGain();
+  const delaySendGain = audioContext.createGain();
+  const delayNode = audioContext.createDelay(1.5);
+  const delayFeedbackGain = audioContext.createGain();
+  const delayReturnGain = audioContext.createGain();
   const lowpass = audioContext.createBiquadFilter();
   lowpass.type = "lowpass";
   lowpass.frequency.setValueAtTime(20000, audioContext.currentTime);
   outputGain.gain.setValueAtTime(1.8, audioContext.currentTime);
+  dryGain.gain.setValueAtTime(1, audioContext.currentTime);
+  delaySendGain.gain.setValueAtTime(0, audioContext.currentTime);
+  delayNode.delayTime.setValueAtTime(0.28, audioContext.currentTime);
+  delayFeedbackGain.gain.setValueAtTime(0.3, audioContext.currentTime);
+  delayReturnGain.gain.setValueAtTime(1, audioContext.currentTime);
 
-  lowpass.connect(outputGain);
+  lowpass.connect(dryGain);
+  lowpass.connect(delaySendGain);
+  dryGain.connect(outputGain);
+  delaySendGain.connect(delayNode);
+  delayNode.connect(delayReturnGain);
+  delayReturnGain.connect(outputGain);
+  delayNode.connect(delayFeedbackGain);
+  delayFeedbackGain.connect(delayNode);
   outputGain.connect(outputNode);
 
   function disconnectCurrentNode() {
@@ -275,6 +292,15 @@ export function createSf2Player({
     lowpass.frequency.setValueAtTime(frequency, audioContext.currentTime);
   }
 
+  function setEcho({ mix = 0, feedback = 0.3, timeMs = 280 } = {}) {
+    const echoMix = clamp(Number(mix) || 0, 0, 1);
+    const echoFeedback = clamp(Number(feedback) || 0, 0, 0.92);
+    const echoTimeSeconds = clamp((Number(timeMs) || 0) / 1000, 0.05, 1.2);
+    delaySendGain.gain.setValueAtTime(echoMix, audioContext.currentTime);
+    delayFeedbackGain.gain.setValueAtTime(echoFeedback, audioContext.currentTime);
+    delayNode.delayTime.setValueAtTime(echoTimeSeconds, audioContext.currentTime);
+  }
+
   function dispose() {
     allNotesOff();
     disconnectCurrentNode();
@@ -291,6 +317,7 @@ export function createSf2Player({
     allNotesOff,
     setOutputGain,
     setLowpassEnabled,
+    setEcho,
     dispose
   };
 }

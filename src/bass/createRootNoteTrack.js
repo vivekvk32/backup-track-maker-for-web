@@ -1,4 +1,6 @@
-﻿import { normalizeNoteName, rootNoteToMidi } from "./rootNoteUtils";
+import { normalizeNoteName, rootNoteToMidi } from "./rootNoteUtils";
+import { getSegmentForStep } from "../harmony/harmonyGenerator";
+import { getChordIntervals } from "../piano/chordUtils";
 
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
@@ -11,22 +13,42 @@ function randomRange(min, max) {
 const RHYTHM_PATTERNS = {
   root8ths: {
     stepOffsets: [0, 2, 4, 6],
-    intervals: [0, 0, 0, 0],
+    events: [
+      { mode: "anchor", fallbackInterval: 0 },
+      { mode: "anchor", fallbackInterval: 0 },
+      { mode: "anchor", fallbackInterval: 0 },
+      { mode: "anchor", fallbackInterval: 0 }
+    ],
     velocities: [0.84, 0.8, 0.84, 0.8]
   },
   rootFifth: {
     stepOffsets: [0, 2, 4, 6],
-    intervals: [0, 7, 0, 7],
+    events: [
+      { mode: "anchor", fallbackInterval: 0 },
+      { mode: "chord", toneIndex: 2, fallbackInterval: 7 },
+      { mode: "anchor", fallbackInterval: 0 },
+      { mode: "chord", toneIndex: 2, fallbackInterval: 7 }
+    ],
     velocities: [0.84, 0.8, 0.84, 0.8]
   },
   octave: {
     stepOffsets: [0, 2, 4, 6],
-    intervals: [0, 12, 0, 12],
+    events: [
+      { mode: "anchor", fallbackInterval: 0 },
+      { mode: "anchor", fallbackInterval: 12 },
+      { mode: "anchor", fallbackInterval: 0 },
+      { mode: "anchor", fallbackInterval: 12 }
+    ],
     velocities: [0.86, 0.78, 0.86, 0.78]
   },
   walking: {
     stepOffsets: [0, 2, 4, 6],
-    intervals: [0, 4, 7, 4],
+    events: [
+      { mode: "anchor", fallbackInterval: 0 },
+      { mode: "chord", toneIndex: 1, fallbackInterval: 4 },
+      { mode: "chord", toneIndex: 2, fallbackInterval: 7 },
+      { mode: "chord", toneIndex: 3, fallbackInterval: 12 }
+    ],
     velocities: [0.82, 0.8, 0.84, 0.8]
   }
 };
@@ -53,31 +75,41 @@ function isTrackAudible(state, track) {
   return !Boolean(track.mute);
 }
 
-function getNoteForStep(noteData, stepInBar) {
-  if (!noteData || typeof noteData !== "object") {
-    return null;
-  }
-
-  if (Object.prototype.hasOwnProperty.call(noteData, "root")) {
-    if (noteData.split && stepInBar >= 8) {
-      return normalizeNoteName(noteData.secondRoot || noteData.root || "G", "G");
-    }
-    return normalizeNoteName(noteData.root || "C", "C");
-  }
-
-  if (noteData.type === "split") {
-    if (stepInBar < 8) {
-      return normalizeNoteName(noteData.firstHalf || "C", "C");
-    }
-    return normalizeNoteName(noteData.secondHalf || "G", "G");
-  }
-
-  return normalizeNoteName(noteData.note || "C", "C");
-}
-
 function getPatternEventIndex(pattern, localStep) {
   const idx = pattern.stepOffsets.indexOf(localStep);
   return idx >= 0 ? idx : -1;
+}
+
+function liftIntoReliableRange(midi, minReliableMidi) {
+  let nextMidi = clamp(Math.round(Number(midi) || 48), 24, 108);
+  if (minReliableMidi === null || minReliableMidi === undefined) {
+    return nextMidi;
+  }
+  while (nextMidi < minReliableMidi && nextMidi + 12 <= 108) {
+    nextMidi += 12;
+  }
+  return clamp(nextMidi, 24, 108);
+}
+
+function resolveChordToneMidi(segment, event, baseOctave) {
+  const safeEvent = event && typeof event === "object" ? event : {};
+  const anchorNote = normalizeNoteName(segment?.bass || segment?.root || "C", "C");
+  const anchorMidi = rootNoteToMidi(anchorNote, baseOctave);
+
+  if (safeEvent.mode !== "chord" || !segment?.quality) {
+    return anchorMidi + (Number(safeEvent.fallbackInterval) || 0);
+  }
+
+  const intervals = getChordIntervals(segment.quality);
+  if (!intervals.length) {
+    return anchorMidi + (Number(safeEvent.fallbackInterval) || 0);
+  }
+
+  const rawToneIndex = Math.max(0, Math.round(Number(safeEvent.toneIndex) || 0));
+  const intervalIndex = rawToneIndex % intervals.length;
+  const octaveLift = Math.floor(rawToneIndex / intervals.length) * 12;
+  const rootMidi = rootNoteToMidi(segment.root || anchorNote, baseOctave);
+  return rootMidi + intervals[intervalIndex] + octaveLift;
 }
 
 export function createRootNoteTrack({
@@ -101,11 +133,16 @@ export function createRootNoteTrack({
     }
 
     const cell = state.arrangement?.[track.id]?.[currentBarIndex];
-    if (!cell || (cell.type !== "note" && cell.kind !== "note")) {
+    if (!cell || (cell.type !== "note" && cell.kind !== "note" && cell.kind !== "chord")) {
       return;
     }
 
-    const localStepInHalf = stepInBar % 8;
+    const segment = getSegmentForStep(cell, stepInBar);
+    if (!segment) {
+      return;
+    }
+
+    const localStepInHalf = segment.stepOffsetInSegment % 8;
     const settings = state.trackSettings?.[track.id] || state[settingsKey] || {};
     const pattern = RHYTHM_PATTERNS[settings.rhythmPreset] || RHYTHM_PATTERNS.root8ths;
     const eventIndex = getPatternEventIndex(pattern, localStepInHalf);
@@ -113,15 +150,11 @@ export function createRootNoteTrack({
       return;
     }
 
-    const noteName = getNoteForStep(cell.data || cell, stepInBar);
-    if (!noteName) {
-      return;
-    }
-
-    const interval = Number(pattern.intervals[eventIndex]) || 0;
-    const baseMidi = rootNoteToMidi(noteName, baseOctave);
-    const octaveLift = minReliableMidi !== null && baseMidi < minReliableMidi ? 12 : 0;
-    const midi = clamp(baseMidi + octaveLift + interval, 24, 108);
+    const event = pattern.events[eventIndex] || pattern.events[0] || { fallbackInterval: 0 };
+    const midi = liftIntoReliableRange(
+      resolveChordToneMidi(segment, event, baseOctave),
+      minReliableMidi
+    );
 
     let velocity = clamp((Number(pattern.velocities[eventIndex]) || 0.82) * track.volume, 0.1, 1);
     let startTime = stepTime;

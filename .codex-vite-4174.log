@@ -1,0 +1,21 @@
+
+> drum-loop-maker@1.0.0 dev
+> vite --host 127.0.0.1 --port 4174
+
+
+  [32m[1mVITE[22m v5.4.21[39m  [2mready in [0m[1m1796[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://127.0.0.1:[1m4174[22m/[39m
+[2m[32m  ➜[39m[22m[2m  press [22m[1mh + enter[22m[2m to show help[22m
+[2m2:21:32 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/sf2/sf2Library.js[22m
+[2m2:21:50 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/bass/sf2Player.js[22m
+[2m2:22:00 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/daw/transportStore.js[22m
+[2m2:22:11 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/daw/dawView.js[22m
+[2m2:22:27 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/daw/dawView.js[22m
+[2m2:22:41 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/daw/dawView.js[22m
+[2m2:22:55 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/sf2/createSf2InstrumentRack.js[22m
+[2m2:51:02 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/daw/dawView.js[22m
+[2m2:51:09 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/daw/dawView.js[22m
+[2m2:51:22 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/daw/dawView.js[22m
+[2m2:52:13 pm[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles.css[22m
+^C

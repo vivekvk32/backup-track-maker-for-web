@@ -8,6 +8,7 @@ import { initDawView } from "../daw/dawView";
 import { createPadSynth } from "../pad/padSynth";
 import { createPadTrack } from "../pad/padTrack";
 import { createPianoChordTrack } from "../piano/pianoChordTrack";
+import { createSf2InstrumentRack } from "../sf2/createSf2InstrumentRack";
 import { initDrumsView } from "./drumsView";
 import { readSessionsFromDatabase, writeSessionsToDatabase } from "./sessionDatabase";
 
@@ -166,6 +167,11 @@ export async function initAppShell(rootElement) {
     padSynth,
     store
   });
+  const sf2InstrumentRack = createSf2InstrumentRack({
+    audioContext,
+    outputNode: mixerNodes.pianoInput,
+    store
+  });
 
   const trackManager = createTrackManager({
     audioContext,
@@ -174,6 +180,7 @@ export async function initAppShell(rootElement) {
     bassTrack,
     pianoTrack,
     padTrack,
+    sf2InstrumentRack,
     padSynth,
     bassSf2Player,
     pianoSf2Player
@@ -189,7 +196,8 @@ export async function initAppShell(rootElement) {
     trackManager,
     padSynth,
     bassSf2Player,
-    pianoSf2Player
+    pianoSf2Player,
+    sf2InstrumentRack
   });
 
   tabs.drumsButton.addEventListener("click", () => {

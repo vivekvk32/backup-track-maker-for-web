@@ -20,6 +20,7 @@ export function createTrackManager({
   bassTrack,
   pianoTrack,
   padTrack,
+  sf2InstrumentRack,
   padSynth,
   bassSf2Player,
   pianoSf2Player
@@ -223,6 +224,14 @@ export function createTrackManager({
             sixteenthSeconds
           });
         }
+        if (sf2InstrumentRack?.scheduleArrangementStep) {
+          sf2InstrumentRack.scheduleArrangementStep({
+            currentBarIndex,
+            stepInBar,
+            stepTime,
+            sixteenthSeconds
+          });
+        }
       } else {
         scheduleDrumStepInDrumsMode(stepInLoop, stepTime);
       }
@@ -263,11 +272,15 @@ export function createTrackManager({
       if (typeof pianoTrack.resetArrangementState === "function") {
         pianoTrack.resetArrangementState();
       }
+      if (typeof sf2InstrumentRack?.resetArrangementState === "function") {
+        sf2InstrumentRack.resetArrangementState();
+      }
       if (padSynth?.allNotesOff) {
         padSynth.allNotesOff();
       }
       bassSf2Player.allNotesOff();
       pianoSf2Player.allNotesOff();
+      sf2InstrumentRack?.allNotesOff?.();
       store.setTransport({ isPlaying: false });
       store.setUi({
         playheadStep: -1,
@@ -297,6 +310,9 @@ export function createTrackManager({
     if (typeof pianoTrack.resetArrangementState === "function") {
       pianoTrack.resetArrangementState();
     }
+    if (typeof sf2InstrumentRack?.resetArrangementState === "function") {
+      sf2InstrumentRack.resetArrangementState();
+    }
     store.setTransport({
       playContext: context === "daw" ? "daw" : "drums",
       isPlaying: true
@@ -310,11 +326,15 @@ export function createTrackManager({
     if (typeof pianoTrack.resetArrangementState === "function") {
       pianoTrack.resetArrangementState();
     }
+    if (typeof sf2InstrumentRack?.resetArrangementState === "function") {
+      sf2InstrumentRack.resetArrangementState();
+    }
     if (padSynth?.allNotesOff) {
       padSynth.allNotesOff();
     }
     bassSf2Player.allNotesOff();
     pianoSf2Player.allNotesOff();
+    sf2InstrumentRack?.allNotesOff?.();
   }
 
   function setPlaying(isPlaying) {
@@ -337,6 +357,7 @@ export function createTrackManager({
     if (padSynth?.dispose) {
       padSynth.dispose();
     }
+    sf2InstrumentRack?.dispose?.();
     listeners.clear();
   }
 

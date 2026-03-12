@@ -190,10 +190,12 @@ export function createPadSynth({ audioContext, outputNode, irUrl = "/ir/small-ha
     const safeDuration = Math.max(0.08, Number(duration) || 0.9);
     const velocityValue = Number(velocity);
     const baseVelocity = Number.isFinite(velocityValue) ? velocityValue : 0.52;
-    const shapedTrackVolume = Math.pow(safeTrackVolume, 0.75);
+    const trimValue = clamp(Number(settings?.padLevelTrim) || 0, 0, 1);
+    const shapedTrackVolume = Math.pow(safeTrackVolume, 1.2);
+    const shapedTrim = Math.pow(trimValue, 2.6);
     for (let index = 0; index < midiNotes.length; index += 1) {
       const midi = Math.round(Number(midiNotes[index]) || 60);
-      let noteVelocity = clamp(baseVelocity * shapedTrackVolume * 0.58, 0, 0.45);
+      let noteVelocity = clamp(baseVelocity * shapedTrackVolume * shapedTrim * 0.58, 0, 0.45);
       let noteStart = Number(startTime);
       if (humanizeVelocity) {
         noteVelocity = clamp(noteVelocity * (1 + randomRange(-0.04, 0.04)), 0, 1);

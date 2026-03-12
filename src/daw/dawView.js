@@ -14,6 +14,7 @@ import {
   getChordRootColor,
   normalizeChordData
 } from "../piano/chordUtils";
+import { getSf2TrackOptions, isChoirSf2Path } from "../sf2/sf2Library";
 import { SHARED_DRUM_CLIP_REF, TRACK_IDS } from "./transportStore";
 
 const PIANO_SF2_OPTIONS = [
@@ -30,12 +31,20 @@ const PIANO_SF2_OPTIONS = [
     label: "ProjectSAM World Percussion (True Strike 2 W)"
   }
 ];
+const GENERIC_SF2_OPTIONS = getSf2TrackOptions();
+
+function renderSf2ChoiceOptions(options, selectedValue = "") {
+  const builtIn = options.map((option) => {
+    const value = escapeHtml(option.value);
+    const selected = option.value === selectedValue ? " selected" : "";
+    return `<option value="${value}"${selected}>${escapeHtml(option.label)}</option>`;
+  }).join("");
+  const customSelected = selectedValue === "custom" ? " selected" : "";
+  return `${builtIn}<option value="custom"${customSelected}>Custom Path</option>`;
+}
 
 function renderPianoSf2ChoiceOptions() {
-  const builtIn = PIANO_SF2_OPTIONS.map(
-    (option) => `<option value="${option.value}">${escapeHtml(option.label)}</option>`
-  ).join("");
-  return `${builtIn}<option value="custom">Custom Path</option>`;
+  return renderSf2ChoiceOptions(PIANO_SF2_OPTIONS);
 }
 
 function clamp(value, min, max) {
@@ -90,12 +99,27 @@ function isPianoTrack(track) {
   return track.id === TRACK_IDS.PIANO || track.engine === "piano_sf2";
 }
 
+function isGenericSf2Track(track) {
+  return track?.engine === "sf2_track";
+}
+
+function supportsChordEditor(track) {
+  return isBassTrack(track) || isPianoTrack(track) || isGenericSf2Track(track);
+}
+
 function isPadTrack(track) {
   return track.engine === "pad_synth";
 }
 
 function isDrumTrack(track) {
   return track.type === "drum" || track.engine === "drum_clip";
+}
+
+function isCoreTrack(track) {
+  if (!track) {
+    return false;
+  }
+  return track.id === TRACK_IDS.DRUMS || track.id === TRACK_IDS.BASS || track.id === TRACK_IDS.PIANO;
 }
 
 function getArrangementCell(state, trackId, barIndex) {
@@ -146,9 +170,9 @@ function renderHeaders(barCount, state) {
 function renderTrackListRows(tracks, selectedTrackId) {
   return tracks
     .map((track) => {
-      const canDelete = isPadTrack(track);
-      return `<div class="daw-track-row ${selectedTrackId === track.id ? "selected" : ""}">
-        <div class="daw-track-title">${track.name}</div>
+      const canDelete = !isCoreTrack(track);
+      return `<div class="daw-track-row ${selectedTrackId === track.id ? "selected" : ""}" data-role="select-track" data-track-id="${track.id}">
+        <button type="button" class="daw-track-title" data-role="select-track" data-track-id="${track.id}">${track.name}</button>
         <div class="daw-track-controls">
           <label>Vol <input data-role="track-volume" data-track-id="${track.id}" type="range" min="0" max="1" step="0.001" value="${track.volume}" /></label>
           <label class="tiny"><input data-role="track-mute" data-track-id="${track.id}" type="checkbox" ${track.mute ? "checked" : ""} />M</label>
@@ -210,13 +234,16 @@ function renderGridRows(state, tracks) {
         const isSelected =
           selected && selected.trackId === track.id && Number(selected.barIndex) === barIndex;
         const isActiveBar = isPlaying && Number(playhead.barIndex) === barIndex;
+        const isChordCell = cell?.kind === "chord";
         const cls = [
           "daw-bar-cell",
           isDrumTrack(track)
             ? "daw-drum-cell"
-            : isBassTrack(track) || isPianoTrack(track) || isPadTrack(track)
-              ? "daw-note-cell"
-              : "daw-chord-cell",
+            : isChordCell
+              ? "daw-chord-cell"
+              : isBassTrack(track) || isPianoTrack(track) || isPadTrack(track)
+                ? "daw-note-cell"
+                : "daw-chord-cell",
           cell ? "has-content" : "",
           isSelected ? "selected" : "",
           isActiveBar ? "active-bar" : ""
@@ -232,6 +259,11 @@ function renderGridRows(state, tracks) {
           } else {
             inner = '<span class="daw-empty-label">+</span>';
           }
+        } else if (isChordCell) {
+          inner = renderChordBlock(
+            cell.data,
+            isActiveBar ? playhead.activeHalf : null
+          );
         } else if ((isBassTrack(track) || isPianoTrack(track) || isPadTrack(track)) && cell && cell.type === "note") {
           inner = renderNoteBlock(
             cell,
@@ -276,13 +308,24 @@ function statusLabel(status, error) {
   return "Idle";
 }
 
-function getPianoSf2ChoiceValue(path) {
+function getSf2ChoiceValue(path, options) {
   const safePath = String(path || "").trim();
   if (!safePath) {
     return "custom";
   }
-  const match = PIANO_SF2_OPTIONS.find((item) => item.value === safePath);
+  const match = options.find((item) => item.value === safePath);
   return match ? match.value : "custom";
+}
+
+function getChoirEchoPatch(path) {
+  if (!isChoirSf2Path(path)) {
+    return null;
+  }
+  return {
+    echoMix: 0.32,
+    echoFeedback: 0.38,
+    echoTimeMs: 360
+  };
 }
 
 function isRenderableArrangementCell(cell) {
@@ -331,7 +374,10 @@ function getGeneratedArrangementRange(state) {
   };
 }
 
-export function initDawView(rootElement, { store, trackManager, padSynth, bassSf2Player, pianoSf2Player }) {
+export function initDawView(
+  rootElement,
+  { store, trackManager, padSynth, bassSf2Player, pianoSf2Player, sf2InstrumentRack }
+) {
   if (!rootElement) {
     throw new Error("Missing DAW root element.");
   }
@@ -399,6 +445,7 @@ export function initDawView(rootElement, { store, trackManager, padSynth, bassSf
       <div class="transport-buttons">
         <select id="daw-add-track-type">
           <option value="pad_synth">Pad Synth</option>
+          <option value="sf2_track">SF2 Instrument</option>
           <option value="drum_clip">Drum (disabled if exists)</option>
           <option value="bass_sf2">Bass (disabled if exists)</option>
           <option value="piano_sf2">Piano (disabled if exists)</option>
@@ -751,6 +798,20 @@ export function initDawView(rootElement, { store, trackManager, padSynth, bassSf
     const data =
       cell?.kind === "chord"
         ? cell.data
+        : cell?.type === "note"
+          ? cell.split
+            ? {
+                type: "split",
+                firstHalf: normalizeChordData({ root: cell.root, quality: "maj", bass: null }, cell.root || "C"),
+                secondHalf: normalizeChordData(
+                  { root: cell.secondRoot || cell.root || "G", quality: "maj", bass: null },
+                  cell.secondRoot || cell.root || "G"
+                )
+              }
+            : {
+                type: "full",
+                chord: normalizeChordData({ root: cell.root, quality: "maj", bass: null }, cell.root || "C")
+              }
         : {
             type: "full",
             chord: normalizeChordData({ root: "C", quality: "maj", bass: null }, "C")
@@ -838,6 +899,31 @@ export function initDawView(rootElement, { store, trackManager, padSynth, bassSf
   function closeDrumEditor() {
     drumEditorState.open = false;
     controls.drumEditor.classList.add("hidden");
+  }
+
+  function closeAllEditors() {
+    closeNoteEditor();
+    closeChordEditor();
+    closeDrumEditor();
+  }
+
+  function selectTrack(trackId, preferredBarIndex = null) {
+    const state = store.getState();
+    const track = state.tracks.find((item) => item.id === trackId);
+    if (!track) {
+      return;
+    }
+    const currentBarIndex = Number(state.ui.dawSelection?.barIndex);
+    const safeBarIndex = Number.isInteger(preferredBarIndex)
+      ? preferredBarIndex
+      : Number.isInteger(currentBarIndex)
+        ? currentBarIndex
+        : 0;
+    closeAllEditors();
+    store.setDawSelection({
+      trackId,
+      barIndex: clamp(safeBarIndex, 0, Math.max(0, state.transport.arrangementBars - 1))
+    });
   }
 
   function applyNoteEditorSelection({ closeAfterApply = false } = {}) {
@@ -951,6 +1037,51 @@ export function initDawView(rootElement, { store, trackManager, padSynth, bassSf
     exportUi.detail = String(detailText || `${Math.round(exportUi.progress)}%`);
   }
 
+  function getGenericTrackStatusText(trackId) {
+    if (!sf2InstrumentRack) {
+      return "Unavailable";
+    }
+
+    const status = sf2InstrumentRack.getTrackStatus(trackId);
+    const base = statusLabel(status.status, status.error);
+    if (status.presetName) {
+      return `${base} | Preset: ${status.presetName}`;
+    }
+    return base;
+  }
+
+  function renderGenericSf2Controls(track, settings) {
+    const sf2Path = String(settings.sf2Path || "");
+    const choiceValue = getSf2ChoiceValue(sf2Path, GENERIC_SF2_OPTIONS);
+    const playStyle = settings.playStyle || "block";
+    const echoMix = clamp(Number(settings.echoMix) || 0, 0, 1);
+    const echoFeedback = clamp(Number(settings.echoFeedback) || 0.3, 0, 0.92);
+    const echoTimeMs = clamp(Number(settings.echoTimeMs) || 280, 50, 1200);
+    const loading = sf2InstrumentRack?.isLoadInFlight(track.id);
+
+    return `
+      <label class="control"><span>Play Style</span><select data-role="track-setting" data-setting="playStyle" data-track-id="${track.id}">
+        <option value="block" ${playStyle === "block" ? "selected" : ""}>Block</option>
+        <option value="stabs8" ${playStyle === "stabs8" ? "selected" : ""}>8th Stabs</option>
+        <option value="arpUp" ${playStyle === "arpUp" ? "selected" : ""}>Arp Up</option>
+        <option value="arpDown" ${playStyle === "arpDown" ? "selected" : ""}>Arp Down</option>
+        <option value="arpUpDown" ${playStyle === "arpUpDown" ? "selected" : ""}>Arp Up/Down</option>
+      </select></label>
+      <label class="control"><span>SF2 Option</span><select data-role="track-sf2-choice" data-track-id="${track.id}">
+        ${renderSf2ChoiceOptions(GENERIC_SF2_OPTIONS, choiceValue)}
+      </select></label>
+      <label class="control"><span>SF2 Path</span><input data-role="track-sf2-path" data-track-id="${track.id}" type="text" value="${escapeHtml(sf2Path)}" /></label>
+      <label class="control"><span>Echo Mix</span><input data-role="track-setting" data-setting="echoMix" data-track-id="${track.id}" type="range" min="0" max="1" step="0.01" value="${echoMix}" /></label>
+      <label class="control"><span>Echo Feedback</span><input data-role="track-setting" data-setting="echoFeedback" data-track-id="${track.id}" type="range" min="0" max="0.92" step="0.01" value="${echoFeedback}" /></label>
+      <label class="control"><span>Echo Time ms</span><input data-role="track-setting" data-setting="echoTimeMs" data-track-id="${track.id}" type="number" min="50" max="1200" step="10" value="${echoTimeMs}" /></label>
+      <div class="transport-buttons" style="grid-column: 1 / -1;">
+        <button data-role="track-sf2-load" data-track-id="${track.id}" type="button" ${loading ? "disabled" : ""}>Load SF2</button>
+        <button data-role="track-sf2-test" data-track-id="${track.id}" type="button" ${loading ? "disabled" : ""}>Test Track</button>
+        <span class="inline-status">${escapeHtml(getGenericTrackStatusText(track.id))}</span>
+      </div>
+    `;
+  }
+
   function renderTrackInspector(state) {
     const selectedTrackId = state.ui.dawSelection?.trackId || state.tracks[0]?.id || "";
     const track = state.tracks.find((item) => item.id === selectedTrackId);
@@ -970,6 +1101,7 @@ export function initDawView(rootElement, { store, trackManager, padSynth, bassSf
     const cutoff = clamp(Number(settings.filterCutoffHz) || 2200, 80, 20000);
     const detune = clamp(Number(settings.detuneCents) || 8, 0, 60);
     const reverbSend = clamp(Number(settings.reverbSend) || 0.18, 0, 1);
+    const padLevelTrim = clamp(Number(settings.padLevelTrim) || 0, 0, 1);
     const vibratoDepth = clamp(Number(settings.vibratoDepth) || 0, 0, 80);
     const vibratoRate = clamp(Number(settings.vibratoRateHz) || 4, 0.1, 12);
     const humanizeVelocity = Boolean(settings?.humanize?.velocity);
@@ -1006,6 +1138,8 @@ export function initDawView(rootElement, { store, trackManager, padSynth, bassSf
         <option value="arpDown" ${playStyle === "arpDown" ? "selected" : ""}>Arp Down</option>
         <option value="arpUpDown" ${playStyle === "arpUpDown" ? "selected" : ""}>Arp Up/Down</option>
       </select></label>` : ""}
+      ${isGenericSf2Track(track) ? renderGenericSf2Controls(track, settings) : ""}
+      ${isPadTrack(track) ? `<label class="control"><span>Pad Level Trim</span><input data-role="track-setting" data-setting="padLevelTrim" data-track-id="${track.id}" type="range" min="0" max="1" step="0.001" value="${padLevelTrim}" /></label>` : ""}
       <label class="control"><span>Attack ms</span><input data-role="track-setting" data-setting="attackMs" data-track-id="${track.id}" type="number" min="1" max="3000" step="1" value="${attackMs}" /></label>
       <label class="control"><span>Release ms</span><input data-role="track-setting" data-setting="releaseMs" data-track-id="${track.id}" type="number" min="1" max="5000" step="1" value="${releaseMs}" /></label>
       <label class="control"><span>Filter Cutoff Hz</span><input data-role="track-setting" data-setting="filterCutoffHz" data-track-id="${track.id}" type="number" min="80" max="20000" step="10" value="${cutoff}" /></label>
@@ -1056,7 +1190,7 @@ export function initDawView(rootElement, { store, trackManager, padSynth, bassSf
     controls.pianoStyle.value = state.pianoSettings.playStyle;
     controls.pianoHumanizeVelocity.checked = Boolean(state.pianoSettings.humanize.velocity);
     controls.pianoHumanizeTiming.checked = Boolean(state.pianoSettings.humanize.timing);
-    controls.pianoSf2Choice.value = getPianoSf2ChoiceValue(state.ui.pianoSf2Path);
+    controls.pianoSf2Choice.value = getSf2ChoiceValue(state.ui.pianoSf2Path, PIANO_SF2_OPTIONS);
     controls.pianoSf2Path.value = state.ui.pianoSf2Path;
 
     const bassStatus = statusLabel(state.ui.bassSf2Status, state.ui.bassSf2Error);
@@ -1218,6 +1352,14 @@ export function initDawView(rootElement, { store, trackManager, padSynth, bassSf
         continue;
       }
       pendingLoads.push(loadEngineSf2(kind));
+    }
+
+    const sf2TrackIdsNeedingLoad = state.tracks
+      .filter((track) => track.engine === "sf2_track")
+      .filter((track) => hasAnyCellsByKind(state, track, "note"))
+      .map((track) => track.id);
+    if (sf2TrackIdsNeedingLoad.length && sf2InstrumentRack) {
+      pendingLoads.push(sf2InstrumentRack.ensureTracksReady(sf2TrackIdsNeedingLoad));
     }
 
     if (!pendingLoads.length) {
@@ -1498,6 +1640,18 @@ export function initDawView(rootElement, { store, trackManager, padSynth, bassSf
           ? Number(target.value)
           : String(target.value || "")
       });
+      return;
+    }
+    if (target.dataset.role === "track-sf2-path") {
+      const trackId = String(target.dataset.trackId || "");
+      if (!trackId) {
+        return;
+      }
+      const sf2Path = String(target.value || "").trim();
+      store.setTrackSettings(trackId, {
+        sf2Path,
+        ...(getChoirEchoPatch(sf2Path) || {})
+      });
     }
   });
   rootElement.addEventListener("change", (event) => {
@@ -1532,6 +1686,30 @@ export function initDawView(rootElement, { store, trackManager, padSynth, bassSf
       });
       return;
     }
+    if (target.dataset.role === "track-sf2-choice") {
+      const trackId = String(target.dataset.trackId || "");
+      const selected = String(target.value || "").trim();
+      if (!trackId || !selected || selected === "custom") {
+        return;
+      }
+      store.setTrackSettings(trackId, {
+        sf2Path: selected,
+        ...(getChoirEchoPatch(selected) || {})
+      });
+      return;
+    }
+    if (target.dataset.role === "track-sf2-path") {
+      const trackId = String(target.dataset.trackId || "");
+      if (!trackId) {
+        return;
+      }
+      const sf2Path = String(target.value || "").trim();
+      store.setTrackSettings(trackId, {
+        sf2Path,
+        ...(getChoirEchoPatch(sf2Path) || {})
+      });
+      return;
+    }
     if (target.dataset.role === "track-setting-checkbox") {
       const trackId = String(target.dataset.trackId || "");
       const setting = String(target.dataset.setting || "");
@@ -1546,17 +1724,50 @@ export function initDawView(rootElement, { store, trackManager, padSynth, bassSf
     }
   });
 
-  rootElement.addEventListener("click", (event) => {
+  rootElement.addEventListener("click", async (event) => {
     const target = event.target;
     if (!(target instanceof HTMLElement)) {
       return;
     }
+    const targetRole = String(target.dataset.role || "");
     if (target.dataset.role === "remove-track") {
       const trackId = String(target.dataset.trackId || "");
       if (!trackId) {
         return;
       }
       store.removeTrack(trackId);
+      return;
+    }
+    if (target.dataset.role === "track-sf2-load") {
+      const trackId = String(target.dataset.trackId || "");
+      if (!trackId || !sf2InstrumentRack) {
+        return;
+      }
+      const loadPromise = sf2InstrumentRack.loadTrack(trackId);
+      render();
+      await loadPromise;
+      render();
+      return;
+    }
+    if (target.dataset.role === "track-sf2-test") {
+      const trackId = String(target.dataset.trackId || "");
+      if (!trackId || !sf2InstrumentRack) {
+        return;
+      }
+      await resumeAudioContext();
+      sf2InstrumentRack.playTestNote(trackId);
+      render();
+      return;
+    }
+    const selectTrackTarget = target.closest("[data-role='select-track']");
+    if (
+      selectTrackTarget &&
+      !["track-volume", "track-mute", "track-solo", "remove-track"].includes(targetRole)
+    ) {
+      const trackId = String(selectTrackTarget.getAttribute("data-track-id") || "");
+      if (trackId) {
+        selectTrack(trackId);
+      }
       return;
     }
     const cellButton = target.closest("[data-role='grid-cell']");
@@ -1573,9 +1784,13 @@ export function initDawView(rootElement, { store, trackManager, padSynth, bassSf
     if (!track) {
       return;
     }
-    store.setDawSelection({ trackId, barIndex });
+    selectTrack(trackId, barIndex);
     if (isDrumTrack(track)) {
       openDrumEditor(trackId, track.name, barIndex);
+      return;
+    }
+    if (supportsChordEditor(track)) {
+      openChordEditor(trackId, track.name, barIndex);
       return;
     }
     openNoteEditor(trackId, track.name, barIndex);

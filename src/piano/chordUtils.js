@@ -25,6 +25,11 @@ const QUALITY_INTERVALS = {
   sus4: [0, 5, 7]
 };
 
+export function getChordIntervals(quality = "maj") {
+  const safeQuality = PIANO_CHORD_QUALITIES.includes(quality) ? quality : "maj";
+  return [...(QUALITY_INTERVALS[safeQuality] || QUALITY_INTERVALS.maj)];
+}
+
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
 }
@@ -150,7 +155,7 @@ export function normalizeChordData(input, fallbackRoot = "C") {
 export function chordToPitchClasses(chord) {
   const normalized = normalizeChordData(chord, "C");
   const rootPitchClass = noteToPitchClass(normalized.root);
-  const intervals = QUALITY_INTERVALS[normalized.quality] || QUALITY_INTERVALS.maj;
+  const intervals = getChordIntervals(normalized.quality);
   return intervals.map((interval) => (rootPitchClass + interval) % 12);
 }
 
@@ -159,7 +164,7 @@ export function chooseSmartVoicing(chord, prevVoicing, options = {}) {
   const minMidi = clamp(Math.round(Number(options.minMidi) || 55), 36, 96);
   const maxMidi = clamp(Math.round(Number(options.maxMidi) || 79), minMidi + 6, 108);
   const rootPitchClass = noteToPitchClass(normalized.root);
-  const intervals = QUALITY_INTERVALS[normalized.quality] || QUALITY_INTERVALS.maj;
+  const intervals = getChordIntervals(normalized.quality);
 
   const candidates = [];
   for (let octave = 3; octave <= 6; octave += 1) {

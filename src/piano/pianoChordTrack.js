@@ -1,5 +1,7 @@
 import { TRACK_IDS } from "../daw/transportStore";
 import { buildHarmonyMidi, getSegmentForStep } from "../harmony/harmonyGenerator";
+import { rootNoteToMidi } from "../bass/rootNoteUtils";
+import { chooseSmartVoicing, normalizeChordData } from "./chordUtils";
 
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
@@ -83,8 +85,33 @@ function fitPianoRange(midiNotes) {
 }
 
 export function createPianoChordTrack({ sf2Player, store }) {
+  let previousVoicing = null;
+
+  function getVoicingRange(settings = {}) {
+    const octave = clamp(Math.round(Number(settings.octave) || 4), 2, 5);
+    const minMidi = clamp(rootNoteToMidi("C", octave) - 5, 48, 78);
+    return {
+      minMidi,
+      maxMidi: clamp(minMidi + 24, minMidi + 6, 96)
+    };
+  }
+
+  function buildSegmentVoicing(segment, settings) {
+    if (segment?.chord) {
+      const range = getVoicingRange(settings);
+      const voiced = chooseSmartVoicing(
+        normalizeChordData(segment.chord, segment.root || "C"),
+        previousVoicing,
+        range
+      );
+      return fitPianoRange(voiced);
+    }
+
+    return fitPianoRange(buildHarmonyMidi(segment?.root, settings));
+  }
+
   function resetArrangementState() {
-    // no-op, kept for compatibility with existing track manager lifecycle.
+    previousVoicing = null;
   }
 
   function scheduleArrangementStep({ currentBarIndex, stepInBar, stepTime, sixteenthSeconds }) {
@@ -99,7 +126,7 @@ export function createPianoChordTrack({ sf2Player, store }) {
     }
 
     const cell = state.arrangement?.[track.id]?.[currentBarIndex];
-    if (!cell || cell.type !== "note") {
+    if (!cell || (cell.type !== "note" && cell.kind !== "chord")) {
       return;
     }
 
@@ -119,10 +146,12 @@ export function createPianoChordTrack({ sf2Player, store }) {
       return;
     }
 
-    const voicing = fitPianoRange(buildHarmonyMidi(segment.root, settings));
+    const voicing = buildSegmentVoicing(segment, settings);
     if (!voicing.length) {
+      previousVoicing = null;
       return;
     }
+    previousVoicing = [...voicing];
 
     const humanizeVelocity = Boolean(settings?.humanize?.velocity);
     const humanizeTiming = Boolean(settings?.humanize?.timing);

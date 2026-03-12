@@ -1,4 +1,5 @@
 import { normalizeNoteName, rootNoteToMidi } from "../bass/rootNoteUtils";
+import { normalizeChordData } from "../piano/chordUtils";
 
 const SCALE_MINORISH = new Set(["minor", "pentatonic", "blues"]);
 
@@ -54,32 +55,55 @@ export function getSegmentForStep(cell, stepInBar) {
   }
 
   const step = clamp(Math.round(Number(stepInBar) || 0), 0, 15);
+
+  function buildNoteSegment(root, half, isStart, stepOffsetInSegment, segmentSixteenths) {
+    return {
+      root: normalizeNoteName(root || "C", "C"),
+      quality: null,
+      bass: null,
+      chord: null,
+      half,
+      isStart,
+      stepOffsetInSegment,
+      segmentSixteenths
+    };
+  }
+
+  function buildChordSegment(chordData, fallbackRoot, half, isStart, stepOffsetInSegment, segmentSixteenths) {
+    const chord = normalizeChordData(chordData, fallbackRoot);
+    return {
+      root: chord.root,
+      quality: chord.quality,
+      bass: chord.bass,
+      chord,
+      half,
+      isStart,
+      stepOffsetInSegment,
+      segmentSixteenths
+    };
+  }
+
+  if (cell.kind === "chord") {
+    const chordBar = cell.data && typeof cell.data === "object" ? cell.data : {};
+    const isSplit = chordBar.type === "split";
+    if (isSplit) {
+      if (step < 8) {
+        return buildChordSegment(chordBar.firstHalf, "C", 0, step === 0, step, 8);
+      }
+      return buildChordSegment(chordBar.secondHalf, "G", 1, step === 8, step - 8, 8);
+    }
+
+    return buildChordSegment(chordBar.chord, "C", null, step === 0, step, 16);
+  }
+
   const sixteenthLength = cell.split ? 8 : 16;
 
   if (cell.split) {
     if (step < 8) {
-      return {
-        root: normalizeNoteName(cell.root || "C", "C"),
-        half: 0,
-        isStart: step === 0,
-        stepOffsetInSegment: step,
-        segmentSixteenths: 8
-      };
+      return buildNoteSegment(cell.root, 0, step === 0, step, 8);
     }
-    return {
-      root: normalizeNoteName(cell.secondRoot || cell.root || "G", "G"),
-      half: 1,
-      isStart: step === 8,
-      stepOffsetInSegment: step - 8,
-      segmentSixteenths: 8
-    };
+    return buildNoteSegment(cell.secondRoot || cell.root || "G", 1, step === 8, step - 8, 8);
   }
 
-  return {
-    root: normalizeNoteName(cell.root || "C", "C"),
-    half: null,
-    isStart: step === 0,
-    stepOffsetInSegment: step,
-    segmentSixteenths: sixteenthLength
-  };
+  return buildNoteSegment(cell.root, null, step === 0, step, sixteenthLength);
 }
